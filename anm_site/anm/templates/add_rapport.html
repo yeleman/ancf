@@ -1,0 +1,32 @@
+   <div id = "">
+        <h1>Envoi du rapport</h1>
+
+        <form action="" method="post" >{% csrf_token %}
+
+            <div id="create_user_form">
+
+                <div id= "date">
+                    {{form.date.label}}:
+                    {{form.date}}
+                </div>
+
+                <div id= "type_report">
+                    {{form.type_report.label}}:
+                    {{form.type_report}}
+                </div>
+
+                <div id= "report_pdf">
+                    {{form.report_pdf.label}}:
+                    {{form.report_pdf}}
+                </div>
+
+                <div id= "author">
+                    {{form.author.label}}:
+                    {{form.author}}
+                </div>
+
+                <p id = '' class= "{{save}}">
+                <input type='submit' value =  "Ajouter"/></p>
+            </div>
+        </form>
+    </div>
