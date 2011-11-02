@@ -14,4 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'add_organization_chart', "anm.views.add_organization_chart", name="add_organization_chart"),
 )
