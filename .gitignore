@@ -1,5 +1,5 @@
 *.pyc
-*.db
+*.sqlite
 local_settings.py
 logs/*
 media/*.pdf
