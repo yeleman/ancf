@@ -1,11 +1,6 @@
 *.pyc
-*.db
+*.sqlite
 local_settings.py
-logs/*
-media/*.pdf
-media/*.doc*
-media/*.exe
-media/*.xls*
-media/*.ppt*
-media/*.odt
-media/*.ods
+*.images_member
+*.report_doc
+
