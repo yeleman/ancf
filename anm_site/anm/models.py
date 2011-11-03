@@ -34,7 +34,7 @@ class Report(models.Model):
     type_report =  models.CharField(max_length=100, verbose_name=("Type"))
     report_pdf = models.FileField(upload_to='report_doc/', \
                                   verbose_name=('Le rapport'), \
-                                  null=True, blank=True,)
+                                  null=True)
     author = models.ForeignKey(Member, verbose_name=("Rapporteur"))
 
     def __unicode__(self):

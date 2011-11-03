@@ -1,32 +1,36 @@
    <div id = "">
         <h1>Envoi du rapport</h1>
 
-        <form action="" method="post" >{% csrf_token %}
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
 
-            <div id="create_user_form">
+            <div id="create_envoi_form">
 
                 <div id= "date">
                     {{form.date.label}}:
                     {{form.date}}
+                    {{form.date.errors}}
                 </div>
 
                 <div id= "type_report">
                     {{form.type_report.label}}:
                     {{form.type_report}}
+                    {{form.type_report.errors}}
                 </div>
 
                 <div id= "report_pdf">
                     {{form.report_pdf.label}}:
                     {{form.report_pdf}}
+                    {{form.report_pdf.errors}}
                 </div>
 
                 <div id= "author">
                     {{form.author.label}}:
                     {{form.author}}
+                    {{form.author.errors}}
                 </div>
 
                 <p id = '' class= "{{save}}">
-                <input type='submit' value =  "Ajouter"/></p>
+                <input type='submit' value =  "Envoyer"/></p>
             </div>
         </form>
     </div>
