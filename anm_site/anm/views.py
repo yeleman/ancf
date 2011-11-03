@@ -16,7 +16,6 @@ def add_rapport(request):
     """ """
     c = {}
     c.update(csrf(request))
-    report = Report()
     if request.method == 'POST':
         form = AddReportform(request.POST, request.FILES)
         if form.is_valid():
@@ -27,3 +26,9 @@ def add_rapport(request):
     c.update({'form': form})
     return render_to_response('add_rapport.html', c)
 
+def consultation_report(request):
+
+    """ """
+    c = {}
+    c.update(csrf(request))
+    return render_to_response('consultation.html', c)
