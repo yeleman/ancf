@@ -1,0 +1,21 @@
+bonjour Fad
+        <table  id="insured_list" class="tablesorter">
+            <thead>
+                <tr>
+                   <th>date </th>
+                   <th> Type </th>
+                   <th> Rapporteur </th>
+                   <th> PDF </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in report %}
+                    <tr>
+                        <td>{{element.date}}</td>
+                        <td>{{element.type_report}}</td>
+                        <td>{{element.author}}</td>
+                        <td> <a href="{{element.url_report}}">Télécharger</a></td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
