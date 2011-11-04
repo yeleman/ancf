@@ -23,6 +23,8 @@ class Member(models.Model):
 
 class Organization_chart(models.Model):
     """ """
+    date = models.DateField(verbose_name=("Fait le"),\
+                             default=datetime.datetime.today)
     president = models.ForeignKey(Member, verbose_name=("président"))
 
     def __unicode__(self):
@@ -59,8 +61,8 @@ class News(models.Model):
 
 class Newsletter(models.Model):
     """ """
-    last_name = models.CharField(max_length=100, verbose_name=("Nom"))
-    first_name = models.CharField(max_length=100, verbose_name=("Prénom"))
+    date = models.DateField(verbose_name=("Date d'inscription"),\
+                             default=datetime.datetime.today)
     email = models.EmailField(max_length=75, verbose_name=("Email"))
 
     def __unicode__(self):
