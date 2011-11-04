@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # maintainer: Alou & Fadiga
 
-
 import os
 
 from django.shortcuts import render_to_response, redirect
@@ -12,6 +11,7 @@ from django.http import HttpResponse
 
 from anm.models import *
 from form import AddReportform, ModifOrgform
+
 
 def modif_organization_chart(request):
     """ Modification du dernier organigramme """
@@ -39,7 +39,7 @@ def add_rapport(request):
         form = AddReportform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('modif_organization_chart')
+            return redirect('consultation_report')
     else:
         form = AddReportform()
     c.update({'form': form})
@@ -56,10 +56,10 @@ def consultation_report(request):
     c.update({"report": reports})
     return render_to_response('consultation.html', c)
 
+
 def download(request, fullpath):
     """ """
     response = HttpResponse(file(fullpath).read())
     #Si c'est un fichier pdf
     response['Content-Type'] = 'application/pdf'
-    #~ response['Content-disposition'] = 'attachment'
     return response

@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 # maintainer: Alou & Fadiga
 
+from django import forms
 
 from models import *
-from django import forms
 
 
 class AddReportform(forms.ModelForm):
@@ -17,5 +17,3 @@ class ModifOrgform(forms.ModelForm):
 
     class Meta:
         model = Organization_chart
-
-
