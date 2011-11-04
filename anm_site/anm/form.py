@@ -13,4 +13,9 @@ class AddReportform(forms.ModelForm):
         model = Report
 
 
+class ModifOrgform(forms.ModelForm):
+
+    class Meta:
+        model = Organization_chart
+
 

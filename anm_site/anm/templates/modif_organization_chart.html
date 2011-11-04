@@ -1,0 +1,18 @@
+   <div id = "">
+        <h1>Modification de l'organigramme de la Commission Finance</h1>
+
+        <form action="" method="post">{% csrf_token %}
+
+            <div id="org_form">
+
+                <div id= "president">
+                    {{form.president.label}}:
+                    {{form.president}}
+                    {{form.president.errors}}
+                </div>
+
+                <p id = '' class= "{{save}}">
+                <input type='submit' value =  "Envoyer"/></p>
+            </div>
+        </form>
+    </div>
