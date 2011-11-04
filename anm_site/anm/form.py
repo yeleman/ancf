@@ -17,3 +17,9 @@ class ModifOrgform(forms.ModelForm):
 
     class Meta:
         model = Organization_chart
+
+
+class Memberform(forms.ModelForm):
+
+    class Meta:
+        model = Member

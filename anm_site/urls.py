@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^download/(?P<fullpath>.*)$', 'anm.views.download', \
                                                         name="download"),
     url(r'add_rapport', "anm.views.add_rapport", name="add_rapport"),
+    url(r'add_member', "anm.views.add_member", name="add_member"),
     url(r'consultation_report', "anm.views.consultation_report", \
                                             name="consultation_report"),
     # Uncomment the next line to enable the admin:

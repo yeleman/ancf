@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # maintainer: Alou & Fadiga
 
+
 import os
 
 from django.shortcuts import render_to_response, redirect
@@ -10,16 +11,17 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 
 from anm.models import *
-from form import AddReportform, ModifOrgform
-
+from form import AddReportform, ModifOrgform, Memberform
 
 def modif_organization_chart(request):
     """ Modification du dernier organigramme """
 
     c = {}
     c.update(csrf(request))
+
     org_latest = Organization_chart.objects.latest('id')
     dict_org = {'president': org_latest.president}
+
     if request.method == 'POST':
         form = ModifOrgform(request.POST)
         if form.is_valid():
@@ -27,7 +29,9 @@ def modif_organization_chart(request):
             return redirect('add_rapport')
     else:
         form = ModifOrgform(dict_org)
+
     c.update({'form': form})
+
     return render_to_response('modif_organization_chart.html', c)
 
 
@@ -39,11 +43,25 @@ def add_rapport(request):
         form = AddReportform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('consultation_report')
+            return redirect('modif_organization_chart')
     else:
         form = AddReportform()
     c.update({'form': form})
     return render_to_response('add_rapport.html', c)
+
+def add_member(request):
+    """ """
+    c = {}
+    c.update(csrf(request))
+    if request.method == 'POST':
+        form = Memberform(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('modif_organization_chart')
+    else:
+        form = Memberform()
+    c.update({'form': form})
+    return render_to_response('add_member.html', c)
 
 
 def consultation_report(request):
@@ -56,10 +74,10 @@ def consultation_report(request):
     c.update({"report": reports})
     return render_to_response('consultation.html', c)
 
-
 def download(request, fullpath):
     """ """
     response = HttpResponse(file(fullpath).read())
     #Si c'est un fichier pdf
     response['Content-Type'] = 'application/pdf'
+    #~ response['Content-disposition'] = 'attachment'
     return response
