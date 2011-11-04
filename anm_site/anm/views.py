@@ -14,6 +14,8 @@ from anm.models import *
 from form import AddReportform, ModifOrgform
 
 def modif_organization_chart(request):
+    """ Modification du dernier organigramme """
+
     c = {}
     c.update(csrf(request))
     org_latest = Organization_chart.objects.latest('id')
