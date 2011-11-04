@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Ajout Membre{% endblock %}
+{% block page-id %}add_member{% endblock %}
+{% block content %}
+
+   <div id = "">
+        <h1>Ajout de membre de la Commission Finance</h1>
+
+        <form action="" method="post">{% csrf_token %}
+
+            <div id="org_form">
+
+                <div id= "last_name">
+                    {{form.last_name.label}}:
+                    {{form.last_name}}
+                    {{form.last_name.errors}}
+                </div>
+                <div id= "first_name">
+                    {{form.first_name.label}}:
+                    {{form.first_name}}
+                    {{form.first_name.errors}}
+                </div>
+
+                <div id= "image">
+                    {{form.image.label}}:
+                    {{form.image}}
+                    {{form.image.errors}}
+                </div>
+
+                <div id= "post">
+                    {{form.post.label}}:
+                    {{form.post}}
+                    {{form.post.errors}}
+                </div>
+
+                <div id= "email">
+                    {{form.email.label}}:
+                    {{form.email}}
+                    {{form.email.errors}}
+                </div>
+
+                <p id = '' class= "{{save}}">
+                <input type='submit' value =  "Envoyer"/></p>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
