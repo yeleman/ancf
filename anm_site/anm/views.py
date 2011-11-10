@@ -13,6 +13,15 @@ from django.http import HttpResponse
 from anm.models import *
 from form import AddReportform, ModifOrgform, Memberform
 
+
+def dashboard(request):
+    """ l'accuiel"""
+    c = {}
+    c.update(csrf(request))
+    c.update({'welcome':"welcome"})
+    return render_to_response('dashboard.html',c)
+
+
 def modif_organization_chart(request):
     """ Modification du dernier organigramme """
 
@@ -52,6 +61,7 @@ def add_rapport(request):
     c.update({'form': form})
     return render_to_response('add_rapport.html', c)
 
+
 def add_member(request):
     """ """
     c = {}
@@ -77,10 +87,10 @@ def consultation_report(request):
     c.update({"report": reports})
     return render_to_response('consultation.html', c)
 
+
 def download(request, fullpath):
     """ """
     response = HttpResponse(file(fullpath).read())
     #Si c'est un fichier pdf
     response['Content-Type'] = 'application/pdf'
-    #~ response['Content-disposition'] = 'attachment'
     return response
