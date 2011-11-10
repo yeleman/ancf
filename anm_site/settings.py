@@ -3,7 +3,7 @@
 # maintainer: alou
 # Django settings for anm_site project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 import os
@@ -16,13 +16,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {'default': {
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': 'ancf.sqlite',
-    'USER': 'ancf',
-    'PASSWORD': 'ancf',
-    'HOST': '',
-    'PORT': ''}
+DATABASES = {
 }
 
 TIME_ZONE = 'Africa/Bamako'

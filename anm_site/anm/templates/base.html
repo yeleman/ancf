@@ -2,15 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
     <head>
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="/static/media/css/menu.css" type="text/css" />
+        <span id="#">{% include "_menu.html" %}</span>
     </head>
     <body>
         <div id="{% block page-id %}{% endblock %}">
             {% block content %}
             {% endblock %}
         </div>
-        <div id="footer">
-
-        </div>
-
+        <div id="footer"> </div>
     </body>
 </html>
