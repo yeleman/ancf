@@ -10,6 +10,8 @@ from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 
+from datetime import date
+
 from anm.models import *
 from form import AddReportform, ModifOrgform, Memberform
 
@@ -25,14 +27,16 @@ def dashboard(request):
 def modif_organization_chart(request):
     """ Modification du dernier organigramme """
 
+
     c = {}
     c.update(csrf(request))
+    date_today = date.today()
 
     try:
         org_latest = Organization_chart.objects.latest('id')
-        dict_org = {'president': org_latest.president}
+        dict_org = {'president': org_latest.president, 'date': org_latest.date}
     except Organization_chart.DoesNotExist:
-        dict_org = {}
+        dict_org = {'date': date_today}
 
     if request.method == 'POST':
         form = ModifOrgform(request.POST)
