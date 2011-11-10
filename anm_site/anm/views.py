@@ -4,13 +4,12 @@
 
 
 import os
+from datetime import date
 
 from django.shortcuts import render_to_response, redirect
 from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-
-from datetime import date
 
 from anm.models import *
 from form import AddReportform, ModifOrgform, Memberform
@@ -26,8 +25,6 @@ def dashboard(request):
 
 def modif_organization_chart(request):
     """ Modification du dernier organigramme """
-
-
     c = {}
     c.update(csrf(request))
     date_today = date.today()
@@ -59,7 +56,7 @@ def add_rapport(request):
         form = AddReportform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('modif_organization_chart')
+            return redirect('consultation_report')
     else:
         form = AddReportform()
     c.update({'form': form})

@@ -1,13 +1,15 @@
-from django.conf.urls.defaults import patterns, include, url
+# -*- coding: utf-8 -*-
 
-# Uncomment the next two lines to enable the admin:
+import settings
+
+from django.conf.urls.defaults import *
 from django.contrib import admin
+
+from settings import MEDIA_ROOT, DEBUG
 admin.autodiscover()
 
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'anm_site.views.home', name='home'),
-    # url(r'^anm_site/', include('anm_site.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -21,7 +23,18 @@ urlpatterns = patterns('',
     url(r'add_member', "anm.views.add_member", name="add_member"),
     url(r'consultation_report', "anm.views.consultation_report", \
                                             name="consultation_report"),
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
 
+)
+if DEBUG :
+    urlpatterns += patterns('',
+
+          # Permet de servir les fichiers statiques durant
+          # le developpement. ex : css, js, images
+          url(r'^static/(?P<path>.*)$',
+             'django.views.static.serve',
+             {'document_root': MEDIA_ROOT, 'show_indexes': True}),
+    )
+
+urlpatterns += patterns('',
+    url(r'^admin/', include(admin.site.urls)),
 )
