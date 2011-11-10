@@ -19,8 +19,11 @@ def modif_organization_chart(request):
     c = {}
     c.update(csrf(request))
 
-    org_latest = Organization_chart.objects.latest('id')
-    dict_org = {'president': org_latest.president}
+    try:
+        org_latest = Organization_chart.objects.latest('id')
+        dict_org = {'president': org_latest.president}
+    except Organization_chart.DoesNotExist:
+        dict_org = {}
 
     if request.method == 'POST':
         form = ModifOrgform(request.POST)
