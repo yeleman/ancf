@@ -17,7 +17,7 @@ from form import AddReportform, ModifOrgform, Memberform
 
 def dashboard(request):
     """ l'accuiel"""
-    c = {}
+    c = {'category': 'dashboard'}
     c.update(csrf(request))
     c.update({'welcome':"welcome"})
     return render_to_response('dashboard.html',c)
@@ -25,7 +25,7 @@ def dashboard(request):
 
 def modif_organization_chart(request):
     """ Modification du dernier organigramme """
-    c = {}
+    c = {'category': 'modif_organization_chart'}
     c.update(csrf(request))
     date_today = date.today()
 
@@ -50,7 +50,7 @@ def modif_organization_chart(request):
 
 def add_rapport(request):
     """ """
-    c = {}
+    c = {'category': 'add_rapport'}
     c.update(csrf(request))
     if request.method == 'POST':
         form = AddReportform(request.POST, request.FILES)
@@ -65,7 +65,7 @@ def add_rapport(request):
 
 def add_member(request):
     """ """
-    c = {}
+    c = {'category': 'add_member'}
     c.update(csrf(request))
     if request.method == 'POST':
         form = Memberform(request.POST, request.FILES)
@@ -80,7 +80,7 @@ def add_member(request):
 
 def consultation_report(request):
     """ """
-    c = {}
+    c = {'category': 'consultation'}
     c.update(csrf(request))
     reports = Report.objects.all()
     for report in reports:

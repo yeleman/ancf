@@ -1,0 +1,25 @@
+/*
+css by fadiga
+*/
+/*pour les tables*/
+table{width:101%;border-collapse: separate;}
+table td ,table th{ color: invert; min-width: -moz-min-content; padding: 0px 1px 0px 5px; border: 1px solid #DEDEDE;}
+table th{background:#777770;color: #CECCCC; font-weight: bold;text-align: center;}
+tbody tr:hover  {color: black;}
+/*
+#form tbody tr:hover {color: #5956A5; border: 1px solid;}
+*/
+.entry table tbody td a {text-decoration:none; padding: 0 33px 0 3px;}
+tr.even td {background: #E1DDB2;}
+tfoot th {background:#696969;color: #CECCCC}
+/* fin tables*/
+/*tablesorter*/
+table.tablesorter thead tr .header {
+        background-image: url(/static/js/tablesorter/themes/green/bg1.png);
+        color: DimGrey; background-repeat: no-repeat; background-position: left; cursor: pointer; text-align: center;}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {padding: 1px;}
+table.tablesorter thead tr .headerSortUp { background-image: url(/static/js/tablesorter/themes/green/asc1.png);}
+table.tablesorter thead tr .headerSortDown { background-image: url(/static/js/tablesorter/themes/green/desc1.png); }
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp { background-color: #8dbdd8;}
+/* fin tablesorter*/
+
