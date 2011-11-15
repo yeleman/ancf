@@ -6,3 +6,18 @@ body{
     font:12px/18px Tahoma, Arial, Helvetica, sans-serif;
     -moz-border-radius: 7px 7px 7px 7px; -moz-box-shadow: 1px 1px 16px 2px;
     margin: 0 auto;width: 960px;}
+
+/** Add member **/
+#add_member {width: 800px; margin: 0pt auto;}
+#add_member h1{width: 740px; margin: 0pt auto;height: 35px; text-decoration: none; text-align: center;}
+#add_member #member_form input[type="submit"] {padding-left: 5px; margin-left: 205px;}
+#add_member #member_form {width: 740px; margin: 0pt auto;}
+#add_member #member_form table{margin: 0pt auto;}
+
+/** Modif org char **/
+
+#modiforganization_chart {width: 800px; margin: 0pt auto;}
+#modiforganization_chart h1{width: 795px; margin: 0pt auto;height: 35px; text-align: center;}
+#modiforganization_chart #org_form input[type="submit"] {padding-left: 5px; margin-left: 302px;}
+#modiforganization_chart #org_form {width: 740px; margin: 0pt auto;}
+#modiforganization_chart #org_form table{margin: 0pt auto;}
