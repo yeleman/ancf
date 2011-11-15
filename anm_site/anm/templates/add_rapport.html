@@ -3,37 +3,36 @@
 {% block page-id %}add_rapport{% endblock %}
 {% block content %}
 
-   <div id = "">
+   <div id = "page">
         <h1>Envoi du rapport</h1>
 
         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <table>
+            <tbody>
+                <div id="create_envoi_form">
+                <tr>
+                    <tr id= "date">
+                        <td>{{form.date.label}}:</td>
+                        <td>{{form.date}} {{form.date.errors}}</td>
+                    </tr>
 
-            <div id="create_envoi_form">
+                    <tr id= "type_report">
+                        <td> {{form.type_report.label}}:</td>
+                        <td>{{form.type_report}} {{form.type_report.errors}}</td>
+                    </tr>
 
-                <div id= "date">
-                    {{form.date.label}}:
-                    {{form.date}}
-                    {{form.date.errors}}
-                </div>
+                    <tr id= "report_pdf">
+                        <td> {{form.report_pdf.label}}:</td>
+                        <td>{{form.report_pdf}} {{form.report_pdf.errors}}</td>
+                    </tr>
 
-                <div id= "type_report">
-                    {{form.type_report.label}}:
-                    {{form.type_report}}
-                    {{form.type_report.errors}}
-                </div>
-
-                <div id= "report_pdf">
-                    {{form.report_pdf.label}}:
-                    {{form.report_pdf}}
-                    {{form.report_pdf.errors}}
-                </div>
-
-                <div id= "author">
-                    {{form.author.label}}:
-                    {{form.author}}
-                    {{form.author.errors}}
-                </div>
-
+                    <tr id= "author">
+                        <td> {{form.author.label}}:</td>
+                        <td>{{form.author}} {{form.author.errors}}</td>
+                    </tr>
+                </tr>
+                </tbody>
+            </table>
                 <p id = '' class= "{{save}}">
                 <input type='submit' value =  "Envoyer"/></p>
             </div>
