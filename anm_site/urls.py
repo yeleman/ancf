@@ -25,15 +25,6 @@ urlpatterns = patterns('',
                                             name="consultation_report"),
 
 )
-if DEBUG :
-    urlpatterns += patterns('',
-
-          # Permet de servir les fichiers statiques durant
-          # le developpement. ex : css, js, images
-          url(r'^static/(?P<path>.*)$',
-             'django.views.static.serve',
-             {'document_root': MEDIA_ROOT, 'show_indexes': True}),
-    )
 
 urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls)),

@@ -85,13 +85,15 @@ def consultation_report(request):
     reports = Report.objects.all()
     for report in reports:
         report.url_report = reverse("download", args=[report.report_pdf])
+        print report.url_report,"eeee"
     c.update({"report": reports})
     return render_to_response('consultation.html', c)
 
 
 def download(request, fullpath):
     """ """
-    response = HttpResponse(file(fullpath).read())
+    path = "media/" + fullpath
+    response = HttpResponse(file(path).read())
     #Si c'est un fichier pdf
     response['Content-Type'] = 'application/pdf'
     return response
