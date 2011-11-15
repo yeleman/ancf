@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'dashboard', "anm.views.dashboard", name="dashboard"),
     url(r'modif_organization_chart', "anm.views.modif_organization_chart", \
                                             name="modif_organization_chart"),
-    url(r'^download/(?P<fullpath>.*)$', 'anm.views.download', \
+    url(r'^download/(?P<path>.*)$', 'anm.views.download', \
                                                         name="download"),
     url(r'add_rapport', "anm.views.add_rapport", name="add_rapport"),
     url(r'add_member', "anm.views.add_member", name="add_member"),
