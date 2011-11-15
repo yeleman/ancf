@@ -19,8 +19,8 @@ def dashboard(request):
     """ l'accuiel"""
     c = {'category': 'dashboard'}
     c.update(csrf(request))
-    c.update({'welcome':"welcome"})
-    return render_to_response('dashboard.html',c)
+    c.update({'welcome': "welcome"})
+    return render_to_response('dashboard.html', c)
 
 
 def modif_organization_chart(request):
@@ -85,15 +85,13 @@ def consultation_report(request):
     reports = Report.objects.all()
     for report in reports:
         report.url_report = reverse("download", args=[report.report_pdf])
-        print report.url_report,"eeee"
     c.update({"report": reports})
     return render_to_response('consultation.html', c)
 
 
-def download(request, fullpath):
+def download(request, path):
     """ """
-    path = "media/" + fullpath
-    response = HttpResponse(file(path).read())
-    #Si c'est un fichier pdf
+    fullpath = '/'.join(["media", path])
+    response = HttpResponse(file(fullpath).read())
     response['Content-Type'] = 'application/pdf'
     return response
