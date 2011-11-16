@@ -3,29 +3,31 @@
 {% block page-id %}consultation{% endblock %}
 {% block content %}
 
-        <table>
-            <thead>
-                <tr>
-                   <th> Date </th>
-                   <th> Type </th>
-                   <th> Rapporteur </th>
-                   <th> Téléchager </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for element in report %}
+        <h1>Consultation Rapport</h1>
+        <div id="consultation">
+            <table>
+                <thead>
                     <tr>
-                        <td>{{element.date}}</td>
-                        <td>{{element.type_report}}</td>
-                        <td>{{element.author}}</td>
-                        <td>
-                            <a href="{{element.url_report}}">
-                                <img id ='image' class ="{{valide}}"src="/static/css/images/pdf.png" width="30">
-                            </a>
-                        </td>
+                       <th> Date </th>
+                       <th> Type </th>
+                       <th> Rapporteur </th>
+                       <th> Téléchager </th>
                     </tr>
-                {%endfor%}
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    {% for element in report %}
+                        <tr>
+                            <td>{{element.date}}</td>
+                            <td>{{element.type_report}}</td>
+                            <td>{{element.author}}</td>
+                            <td>
+                                <a href="{{element.url_report}}">
+                                    <img id ='image' class ="{{valide}}"src="/static/css/images/pdf.png" width="30">
+                                </a>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
 {% endblock %}

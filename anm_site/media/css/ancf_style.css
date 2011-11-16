@@ -21,3 +21,13 @@ body{
 #modiforganization_chart #org_form input[type="submit"] {padding-left: 5px; margin-left: 302px;}
 #modiforganization_chart #org_form {width: 740px; margin: 0pt auto;}
 #modiforganization_chart #org_form table{margin: 0pt auto;}
+
+/** Add rapport **/
+
+
+#add_rapport #create_envoi_form {width: 800px; margin: 0pt auto;}
+#add_rapport h1{width: 795px; margin: 0pt auto;height: 35px; text-align: center;}
+
+/* consultation*/
+
+#consultation  {width: 800px; margin: 0pt auto;}
