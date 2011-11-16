@@ -17,6 +17,7 @@ class ModifOrgform(forms.ModelForm):
 
     class Meta:
         model = Organization_chart
+        exclude = ['date']
 
 
 class Memberform(forms.ModelForm):

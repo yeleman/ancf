@@ -64,7 +64,7 @@ def add_rapport(request):
 
 
 def add_member(request):
-    """ """
+    """ Ajout de nouveau membre """
     c = {'category': 'add_member'}
     c.update(csrf(request))
     if request.method == 'POST':

@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    url(r'dashboard', "anm.views.dashboard", name="dashboard"),
+    url(r'^$', "anm.views.dashboard", name="dashboard"),
     url(r'modif_organization_chart', "anm.views.modif_organization_chart", \
                                             name="modif_organization_chart"),
     url(r'^download/(?P<path>.*)$', 'anm.views.download', \
