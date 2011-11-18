@@ -14,15 +14,24 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    url(r'^$', "anm.views.dashboard", name="dashboard"),
-    url(r'modif_organization_chart', "anm.views.modif_organization_chart", \
-                                            name="modif_organization_chart"),
+    url(r'^$', "anm.views.login", \
+                                    name="login"),
+    url(r"^logout$", "anm.views.logout", \
+                                    name="logout"),
+    url(r'^administration$', "anm.views.administration",  \
+                                    name="administration"),
+    url(r'^dashboard$', "anm.views.dashboard", \
+                                    name="dashboard"),
+    url(r'^modif_organization_chart$', "anm.views.modif_organization_chart", \
+                                    name="modif_organization_chart"),
     url(r'^download/(?P<path>.*)$', 'anm.views.download', \
-                                                        name="download"),
-    url(r'add_rapport', "anm.views.add_rapport", name="add_rapport"),
-    url(r'add_member', "anm.views.add_member", name="add_member"),
-    url(r'consultation_report', "anm.views.consultation_report", \
-                                            name="consultation_report"),
+                                    name="download"),
+    url(r'^add_rapport', "anm.views.add_rapport", \
+                                    name="add_rapport"),
+    url(r'^add_member', "anm.views.add_member", \
+                                    name="add_member"),
+    url(r'^consultation_report', "anm.views.consultation_report", \
+                                    name="consultation_report"),
 
 )
 

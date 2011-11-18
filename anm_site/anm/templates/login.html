@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Connexion{% endblock %}
+{% block page-id %}login{% endblock %}
+{% block content %}
+
+    <div id='page_login'>
+        {{state}}
+        <ul id="menu_login">
+            <form action="{% url login %}" method="post">{% csrf_token %}
+                <div>{{ form.as_table }}</div>
+                <span class ="span-4">
+                    <input id = 'id_Connexion' type="submit" value="Se connecter" >
+                </span>
+            </form>
+        </ul>
+    </div>
+
+{% endblock %}
