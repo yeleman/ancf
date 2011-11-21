@@ -13,15 +13,77 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 
-from anm.models import Report, Organization_chart
-from form import AddReportform, ModifOrgform, Memberform, LoginForm
+from anm.models import Report, Organization_chart, News
+from form import AddReportform, ModifOrgform, Memberform, LoginForm, \
+                 Newsletterform
+
+
+def login(request):
+    """ page de connection """
+
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('administration'))
+    else:
+        c = {}
+        c.update(csrf(request))
+        state = "Se connecter"
+
+        form = LoginForm()
+        c.update({'form': form, 'state': state})
+
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                    return HttpResponseRedirect(reverse('add_member'))
+                else:
+                    state = "Your Account is not active,\
+                                        please contact the site admin."
+            else:
+                state = u"Votre nom d'utilisateur et / ou \
+                                    votre mot de passe est incorrect. \
+                                    Veuillez réessayer."
+            c.update({'form': form, 'state': state})
+    return render_to_response('login.html', c)
+
+
+def logout(request):
+    """ logout est la views qui permet de se deconnecter """
+
+    django_logout(request)
+    return redirect("login")
 
 
 def dashboard(request):
     """ l'accuiel"""
     c = {'category': 'dashboard'}
     c.update(csrf(request))
-    c.update({'welcome': "welcome"})
+    try:
+        statement = News.objects.latest('id')
+        c.update({ "statement":statement})
+    except:
+        message_empty_c = "pas de comminiqué"
+        c.update({"message_empty_c": message_empty_c})
+    try:
+        reports = Report.objects.all().order_by("-date")
+        c.update({"reports":reports})
+    except:
+        message_empty_r = "pas de rapport"
+        c.update({"message_empty_r": message_empty_r})
+
+    if request.method == 'POST':
+        form = Newsletterform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = Newsletterform()
+
+    c.update({'form': form, })
+    print c
     return render_to_response('dashboard.html', c)
 
 
@@ -29,6 +91,7 @@ def dashboard(request):
 def modif_organization_chart(request):
     """ Modification du dernier organigramme """
     c = {'category': 'modif_organization_chart'}
+    c.update({"user": request.user})
     c.update(csrf(request))
     date_today = date.today()
 
@@ -70,6 +133,7 @@ def add_rapport(request):
 def add_member(request):
     """ Ajout de nouveau membre """
     c = {'category': 'add_member'}
+    c.update({"user": request.user})
     c.update(csrf(request))
     if request.method == 'POST':
         form = Memberform(request.POST, request.FILES)
@@ -101,49 +165,3 @@ def download(request, path):
     return response
 
 
-def login(request):
-    """ page de connection """
-
-    if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('administration'))
-    else:
-        c = {}
-        c.update(csrf(request))
-        state = "Se connecter"
-
-        form = LoginForm()
-        c.update({'form': form, 'state': state})
-
-        if request.method == 'POST':
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    django_login(request, user)
-                    return HttpResponseRedirect(reverse('administration'))
-                else:
-                    state = "Your Account is not active,\
-                                        please contact the site admin."
-            else:
-                state = u"Votre nom d'utilisateur et / ou \
-                                    votre mot de passe est incorrect. \
-                                    Veuillez réessayer."
-            c.update({'form': form, 'state': state})
-    return render_to_response('login.html', c)
-
-
-def logout(request):
-    """ logout est la views qui permet de se deconnecter """
-
-    django_logout(request)
-    return redirect("login")
-
-
-@login_required
-def administration(request):
-    """ Page d'administration """
-    user = request.user
-    c = {'user': user}
-    c.update(csrf(request))
-    return render_to_response('administration.html', c)

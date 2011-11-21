@@ -18,8 +18,8 @@ urlpatterns = patterns('',
                                     name="login"),
     url(r"^logout$", "anm.views.logout", \
                                     name="logout"),
-    url(r'^administration$', "anm.views.administration",  \
-                                    name="administration"),
+    url(r'^administration$', "anm.views.login",  \
+                                    name="login"),
     url(r'^dashboard$', "anm.views.dashboard", \
                                     name="dashboard"),
     url(r'^modif_organization_chart$', "anm.views.modif_organization_chart", \

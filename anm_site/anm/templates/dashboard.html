@@ -1,6 +1,54 @@
 {% extends "base.html" %}
-{% block title %}Consultation Rapport{% endblock %}
-{% block page-id %}consultation{% endblock %}
+{% block title %}Accueil{% endblock %}
+{% block page-id %}dashboard{% endblock %}
 {% block content %}
-       {{welcome}}
+
+        <div class="post">
+            <h1 class="title">Accueil </h1>
+        </div>
+        <!-- end #content -->
+        <div class="post-nav" id="sidebar">
+            <fieldset ><legend>Comminiqué:</legend>
+                {%if statement%}
+                    <h4>Titre: {{statement.title}}</h4>
+                    <ul>
+                        <li>Le {{statement.date}}</li>
+                    </ul>
+                    <ul>
+                        <li>Message</li><li>{{statement.comment}}</li>
+                    </ul>
+                {% else %}
+                <ul><li> {{message_empty_c}}</li></ul>
+                {% endif %}
+            </fieldset>
+            <fieldset class="module aligned "><legend>Newsletter:</legend>
+                <form action="" method="post">{% csrf_token %}
+                    {{form.email.label}}:{{form.email}}{{form.email.errors}}
+                    <input type='submit' value =  "OK"/>
+                </form>
+            </fieldset>
+            <fieldset class="module aligned "><legend>Derniers rapport:</legend>
+                {%if reports%}
+                    {%for report in reports%}
+                        <ul>
+                            <li><a href="{% url consultation_report %}" >Du {{report.date}}</a></li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <ul><li> {{message_empty_r}}</li></ul>
+                {% endif %}
+            </fieldset>
+        </div>
+        <div class="entry">
+            <fieldset class="module aligned ">
+
+                Là, je me trouve dans les onglets et je travaille sur les liens.
+                On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
+                du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
+                on met une marge aux quatre bords des cellules, donc padding : 4px.
+                Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
+            </fieldset>
+        </div>
+
+
 {% endblock %}

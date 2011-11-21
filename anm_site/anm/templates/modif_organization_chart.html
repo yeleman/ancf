@@ -3,19 +3,45 @@
 {% block page-id %}modiforganization_chart{% endblock %}
 {% block content %}
 
+    <div id="bienvenu">
+        <span>{% include "_bienvenu_utilisateur.html" %}</span>
+    </div>
         <h1>Modification de l'organigramme de la Commission Finance</h1>
 
         <form action="" method="post">{% csrf_token %}
 
             <div id="org_form">
-                <table>
+                <table style="text-align: center;">
                     <tr>
-                        <td>{{form.president.label}}:</td>
-                        <td>{{form.president}}</td>
-                        {% if form.president.errors %}
-                            <td>{{form.president.errors}}</td>
-                        {% endif %}
+                        <td colspan=10>{{form.president.label}}:{{form.president}}</td>
                     </tr>
+                    <tr>
+                        <td colspan=5> ''</td><td colspan=5>
+                    </tr>
+                    <tr>
+                        <td colspan=5>{{form.president.label}}{{form.president}}</td>
+
+                        <td colspan=5>{{form.president.label}}{{form.president}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan=3> ''</td><td colspan=3> '' </td><td colspan=3>
+                    </tr>
+                    <tr>
+                        <td colspan=2>{{form.president.label}}:{{form.president}}</td>
+                        <td colspan=2>{{form.president.label}}:{{form.president}}</td>
+                        <td colspan=2>{{form.president.label}}:{{form.president}}</td>
+                        <td colspan=2>{{form.president.label}}:{{form.president}}</td>
+                    </tr><tr></tr>
+                    <tr>
+                        <td>{{form.president.label}}:{{form.president}}</td>
+                        <td>{{form.president.label}}:{{form.president}}</td>
+                        <td>{{form.president.label}}:{{form.president}}</td>
+                        <td>{{form.president.label}}:{{form.president}}</td>
+                        <td>{{form.president.label}}:{{form.president}}</td>
+                        <td>{{form.president.label}}:{{form.president}}</td>
+                        <td>{{form.president.label}}:{{form.president}}</td>
+                        <td>{{form.president.label}}:{{form.president}}</td>
+                    </tr><tr></tr>
                 </table>
                 <input type='submit' value =  "Envoyer"/>
             </div>

@@ -1,10 +1,16 @@
 <div id="menu">
-    <ul>
-        <li ><a {% if category = 'dashboard' %}class="current"{% endif %} href="{% url dashboard %}" > <span>Resumés</span></a></li>
-        <li ><a {% if category = 'add_rapport' %}class="current"{% endif %} href="{% url add_rapport %}" > <span>Ajout rapport</span></a></li>
-        <li ><a {% if category = 'consultation' %}class="current"{% endif %} href="{% url consultation_report %}" ><span>Rapports</span></a></li>
-        <li ><a {% if category = 'modif_organization_chart' %}class="current"{% endif %} href="{% url modif_organization_chart %}" ><span>Organigramme</span></a>
-        <li ><a {% if category = 'add_member' %}class="current"{% endif %} href="{% url add_member %}" ><span>Ajout de membre</span></a>
-        <li ><a {% if category = '' %}class="current"{% endif %} href= "#"><span>Aide</span></a></li>
-    </ul>
+    {% if user %}
+        <ul>
+            <li ><a {% if category = 'modif_organization_chart' %}class="current"{% endif %} href="{% url modif_organization_chart %}" ><span>Organigramme</span></a>
+            <li ><a {% if category = 'add_member' %}class="current"{% endif %} href="{% url add_member %}" ><span>Ajout de membre</span></a>
+        </ul>
+    {% else %}
+        <ul>
+            <li ><a {% if category = 'dashboard' %}class="current"{% endif %} href="{% url dashboard %}" > <span>Accueil</span></a></li>
+            <li ><a {% if category = 'add_rapport' %}class="current"{% endif %} href="{% url add_rapport %}" > <span>Ajout rapport</span></a></li>
+            <li ><a {% if category = 'consultation' %}class="current"{% endif %} href="{% url consultation_report %}" ><span>Rapports</span></a></li>
+            <li ><a {% if category = '' %}class="current"{% endif %} href= "#"><span>Aide</span></a></li>
+        </ul>
+    {% endif %}
+
 </div>

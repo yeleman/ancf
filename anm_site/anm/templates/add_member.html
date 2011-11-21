@@ -3,6 +3,9 @@
 {% block page-id %}add_member{% endblock %}
 {% block content %}
 
+    <div id="bienvenu">
+        <span>{% include "_bienvenu_utilisateur.html" %}</span>
+    </div>
         <h1>Ajout de membre de la Commission Finance</h1>
 
         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
