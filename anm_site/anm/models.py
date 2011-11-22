@@ -25,10 +25,20 @@ class Organization_chart(models.Model):
     """ """
     date = models.DateField(verbose_name=("Fait le"),\
                              default=datetime.datetime.today)
-    president = models.ForeignKey(Member, verbose_name=("président"))
+    president = models.ForeignKey(Member,  related_name=(u"president"), \
+                                            verbose_name=(u"président"))
+    treasurer = models.ForeignKey(Member, related_name=("treasurer"), \
+                                            verbose_name=(u"Tresorier"))
+    assistant_Treasurer = models.ForeignKey(Member, \
+                                related_name=("assistant_Treasurer"), \
+                                verbose_name=(u"Adjoint tresorier"))
+    secretary = models.ForeignKey(Member, related_name=(u"secretary"), \
+                                            verbose_name=(u"Secretaire"))
+
 
     def __unicode__(self):
-        return (u'%(president)s') % {'president': self.president}
+        return (u'%(president)s %(date)s') % \
+        {'president': self.president, 'date': self.date}
 
 
 class Report(models.Model):

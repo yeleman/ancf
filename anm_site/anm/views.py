@@ -13,16 +13,16 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 
-from anm.models import Report, Organization_chart, News
+from anm.models import Report, Organization_chart, News, Member
 from form import AddReportform, ModifOrgform, Memberform, LoginForm, \
-                 Newsletterform
+                 Newsletterform, Newsform
 
 
 def login(request):
     """ page de connection """
 
     if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('administration'))
+        return HttpResponseRedirect(reverse('add_member'))
     else:
         c = {}
         c.update(csrf(request))
@@ -97,7 +97,11 @@ def modif_organization_chart(request):
 
     try:
         org_latest = Organization_chart.objects.latest('id')
-        dict_org = {'president': org_latest.president, 'date': org_latest.date}
+        dict_org = {'president': org_latest.president, \
+                    'assistant_Treasurer': org_latest.assistant_Treasurer, \
+                    'treasurer': org_latest.treasurer, \
+                    'secretary': org_latest.secretary, \
+                    'date': org_latest.date}
     except Organization_chart.DoesNotExist:
         dict_org = {'date': date_today}
 
@@ -165,3 +169,50 @@ def download(request, path):
     return response
 
 
+def help(request):
+    c = {'category': 'aide'}
+    c.update(csrf(request))
+    return render_to_response("help.html", c)
+
+
+def organization_chart(request):
+    """ """
+    c = {'category': 'organization_chart'}
+    c.update(csrf(request))
+    try:
+        organization_chart = Organization_chart.objects.latest('id')
+        c.update({"org":organization_chart})
+    except:
+        c.update({"message_empty_org": "pas de organigramme"})
+    return render_to_response("organization_chart.html", c)
+
+
+def member(request):
+    """ """
+
+    c = {'category': 'member'}
+    c.update(csrf(request))
+    c.update({"user": request.user})
+    try:
+        members = Member.objects.all()
+        c.update({"members":members})
+    except:
+        c.update({"message_empty_m": "pas de organigramme"})
+    return render_to_response("member.html", c)
+
+
+def news(request):
+    """ """
+    c = {'category': 'news'}
+    c.update(csrf(request))
+    c.update({"user": request.user})
+
+    if request.method == 'POST':
+        form = Newsform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = Newsform()
+    c.update({'form': form})
+    return render_to_response("news.html", c)

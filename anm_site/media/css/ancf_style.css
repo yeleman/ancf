@@ -10,9 +10,9 @@ body{
     -moz-border-radius: 7px 7px 7px 7px; -moz-box-shadow: 1px 1px 16px 2px;
     margin: 0 auto;width: 960px;height: 56em;}
 li{list-style-type: none;display: inline;}
-fieldset ul {background-color: #30363D; color: #F8F8F8; cursor: pointer;
-            max-width: 30em; -opacity: 0.65; padding: 0.6em; right: 2em;}
-fieldset a {text-decoration: none;color: inactivecaptiontext}
+fieldset ul {background-color: DarkSlateBlue; color: #F8F8F8;
+                                        max-width: 30em; padding: 0.6em}
+fieldset a {text-decoration: none; color: inactivecaptiontext; cursor: pointer;}
 /** Add member **/
 #add_member {width: 800px; margin: 0pt auto;}
 #add_member h1{width: 740px; margin: 0pt auto;height: 35px; text-decoration: none; text-align: center;}

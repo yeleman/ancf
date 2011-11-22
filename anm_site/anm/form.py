@@ -20,6 +20,12 @@ class ModifOrgform(forms.ModelForm):
         exclude = ['date']
 
 
+class Newsform(forms.ModelForm):
+
+    class Meta:
+        model = News
+
+
 class Memberform(forms.ModelForm):
 
     class Meta:
