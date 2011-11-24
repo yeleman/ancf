@@ -3,10 +3,7 @@
 {% block page-id %}dashboard{% endblock %}
 {% block content %}
 
-    <div class="post">
-        <h1 class="title">Accueil </h1>
-    </div>
-    <!-- end #content -->
+    <h1 >Accueil </h1>
     <div class="post-nav" id="sidebar">
         <fieldset ><legend>Comminiqué:</legend>
             {%if statement%}
@@ -31,7 +28,7 @@
             {%if reports%}
                 {%for report in reports%}
                     <ul>
-                        <li><a href="{% url consultation_report %}" >Du {{report.date}}</a></li>
+                        <li><a href="{% url report %}" >Du {{report.date}}</a></li>
                     </ul>
                 {% endfor %}
             {% else %}

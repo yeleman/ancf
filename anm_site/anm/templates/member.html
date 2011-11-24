@@ -2,28 +2,40 @@
 {% block title %}Member{% endblock %}
 {% block page-id %}Member{% endblock %}
 {% block content %}
-    <div id="bienvenu">
-        <span>{% include "_bienvenu_utilisateur.html" %}</span>
-    </div>
-    <h1>La liste des membres de la Commission Finance</h1>
-    <table>
-        <thead>
-            <tr>
-               <th> Noms </th>
-               <th> Pénoms </th>
-               <th> Poste </th>
-               <th> Email </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for member in members %}
+
+        <h1>La liste des membres de la Commission Finance</h1>
+        <table>
+            <thead>
+                <tr>
+                   <th> Noms </th>
+                   <th> Pénoms </th>
+                   <th> Poste </th>
+                   <th> Email </th>
+                   <th> Modification </th>
+                   <th> Status </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if message_empty_m %}
+                    <tr><td  colspan=5>{{message_empty_m}}</td></tr>
+                {%endif%}
+                {% for member in members %}
                 <tr>
                     <td>{{member.last_name}}</td>
                     <td>{{member.first_name}}</td>
                     <td>{{member.post}}</td>
                     <td>{{member.email}}</td>
+                    <td>
+                        <a href="{{member.url_member}}"> <img src="/static/css/images/edit.png" width="20"></a>
+                    </td>
+                    {% ifequal member.status "False" %}
+                        <td>{{member.status}}<img src="/static/css/images/no.png" width="12"/> </td>
+                    {%else%}
+                        <td>{{member.status}}<img src="/static/css/images/active.png" width="12"/> </td>
+                    {% endifequal %}
                 </tr>
-            {%endfor%}
-        </tbody>
-    </table>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -8,11 +8,15 @@ body{
     color:#666;
     font:12px/18px Tahoma, Arial, Helvetica, sans-serif;
     -moz-border-radius: 7px 7px 7px 7px; -moz-box-shadow: 1px 1px 16px 2px;
-    margin: 0 auto;width: 960px;height: 56em;}
-li{list-style-type: none;display: inline;}
-fieldset ul {background-color: DarkSlateBlue; color: #F8F8F8;
+    margin: 0 auto;width: 960px;}
+li{
+    list-style-type: none;display: inline;}
+fieldset ul {
+                background-color: DarkSlateBlue; color: #F8F8F8;
                                         max-width: 30em; padding: 0.6em}
 fieldset a {text-decoration: none; color: inactivecaptiontext; cursor: pointer;}
+#bienvenu { float: right;}
+#page {margin: 0 auto;width: 960px;}
 /** Add member **/
 #add_member {width: 800px; margin: 0pt auto;}
 #add_member h1{width: 740px; margin: 0pt auto;height: 35px; text-decoration: none; text-align: center;}

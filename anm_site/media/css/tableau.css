@@ -2,8 +2,7 @@
 css by fadiga
 */
 /*pour les tables*/
-table{/*width:100%*/;
-border-collapse: separate;}
+table{width:100%;border-collapse: collapse;}
 table td ,table th{ color: invert; min-width: -moz-min-content; padding: 0px 1px 0px 5px; border: 1px solid #DEDEDE;}
 table th{background:#777770;color: #CECCCC; font-weight: bold;text-align: center;}
 tbody tr:hover  {color: black;}

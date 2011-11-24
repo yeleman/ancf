@@ -2,36 +2,37 @@
 {% block title %}Organization_chart{% endblock %}
 {% block page-id %}Organization_chart{% endblock %}
 {% block content %}
+
     <h1>L'organigramme de la Commission Finance</h1>
-        <table style="text-align: center;">
-            <tr>
-                <td colspan=15><img src="/static/{{org.president.image}}" width="100" height ="100">
-                    <p>{{org.president}}<br>Président</p>
-                </td>
-            </tr>
-            <tr> </tr>
-            <tr>
-                <td colspan=5><img src="/static/{{org.secretary.image}}" width="100" height ="100">
-                    <p>{{org.secretary}}<br>Tresorier</p>
-                </td>
-                <td colspan=5><img src="/static/{{org.assistant_Treasurer.image}}" width="100" height ="100">
-                    <p>{{org.assistant_Treasurer}}<br>Adjoint tresorier</p>
-                </td>
-                <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
-                    <p>{{org.treasurer}} <br>Secretaire</p>
-                </td>
-            </tr>
-            <tr> </tr>
-            <tr>
-                <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
-                    <p>{{org.treasurer}}</p>
-                </td>
-                <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
-                    <p>{{org.treasurer}}</p>
-                </td>
-                <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
-                    <p>{{org.treasurer}}</p>
-                </td>
-            </tr>
-        </table>
+    <table style="text-align: center;">
+        <tr>
+            <td colspan=15><img src="/static/{{org.president.image}}" width="100" height ="100">
+                <p>{{org.president}}<br>Président</p>
+            </td>
+        </tr>
+        <tr> </tr>
+        <tr>
+            <td colspan=5><img src="/static/{{org.secretary.image}}" width="100" height ="100">
+                <p>{{org.secretary}}<br>Tresorier</p>
+            </td>
+            <td colspan=5><img src="/static/{{org.assistant_Treasurer.image}}" width="100" height ="100">
+                <p>{{org.assistant_Treasurer}}<br>Adjoint tresorier</p>
+            </td>
+            <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
+                <p>{{org.treasurer}} <br>Secretaire</p>
+            </td>
+        </tr>
+        <tr> </tr>
+        <tr>
+            <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
+                <p>{{org.treasurer}}</p>
+            </td>
+            <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
+                <p>{{org.treasurer}}</p>
+            </td>
+            <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
+                <p>{{org.treasurer}}</p>
+            </td>
+        </tr>
+    </table>
 {% endblock %}

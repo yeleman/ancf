@@ -6,8 +6,8 @@
         <link rel="stylesheet" href="/static/css/ancf_style.css" type="text/css" />
         <link rel="stylesheet" href="/static/css/tableau.css" type="text/css" />
         <div id="login" style="float: right"><a href = '{% url login %}'>Administration</a></div>
-    </head>
         <div >{% include "_menu.html" %}</div>
+    </head>
     <body>
         <div id="{% block page-id %}{% endblock %}">
             {% block content %}

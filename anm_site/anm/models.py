@@ -15,6 +15,7 @@ class Member(models.Model):
                                                 verbose_name=("Photo"))
     post = models.CharField(max_length=100, verbose_name=("Poste occupé"))
     email = models.EmailField(max_length=75, verbose_name=("Email"))
+    status = models.BooleanField(default=True, verbose_name=("Status"))
 
     def __unicode__(self):
         return (u'%(last_name)s %(first_name)s') % \
@@ -35,7 +36,6 @@ class Organization_chart(models.Model):
     secretary = models.ForeignKey(Member, related_name=(u"secretary"), \
                                             verbose_name=(u"Secretaire"))
 
-
     def __unicode__(self):
         return (u'%(president)s %(date)s') % \
         {'president': self.president, 'date': self.date}
@@ -46,10 +46,10 @@ class Report(models.Model):
     date = models.DateField(verbose_name=("Fait le"),\
                              default=datetime.datetime.today)
     type_report = models.CharField(max_length=100, verbose_name=("Type"))
-    description = models.CharField(max_length=100, verbose_name=("description"))
+    description = models.CharField(max_length=100, \
+                                            verbose_name=("description"))
     report_pdf = models.FileField(upload_to='report_doc/', \
-                                  verbose_name=('Le rapport'), \
-                                  null=True)
+                                  verbose_name=('Le rapport'), null=True)
     author = models.ForeignKey(Member, verbose_name=("Rapporteur"))
 
     def __unicode__(self):

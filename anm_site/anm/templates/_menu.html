@@ -1,16 +1,20 @@
 <div id="menu">
     {% if user %}
         <ul>
-            <li ><a {% if category = 'modif_organization_chart' %}class="current"{% endif %} href="{% url modif_organization_chart %}" ><span>Modification de organigramme</span></a>
+            <div id="bienvenu">
+                <span>{% include "_bienvenu_utilisateur.html" %}</span>
+            </div>
+            <li ><a {% if category = 'modif_organization_chart' %}class="current"{% endif %} href="{% url modif_organization_chart %}" ><span>Organigramme</span></a>
             <li ><a {% if category = 'add_member' %}class="current"{% endif %} href="{% url add_member %}" ><span>Ajout de membre</span></a>
             <li ><a {% if category = 'member' %}class="current"{% endif %} href="{% url member %}" ><span>Liste membre</span></a>
             <li ><a {% if category = 'news' %}class="current"{% endif %} href="{% url news %}" ><span>news</span></a>
+            <li ><a {% if category = 'newsletter' %}class="current"{% endif %} href="{% url newsletter %}" ><span>newsletter</span></a>
         </ul>
     {% else %}
         <ul>
             <li ><a {% if category = 'dashboard' %}class="current"{% endif %} href="{% url dashboard %}" > <span>Accueil</span></a></li>
-            <li ><a {% if category = 'add_rapport' %}class="current"{% endif %} href="{% url add_rapport %}" > <span>Ajout rapport</span></a></li>
-            <li ><a {% if category = 'consultation' %}class="current"{% endif %} href="{% url consultation_report %}" ><span>Rapports</span></a></li>
+            <li ><a {% if category = 'add_report' %}class="current"{% endif %} href="{% url add_report %}" > <span>Ajout rapport</span></a></li>
+            <li ><a {% if category = 'rapport' %}class="current"{% endif %} href="{% url report %}" ><span>Rapports</span></a></li>
             <li ><a {% if category = 'organization_chart' %}class="current"{% endif %} href="{% url organization_chart %}" ><span>Organigramme</span></a>
             <li ><a {% if category = 'aide' %}class="current"{% endif %} href= "{% url help %}"><span>Aide</span></a></li>
         </ul>

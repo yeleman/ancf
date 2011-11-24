@@ -3,30 +3,27 @@
 {% block page-id %}modiforganization_chart{% endblock %}
 {% block content %}
 
-    <div id="bienvenu">
-        <span>{% include "_bienvenu_utilisateur.html" %}</span>
-    </div>
-        <h1>Modification de l'organigramme de la Commission Finance</h1>
+    <h1>Modification de l'organigramme de la Commission Finance</h1>
 
-        <form action="" method="post">{% csrf_token %}
+    <form action="" method="post">{% csrf_token %}
 
-            <div id="org_form">
-                <table style="text-align: center;">
-                    <tr>
-                        <td>{{form.president.label}}:</td><td>{{form.president}}</td>
-                    </tr>
-                    <tr>
-                        <td >{{form.secretary.label}}:</td><td>{{form.secretary}}</td>
-                    </tr>
-                    <tr>
-                        <td >{{form.assistant_Treasurer.label}}:</td><td>{{form.assistant_Treasurer}}</td>
-                    </tr>
-                    <tr>
-                        <td >{{form.treasurer.label}}:</td><td>{{form.treasurer}}</td>
-                    </tr>
-                </table>
-                <input type='submit' value =  "Enregistre la modification"/>
-            </div>
-        </form>
+        <div id="org_form">
+            <table style="text-align: center;">
+                <tr>
+                    <td>{{form.president.label}}:</td><td>{{form.president}}</td>
+                </tr>
+                <tr>
+                    <td >{{form.secretary.label}}:</td><td>{{form.secretary}}</td>
+                </tr>
+                <tr>
+                    <td >{{form.assistant_Treasurer.label}}:</td><td>{{form.assistant_Treasurer}}</td>
+                </tr>
+                <tr>
+                    <td >{{form.treasurer.label}}:</td><td>{{form.treasurer}}</td>
+                </tr>
+            </table>
+            <input type='submit' value =  "Enregistre la modification"/>
+        </div>
+    </form>
 
 {% endblock %}

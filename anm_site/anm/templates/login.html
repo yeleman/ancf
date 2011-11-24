@@ -7,10 +7,14 @@
         {{state}}
         <ul id="menu_login">
             <form action="{% url login %}" method="post">{% csrf_token %}
-                <div>{{ form.as_table }}</div>
-                <span class ="span-4">
-                    <input id = 'id_Connexion' type="submit" value="Se connecter" >
-                </span>
+                <table>
+                    <tr>
+                        <td>{{ form.as_table }}</td>
+                    </tr>
+                    <tr>
+                        <td></td><td><input id = 'id_Connexion' type="submit" value="Se connecter" ></td>
+                    </tr>
+                </table>
             </form>
         </ul>
     </div>

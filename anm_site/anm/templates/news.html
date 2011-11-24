@@ -2,9 +2,7 @@
 {% block title %}news{% endblock %}
 {% block page-id %}news{% endblock %}
 {% block content %}
-    <div id="bienvenu">
-        <span>{% include "_bienvenu_utilisateur.html" %}</span>
-    </div>
+
     <h1>Nouvelle publication de la commission finance</h1>
         <fieldset class="module aligned "><legend>News</legend>
             <form action="" method="post">{% csrf_token %}
@@ -24,4 +22,5 @@
                 </table>
             </form>
         </fieldset>
+    </div>
 {% endblock %}

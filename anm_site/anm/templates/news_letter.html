@@ -1,9 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Administration{% endblock %}
-{% block page-id %}administration{% endblock %}
+{% block title %}newsletter{% endblock %}
+{% block page-id %}newsletter{% endblock %}
 {% block content %}
-    <div id="bienvenu">
-        <span>{% include "_bienvenu_utilisateur.html" %}</span>
-    </div>
-    <h1>Administration</h1>
+
+    <h1>Liste des membres inscrits</h1>
+    <table>{{newsletter}}
+        <thead>
+            <tr>
+               <th> Email </th>
+               <th> date </th>
+               <th> Suppression </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if message_empty_n %}
+                <tr><td  colspan=5>{{message_empty_n}}</td></tr>
+            {%endif%}
+            {% for newsletter in newsletters %}
+            <tr>
+                <td>{{newsletter.email}}</td>
+                <td>{{newsletter.date}}</td>
+                <td>
+                    <a href="{{newsletter.url_newsletter}}">
+                        <img src="/static/css/images/del.png" width="20">
+                    </a>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+
 {% endblock %}
