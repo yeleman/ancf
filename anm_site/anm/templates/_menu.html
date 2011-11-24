@@ -1,9 +1,6 @@
 <div id="menu">
     {% if user %}
         <ul>
-            <div id="bienvenu">
-                <span>{% include "_bienvenu_utilisateur.html" %}</span>
-            </div>
             <li ><a {% if category = 'modif_organization_chart' %}class="current"{% endif %} href="{% url modif_organization_chart %}" ><span>Organigramme</span></a>
             <li ><a {% if category = 'add_member' %}class="current"{% endif %} href="{% url add_member %}" ><span>Ajout de membre</span></a>
             <li ><a {% if category = 'member' %}class="current"{% endif %} href="{% url member %}" ><span>Liste membre</span></a>

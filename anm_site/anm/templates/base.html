@@ -10,14 +10,26 @@
         <link rel="stylesheet" href="/static/css/jquery-ui-date.css" type="text/css" />
         <script src="/static/js/jquery-ui.min.js"></script>
 
-        <div id="login" style="float: right"><a href = '{% url login %}'>Administration</a></div>
-        <div >{% include "_menu.html" %}</div>
     </head>
-    <body>
-        <div id="{% block page-id %}{% endblock %}">
-            {% block content %}
-            {% endblock %}
-        </div>
 
+    <body>
+        <div id="bienvenu">
+            {% if user %}
+                    <span>{% include "_bienvenu_utilisateur.html" %}</span>
+            {% else %}
+            <a href = '{% url login %}'>Administration</a>
+            {% endif %}
+        </div>
+        <div id="page">
+            <div >{% include "_menu.html" %}</div>
+                <div id="{% block page-id %}{% endblock %}" class="container ">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div id="footer">
+                <p>Design by <a href="#">Fadiga Ibrahima</a>.</p>
+            </div>
+        </div>
     </body>
 </html>
