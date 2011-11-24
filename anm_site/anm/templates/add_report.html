@@ -9,27 +9,27 @@
         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
                 <table>
                     <tbody>
-                        <tr id= "date">
+                        <tr>
                             <td>{{form.date.label}}:</td>
                             <td>{{form.date}} {{form.date.errors}}</td>
                         </tr>
 
-                        <tr id= "type_report">
+                        <tr>
                             <td> {{form.type_report.label}}:</td>
                             <td>{{form.type_report}} {{form.type_report.errors}}</td>
                         </tr>
 
-                        <tr id= "discription">
+                        <tr>
                             <td> {{form.description.label}}:</td>
                             <td>{{form.description}} {{form.description.errors}}</td>
                         </tr>
 
-                        <tr id= "report_pdf">
+                        <tr>
                             <td> {{form.report_pdf.label}}:</td>
                             <td>{{form.report_pdf}} {{form.report_pdf.errors}}</td>
                         </tr>
 
-                        <tr id= "author">
+                        <tr>
                             <td> {{form.author.label}}:</td>
                             <td>{{form.author}} {{form.author.errors}}</td>
                         </tr>
@@ -38,6 +38,11 @@
                 <p id = '' class= "{{save}}">
                 <input type='submit' value =  "Envoyer"/></p>
         </form>
+        <script type="text/javascript">
+            jQuery('#id_date').datepicker({
+                 dateFormat: 'dd/mm/yy',
+                });
+        </script>
     </div>
 
 {% endblock %}
