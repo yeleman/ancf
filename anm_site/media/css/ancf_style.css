@@ -18,7 +18,7 @@ fieldset a {text-decoration: none; color: inactivecaptiontext; cursor: pointer;}
 /* Footer */
 #footer{background-color: transparent;color: #B2B2B2;font-size: 10px;
     text-align: center;text-transform: inherit;}
-#footer a {color: #FBFBFB;}
+#footer a {color: brown;}
 #page {margin: 0 auto;width: 960px;}
 /** Add member **/
 #add_member {width: 800px; margin: 0pt auto;}
