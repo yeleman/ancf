@@ -13,20 +13,21 @@
             </tr>
         </thead>
         <tbody>
-            {% if message_empty_n %}
-                <tr><td  colspan=5>{{message_empty_n}}</td></tr>
+            {% if newsletters %}
+                {% for newsletter in newsletters %}
+                    <tr>
+                        <td>{{newsletter.email}}</td>
+                        <td>{{newsletter.date}}</td>
+                        <td>
+                            <a href="{{newsletter.url_newsletter}}">
+                                <img src="/static/css/images/del.png" width="20">
+                            </a>
+                        </td>
+                    </tr>
+                {%endfor%}
+            {%else%}
+                <tr><td  style="text-align: center;" colspan=5>{{message_empty_n}}</td></tr>
             {%endif%}
-            {% for newsletter in newsletters %}
-            <tr>
-                <td>{{newsletter.email}}</td>
-                <td>{{newsletter.date}}</td>
-                <td>
-                    <a href="{{newsletter.url_newsletter}}">
-                        <img src="/static/css/images/del.png" width="20">
-                    </a>
-                </td>
-            </tr>
-            {%endfor%}
         </tbody>
     </table>
 

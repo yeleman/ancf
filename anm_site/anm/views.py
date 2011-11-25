@@ -5,6 +5,7 @@
 
 from datetime import date
 
+from django.contrib import messages
 from django.shortcuts import render_to_response, redirect, \
                                                     HttpResponseRedirect
 from django.core.context_processors import csrf
@@ -56,7 +57,7 @@ def logout(request):
     """ logout est la views qui permet de se deconnecter """
 
     django_logout(request)
-    return redirect("login")
+    return redirect("dashboard")
 
 
 def dashboard(request):
@@ -69,17 +70,18 @@ def dashboard(request):
     except:
         message_empty_c = "Pas de comminiqué"
         c.update({"message_empty_c": message_empty_c})
-    try:
-        reports = Report.objects.all().order_by("-date")
-        c.update({"reports": reports})
-    except:
-        message_empty_r = "Pas de rapport"
-        c.update({"message_empty_r": message_empty_r})
+
+    reports = Report.objects.all().order_by('-date')[:5]
+    for report in reports:
+        report.url_report_date = reverse("report", args=[report.id])
+    message_empty_r = "Pas de rapport"
+    c.update({"reports": reports, "message_empty_r": message_empty_r})
 
     if request.method == 'POST':
         form = Newsletterform(request.POST)
         if form.is_valid():
             form.save()
+            messages.info(request, u"Votre email a été bien enregistre")
             return redirect('dashboard')
     else:
         form = Newsletterform()
@@ -91,11 +93,13 @@ def dashboard(request):
 def add_report(request):
     """ """
     c = {'category': 'add_report'}
+    c.update({"user": request.user})
     c.update(csrf(request))
     if request.method == 'POST':
         form = AddReportform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.info(request, u"Le rapport a été bien enregistre")
             return redirect('report')
     else:
         form = AddReportform()
@@ -103,14 +107,24 @@ def add_report(request):
     return render_to_response('add_report.html', c)
 
 
-def report(request):
+def report(request, *args, **kwargs):
     """ """
+    report_id = kwargs["id"]
     c = {'category': 'report'}
     c.update(csrf(request))
-    reports = Report.objects.all()
+    if report_id:
+        selected_report = Report.objects.get(id=report_id)
+    else:
+        selected_report = Report.objects.latest('date')
+    selected_report.url_report = reverse("download", \
+                                      args=[selected_report.report_pdf])
+
+    reports = Report.objects.all().order_by('-date')
     for report in reports:
-        report.url_report = reverse("download", args=[report.report_pdf])
-    c.update({"report": reports})
+        report.url_report_date = reverse("report", args=[report.id])
+    message_empty_r = "Pas de rapport"
+    c.update({"selected_report": selected_report,"reports": reports, \
+                                    "message_empty_r": message_empty_r})
     return render_to_response('report.html', c)
 
 
@@ -162,6 +176,7 @@ def modif_organization_chart(request):
         form = ModifOrgform(request.POST)
         if form.is_valid():
             form.save()
+            messages.info(request, u"L'organigramme à été mise à jour")
             return redirect('organization_chart')
     else:
         form = ModifOrgform(dict_org)
@@ -181,6 +196,7 @@ def add_member(request):
         form = Memberform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.info(request, u"le nouveau membre à été ajouter")
             return redirect('member')
     else:
         form = Memberform()
@@ -188,22 +204,21 @@ def add_member(request):
     return render_to_response('add_member.html', c)
 
 
+@login_required
 def member(request):
     """ """
 
     c = {'category': 'member'}
     c.update(csrf(request))
     c.update({"user": request.user})
-    try:
-        members = Member.objects.all()
-        for member in members:
-            member.url_member = reverse("edit_member", args=[member.id])
-        c.update({"members": members})
-    except:
-        c.update({"message_empty_m": "Pas de organigramme"})
+    members = Member.objects.all()
+    for member in members:
+        member.url_member = reverse("edit_member", args=[member.id])
+    c.update({"members": members, "message_empty_m": "Pas de membre"})
     return render_to_response("member.html", c)
 
 
+@login_required
 def edit_member(request, *args, **kwargs):
     """ """
 
@@ -234,6 +249,7 @@ def edit_member(request, *args, **kwargs):
             else:
                 selected_member.status = False
             selected_member.save()
+            messages.info(request, u"le nouveau membre à été ajouter")
             return redirect('member')
     else:
         form = Editmemberform(dict_member)
@@ -241,6 +257,7 @@ def edit_member(request, *args, **kwargs):
     return render_to_response("edit_member.html", c)
 
 
+@login_required
 def news(request):
     """ """
     c = {'category': 'news'}
@@ -258,23 +275,24 @@ def news(request):
     return render_to_response("news.html", c)
 
 
+@login_required
 def newsletter(request):
     """ """
     c = {'category': 'newsletter'}
     c.update(csrf(request))
     c.update({"user": request.user})
-    try:
-        newsletters = Newsletter.objects.all()
-        for newsletter in newsletters:
-            newsletter.url_newsletter = reverse("del_newsletter", \
+
+    newsletters = Newsletter.objects.all()
+    for newsletter in newsletters:
+        newsletter.url_newsletter = reverse("del_newsletter", \
                                                     args=[newsletter.id])
-        c.update({"newsletters": newsletters})
-    except:
-        c.update({"message_empty_n": "Pas d'inscrit"})
+    c.update({"newsletters": newsletters, \
+                                    "message_empty_n": "Pas d'inscrit"})
 
     return render_to_response("news_letter.html", c)
 
 
+@login_required
 def del_newsletter(request, *args, **kwargs):
     """ """
 

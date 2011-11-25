@@ -20,6 +20,12 @@
             <a href = '{% url login %}'>Administration</a>
             {% endif %}
         </div>
+        {% if messages %}
+        <ul id="messages" title="Informative Messages. Click to hide.">
+            {% for message in messages %} <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <div id="page">
             <div >{% include "_menu.html" %}</div>
                 <div id="{% block page-id %}{% endblock %}" class="container ">

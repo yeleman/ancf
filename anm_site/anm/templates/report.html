@@ -1,36 +1,38 @@
 {% extends "base.html" %}
 {% block title %}Rapport{% endblock %}
-{% block page-id %}Rapport{% endblock %}
+{% block page-id %}report{% endblock %}
 {% block content %}
 
     <h1>Rapports</h1>
-    <div id="rapport">
-        <table>
-            <thead>
-                <tr>
-                   <th> Date </th>
-                   <th> Type </th>
-                   <th> Rapporteur </th>
-                   <th> Téléchager </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if message_empty_r %}
-                    <tr><td  colspan=4>{{message_empty_r}}</td></tr>
-                {%endif%}
-                {% for element in report %}
-                    <tr>
-                        <td>{{element.date}}</td>
-                        <td>{{element.type_report}}</td>
-                        <td>{{element.author}}</td>
-                        <td>
-                            <a href="{{element.url_report}}">
-                                <img src="/static/css/images/pdf.png" width="30">
-                            </a>
-                        </td>
-                    </tr>
-                {%endfor%}
-            </tbody>
-        </table>
+    <div id=menu_report>
+
+        {% if reports %}
+        <ul>
+            {% for rep in reports %}<li {%ifequal selected_report.date rep.date%} class="current" {%endifequal%}><p><a href="{{rep.url_report_date}}"> {{rep.date}}</a></p></li>{%endfor%}
+        </ul>
+        {% endif %}
     </div>
+    <fieldset >
+        <div id="report">
+            <table>
+                <tbody>
+                    <tr>
+                        <td> Date </td><td>{{selected_report.date}}</td>
+                    </td>
+                    <tr>
+                        <td> Titre </td><td>{{selected_report.type_report}}</td>
+                    </td>
+                    <tr>
+                        <td> Description </td><td>{{selected_report.description}}</td>
+                    </td>
+                    <tr>
+                        <td> Rapporteur </td><td>{{selected_report.author}}</td>
+                    </td>
+                    <tr>
+                        <td> Téléchager </td><td><a href="{{selected_report.url_report}}"><img src="/static/css/images/pdf.png" width="30"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
 {% endblock %}

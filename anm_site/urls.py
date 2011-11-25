@@ -18,8 +18,6 @@ urlpatterns = patterns('',
     url(r"^logout$", "anm.views.logout", name="logout"),
     url(r'^login$', "anm.views.login", name="login"),
     url(r'^dashboard$', "anm.views.dashboard", name="dashboard"),
-    url(r'^report$', "anm.views.report", \
-                                        name="report"),
     url(r'^help$', "anm.views.help", name="help"),
     url(r'^organization_chart$', "anm.views.organization_chart", \
                                             name="organization_chart"),
@@ -32,6 +30,8 @@ urlpatterns = patterns('',
     url(r'^edit_member/(?P<id>\d+)$', "anm.views.edit_member", \
                                                     name="edit_member"),
     url(r'^member$', "anm.views.member", name="member"),
+    url(r'^report/(?P<id>\d+)*$', "anm.views.report", \
+                                        name="report"),
     url(r'^news$', "anm.views.news", name="news"),
     url(r'^newsletter$', "anm.views.newsletter", name="newsletter"),
     url(r'^del_newsletter/(?P<id>\d+)$', "anm.views.del_newsletter", \

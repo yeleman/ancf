@@ -16,25 +16,26 @@
                 </tr>
             </thead>
             <tbody>
-                {% if message_empty_m %}
-                    <tr><td  colspan=5>{{message_empty_m}}</td></tr>
+                {% if members %}
+                    {% for member in members %}
+                        <tr>
+                            <td>{{member.last_name}}</td>
+                            <td>{{member.first_name}}</td>
+                            <td>{{member.post}}</td>
+                            <td>{{member.email}}</td>
+                            <td>
+                                <a href="{{member.url_member}}"> <img src="/static/css/images/edit.png" width="20"></a>
+                            </td>
+                            {% ifequal member.status "False" %}
+                                <td>{{member.status}}<img src="/static/css/images/no.png" width="12"/> </td>
+                            {%else%}
+                                <td>{{member.status}}<img src="/static/css/images/active.png" width="12"/> </td>
+                            {% endifequal %}
+                        </tr>
+                    {%endfor%}
+                {% else %}
+                    <tr><td  style="text-align: center;" colspan=6>{{message_empty_m}}</td></tr>
                 {%endif%}
-                {% for member in members %}
-                <tr>
-                    <td>{{member.last_name}}</td>
-                    <td>{{member.first_name}}</td>
-                    <td>{{member.post}}</td>
-                    <td>{{member.email}}</td>
-                    <td>
-                        <a href="{{member.url_member}}"> <img src="/static/css/images/edit.png" width="20"></a>
-                    </td>
-                    {% ifequal member.status "False" %}
-                        <td>{{member.status}}<img src="/static/css/images/no.png" width="12"/> </td>
-                    {%else%}
-                        <td>{{member.status}}<img src="/static/css/images/active.png" width="12"/> </td>
-                    {% endifequal %}
-                </tr>
-                {%endfor%}
             </tbody>
         </table>
     </div>

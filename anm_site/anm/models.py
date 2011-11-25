@@ -45,7 +45,7 @@ class Report(models.Model):
     """ """
     date = models.DateField(verbose_name=("Fait le"),\
                              default=datetime.datetime.today)
-    type_report = models.CharField(max_length=100, verbose_name=("Type"))
+    type_report = models.CharField(max_length=100, verbose_name=("Titre"))
     description = models.CharField(max_length=100, \
                                             verbose_name=("description"))
     report_pdf = models.FileField(upload_to='report_doc/', \

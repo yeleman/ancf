@@ -18,19 +18,17 @@
             <ul><li> {{message_empty_c}}</li></ul>
             {% endif %}
         </fieldset>
-        <fieldset class="module aligned "><legend>Newsletter:</legend>
+        <fieldset ><legend>Newsletter:</legend>
             <form action="" method="post">{% csrf_token %}
                 {{form.email.label}}:{{form.email}}{{form.email.errors}}
                 <input type='submit' value =  "OK"/>
             </form>
         </fieldset>
-        <fieldset class="module aligned "><legend>Derniers rapports:</legend>
+        <fieldset ><legend>Derniers rapports:</legend>
             {%if reports%}
-                {%for report in reports%}
-                    <ul>
-                        <li><a href="{% url report %}" >Du {{report.date}}</a></li>
-                    </ul>
-                {% endfor %}
+                <ul>
+                    {% for rep in reports %}<li><p><a href="{{rep.url_report_date}}">{{rep.date}}</a></p></li>{%endfor%}
+                </ul>
             {% else %}
                 <ul><li> {{message_empty_r}}</li></ul>
             {% endif %}
