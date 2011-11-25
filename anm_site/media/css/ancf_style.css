@@ -4,7 +4,7 @@
 /** commone **/
 #bienvenu {  float:right;}
 #page {-moz-box-shadow: 1px 1px 16px 2px;
-       background:#fff; margin: 0 auto;width: 960px;  height: 80em;}
+       background:#F7F6F6; margin: 0 auto;width: 960px;  height: 80em;}
 a {text-decoration: none;}
 h1 {text-align: center;}
 body {margin: 0;padding: 0;background: #DDDDDD;
@@ -54,7 +54,7 @@ fieldset a { color: highlighttext; cursor: pointer;}
     }
 #menu_report .current{
     width:122px;
-    background-color:#fff;
+    background-color:#F7F6F6;
     border-top: medium solid Grey;
     border-bottom: medium solid Grey;
     border-left: medium solid Grey;

@@ -13,7 +13,9 @@
             <li ><a {% if category = 'dashboard' %}class="current"{% endif %} href="{% url dashboard %}" > <span>Accueil</span></a></li>
             <li ><a {% if category = 'report' %}class="current"{% endif %} href="{% url report %}" ><span>Rapports</span></a></li>
             <li ><a {% if category = 'organization_chart' %}class="current"{% endif %} href="{% url organization_chart %}" ><span>Organigramme</span></a>
+<!--
             <li ><a {% if category = 'aide' %}class="current"{% endif %} href= "{% url help %}"><span>Aide</span></a></li>
+-->
         </ul>
     {% endif %}
 
