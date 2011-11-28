@@ -30,8 +30,7 @@ urlpatterns = patterns('',
     url(r'^edit_member/(?P<id>\d+)$', "anm.views.edit_member", \
                                                     name="edit_member"),
     url(r'^member$', "anm.views.member", name="member"),
-    url(r'^report/(?P<id>\d+)*$', "anm.views.report", \
-                                        name="report"),
+    url(r'^report/(?P<id>\d+)*$', "anm.views.report", name="report"),
     url(r'^news$', "anm.views.news", name="news"),
     url(r'^newsletter$', "anm.views.newsletter", name="newsletter"),
     url(r'^del_newsletter/(?P<id>\d+)$', "anm.views.del_newsletter", \

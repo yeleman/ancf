@@ -112,19 +112,20 @@ def report(request, *args, **kwargs):
     report_id = kwargs["id"]
     c = {'category': 'report'}
     c.update(csrf(request))
-    if report_id:
-        selected_report = Report.objects.get(id=report_id)
-    else:
-        selected_report = Report.objects.latest('date')
-    selected_report.url_report = reverse("download", \
-                                      args=[selected_report.report_pdf])
+    try:
+        if report_id:
+            selected_report = Report.objects.get(id=report_id)
+        else:
+            selected_report = Report.objects.latest('date')
+        selected_report.url_report = reverse("download", \
+                                    args=[selected_report.report_pdf])
 
-    reports = Report.objects.all().order_by('-date')
-    for report in reports:
-        report.url_report_date = reverse("report", args=[report.id])
-    message_empty_r = "Pas de rapport"
-    c.update({"selected_report": selected_report,"reports": reports, \
-                                    "message_empty_r": message_empty_r})
+        reports = Report.objects.all().order_by('-date')
+        for report in reports:
+            report.url_report_date = reverse("report", args=[report.id])
+        c.update({"selected_report": selected_report,"reports": reports})
+    except:
+        c.update({ "message_empty_r": "Pas de rapport"})
     return render_to_response('report.html', c)
 
 
