@@ -14,12 +14,13 @@ from django.contrib.auth import authenticate, login as django_login, \
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.core.mail import send_mail
+
 
 from anm.models import Report, Organization_chart, News, Member, \
                                                 Newsletter
 from form import AddReportform, ModifOrgform, Memberform, LoginForm, \
                                 Newsletterform, Newsform, Editmemberform
-
 
 def login(request):
     """ page de connection """
@@ -30,9 +31,6 @@ def login(request):
         c = {}
         c.update(csrf(request))
         state = "Se connecter"
-
-        form = LoginForm()
-        c.update({'form': form, 'state': state})
 
         if request.method == 'POST':
             username = request.POST['username']
@@ -49,7 +47,9 @@ def login(request):
                 state = u"Votre nom d'utilisateur et / ou \
                                     votre mot de passe est incorrect. \
                                     Veuillez réessayer."
-            c.update({'form': form, 'state': state})
+        else:
+            form = LoginForm()
+        c.update({'form': form, 'state': state})
     return render_to_response('login.html', c)
 
 
@@ -90,6 +90,7 @@ def dashboard(request):
     return render_to_response('dashboard.html', c)
 
 
+@login_required
 def add_report(request):
     """ """
     c = {'category': 'add_report'}
@@ -100,6 +101,15 @@ def add_report(request):
         if form.is_valid():
             form.save()
             messages.info(request, u"Le rapport a été bien enregistre")
+            try:
+                recipients = [user.email for user in Newsletter.objects.all()]
+            except:
+                recipients = []
+            print "message sending ..."
+            send_mail("Alerte ancf", \
+                    "Un nouveau rapport a été publié sur sur le  http://www.yeleman.com ", \
+                    'fanga.computing@gmail.com',  recipients, fail_silently=False)
+            print "success"
             return redirect('report')
     else:
         form = AddReportform()
@@ -226,7 +236,7 @@ def edit_member(request, *args, **kwargs):
     c = {'category': 'edit_member'}
     c.update(csrf(request))
     c.update({"user": request.user})
-
+    messages.add_message(request, messages.INFO, 'Hello world.')
     member_id = kwargs["id"]
     selected_member = Member.objects.get(id=member_id)
     dict_member = {"last_name": selected_member.last_name, \
@@ -250,7 +260,7 @@ def edit_member(request, *args, **kwargs):
             else:
                 selected_member.status = False
             selected_member.save()
-            messages.info(request, u"le nouveau membre à été ajouter")
+            messages.info(request, u"les informations ont été ajouter")
             return redirect('member')
     else:
         form = Editmemberform(dict_member)

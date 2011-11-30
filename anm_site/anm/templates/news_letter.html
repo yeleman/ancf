@@ -4,6 +4,17 @@
 {% block content %}
 
     <h1>Liste des membres inscrits</h1>
+    <script type="text/javascript">
+    function confirmation() {
+        var answer = confirm("Voulez vous vraiment supprimer?")
+        if (answer){
+            window.location = "http://www.google.com/";
+        }
+        else{
+            alert("Thanks for sticking around!")
+        }
+    }
+    </script>
     <table>{{newsletter}}
         <thead>
             <tr>
@@ -19,7 +30,7 @@
                         <td>{{newsletter.email}}</td>
                         <td>{{newsletter.date}}</td>
                         <td>
-                            <a href="{{newsletter.url_newsletter}}">
+                            <a  onclick="confirmation()" href="{{newsletter.url_newsletter}}">
                                 <img src="/static/css/images/del.png" width="20">
                             </a>
                         </td>

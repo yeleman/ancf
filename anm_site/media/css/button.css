@@ -1,0 +1,29 @@
+/* --------------------------------------------------------------
+
+Maintainer :Fadiga
+-------------------------------------------------------------- */
+a.buttons, buttons {
+    border-style: outset;
+    border-width: 2px;
+    display: block;
+    font-weight: bold;
+    margin: 0 auto;
+    width: 460px;
+}
+/* Button colors
+-------------------------------------------------------------- */
+/* Standard */
+a.buttons:hover{
+  background-color:#F7F6F6;
+  border:2px solid #B1B1B4;
+  cursor: pointer;
+  color:#02060B;
+  border-style:groove;
+  text-decoration:none;
+}
+.buttons {
+    background: url("/static/css/images/success.png") no-repeat scroll 2px 1px #CCCCCC;
+    -moz-border-radius: 5px 5px 5px 6px; font-size: 15px;width: 68px;}
+.buttons:hover{
+    -moz-border-radius: 8px 8px 8px 8px;cursor: pointer;
+    border-style:groove;}

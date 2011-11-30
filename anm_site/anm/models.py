@@ -53,9 +53,9 @@ class Report(models.Model):
     author = models.ForeignKey(Member, verbose_name=("Rapporteur"))
 
     def __unicode__(self):
-        return (u'%(author)s %(type)s %(description)s') % \
+        return (u'%(author)s %(type)s %(description)s %(date)s') % \
                 {'author': self.author, 'description': self.description, \
-                                                'type': self.type_report}
+                            'type': self.type_report,'date': self.date}
 
 
 class News(models.Model):

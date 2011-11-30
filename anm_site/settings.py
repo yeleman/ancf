@@ -88,10 +88,20 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.auth',
+)
+
+#Store messages in sessions
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage';
+
 
 ROOT_URLCONF = 'anm_site.urls'
 
@@ -109,6 +119,12 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'anm',
 )
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'fanga.computing@gmail.com'
+EMAIL_HOST_PASSWORD = 'administrateur'
+EMAIL_PORT = 587
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

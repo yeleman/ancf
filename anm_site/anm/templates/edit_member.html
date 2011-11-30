@@ -5,7 +5,9 @@
 
     <h1>Modification de membre de la Commission Finance</h1>
     <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-        <div  style="float: left"><img src="/static/{{image}}" width="190" height ="190"></div>
+        <div  style="float: left">
+            <img src="/static/{{image}}" width="190" height ="190">
+        </div>
         <div id="member_form">
             <table>
                 <tr>
@@ -48,7 +50,6 @@
                     <td></td><td><input type='submit' value =  "Enregistrer"/></td>
                 </tr>
             </table>
-
         </div>
     </form>
 {% endblock %}

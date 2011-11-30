@@ -2,9 +2,9 @@
 {% block title %}Accueil{% endblock %}
 {% block page-id %}dashboard{% endblock %}
 {% block content %}
-<div>
+
     <h1 >Accueil </h1>
-    <div class="post-nav" id="sidebar">
+    <div id="sidebar">
         <fieldset ><legend>Comminiqué:</legend>
             {%if statement%}
                 <h4>Titre: {{statement.title}}</h4>
@@ -27,7 +27,9 @@
         <fieldset ><legend>Derniers rapports:</legend>
             {%if reports%}
                 <ul>
-                    {% for rep in reports %}<li><p><a href="{{rep.url_report_date}}">{{rep.date}}</a></p></li>{%endfor%}
+                    {% for rep in reports %}
+                        <li><p><a href="{{rep.url_report_date}}">{{rep.date}}</a></p></li>
+                    {%endfor%}
                 </ul>
             {% else %}
                 <ul><li> {{message_empty_r}}</li></ul>
@@ -43,7 +45,6 @@
             on met une marge aux quatre bords des cellules, donc padding : 4px.
             Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
         </fieldset>
-    </div>
     </div>
 
 {% endblock %}

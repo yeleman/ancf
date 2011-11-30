@@ -28,13 +28,14 @@
                         </td>
                     </tbody>
                 </table>
-                <p style="margin-left: 367px; margin-top: 142px;"> Téléchager <a href="{{selected_report.url_report}}"><img src="/static/css/images/pdf.png" width="80"></a></p>
+            </div>
+            <div id="telechargement">
+                <a href="{{selected_report.url_report}}" class = "buttons">Téléchager       <img src="/static/css/images/pdf.png" width="80"></a>
             </div>
         </fieldset>
     {%else%}
         <fieldset >
             <div id="report">{{message_empty_r}}</td></div>
         </fieldset>
-
     {% endif %}
 {% endblock %}
