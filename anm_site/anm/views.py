@@ -6,6 +6,7 @@
 from datetime import date
 
 from django.contrib import messages
+from django.utils.translation import ugettext as _
 from django.shortcuts import render_to_response, redirect, \
                                                     HttpResponseRedirect
 from django.core.context_processors import csrf
@@ -30,7 +31,7 @@ def login(request):
     else:
         c = {}
         c.update(csrf(request))
-        state = "Se connecter"
+        state = _(u"Se connecter")
 
         if request.method == 'POST':
             username = request.POST['username']
@@ -50,6 +51,8 @@ def login(request):
         else:
             form = LoginForm()
         c.update({'form': form, 'state': state})
+        
+        
     return render_to_response('login.html', c)
 
 
@@ -211,7 +214,9 @@ def add_member(request):
             return redirect('member')
     else:
         form = Memberform()
-    c.update({'form': form})
+    c.update({'form': form, 'org':Organization_chart.objects.all()[0]})
+    
+
     return render_to_response('add_member.html', c)
 
 

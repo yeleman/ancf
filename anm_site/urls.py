@@ -12,7 +12,11 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
+    url(r'^admin/rosetta/', include('rosetta.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    
+       
+
 
     url(r'^$', "anm.views.login", name="login"),
     url(r"^logout$", "anm.views.logout", name="logout"),

@@ -118,7 +118,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'anm',
+    'rosetta',
+    'django_extensions',
 )
+
+NUMBER_GROUPING = 3
+USE_THOUSAND_SEPARATOR = True
+FORMAT_MODULE_PATH = 'formats'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

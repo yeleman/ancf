@@ -5,17 +5,18 @@
 import datetime
 from django.db import models
 
+from django.utils.translation import ugettext_lazy as _
 
 class Member(models.Model):
     """
     """
-    last_name = models.CharField(max_length=100, verbose_name=("Nom"))
-    first_name = models.CharField(max_length=100, verbose_name=("Prénom"))
+    last_name = models.CharField(max_length=100, verbose_name=_(u"Nom"))
+    first_name = models.CharField(max_length=100, verbose_name=_(u"Prénom"))
     image = models.ImageField(upload_to='images_member/', blank=True,\
-                                                verbose_name=("Photo"))
-    post = models.CharField(max_length=100, verbose_name=("Poste occupé"))
-    email = models.EmailField(max_length=75, verbose_name=("Email"))
-    status = models.BooleanField(default=True, verbose_name=("Status"))
+                                                verbose_name=_(u"Photo"))
+    post = models.CharField(max_length=100, verbose_name=_(u"Poste occupé"))
+    email = models.EmailField(max_length=75, verbose_name=_("Email"))
+    status = models.BooleanField(default=True, verbose_name=_("Status"))
 
     def __unicode__(self):
         return (u'%(last_name)s %(first_name)s') % \
