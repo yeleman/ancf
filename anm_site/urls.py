@@ -2,7 +2,7 @@
 
 import settings
 
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 
 from settings import MEDIA_ROOT, DEBUG
