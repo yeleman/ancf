@@ -32,7 +32,6 @@
             {% if user %}
                     <span>{% include "_bienvenu_utilisateur.html" %}</span>
             {% else %}
-            <a href = '{% url login %}'>Administration</a>
             {% endif %}
         </div>
         {% if messages %}
@@ -50,6 +49,7 @@
         </div>
     </body>
     <div id="footer">
-        <p><a href="http://yeleman.com/">yɛlɛman</a></p>
+        <p><a href="http://yeleman.com/">yɛlɛman</a> | <a href = '{% url login %}'>Administration</a></p>
+
     </div>
 </html>

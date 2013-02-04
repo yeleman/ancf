@@ -58,9 +58,10 @@ fieldset a { color: MenuText; cursor: pointer;
     background-color: transparent;
     border-top: 1px dotted #D6D6D6;
     clear: both;
-    color: brown;
     font-size: 10px;
     margin: 2em auto 5em;
     padding-top: 2em;
     text-transform: inherit;
 }
+#footer a{
+    color: brown;}

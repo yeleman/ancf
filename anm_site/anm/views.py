@@ -19,11 +19,12 @@ from django.core.mail import send_mail
 
 from anm.models import Report, Organization_chart, News, Member, \
                                                 Newsletter
-from form import AddReportform, ModifOrgform, Memberform, LoginForm, \
-                                Newsletterform, Newsform, Editmemberform
+from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
+                                Newsletterform, Newsform, Editmemberform)
+
 
 def login(request):
-    """ page de connection """
+    """ Page de connection """
 
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('add_member'))
@@ -61,7 +62,7 @@ def logout(request):
 
 
 def dashboard(request):
-    """ l'accuiel"""
+    """ l'accueil """
     c = {'category': 'dashboard'}
     c.update(csrf(request))
     try:
@@ -92,7 +93,7 @@ def dashboard(request):
 
 @login_required
 def add_report(request):
-    """ """
+    """ Ajout de nouveau rapport """
     c = {'category': 'add_report'}
     c.update({"user": request.user})
     c.update(csrf(request))
@@ -106,9 +107,11 @@ def add_report(request):
             except:
                 recipients = []
             print "message sending ..."
-            send_mail("Alerte ancf", \
-                    "Un nouveau rapport a été publié sur sur le  http://www.yeleman.com ", \
-                    'fanga.computing@gmail.com',  recipients, fail_silently=False)
+            send_mail(u"Alerte ancf",
+                    u"Un nouveau rapport a été publié sur sur le  " \
+                    + u"http://www.yeleman.com ",
+                    'fanga.computing@gmail.com',
+                    recipients, fail_silently=False)
             print "success"
             return redirect('report')
     else:
@@ -118,7 +121,7 @@ def add_report(request):
 
 
 def report(request, *args, **kwargs):
-    """ """
+    """ Liste des rapports """
     report_id = kwargs["id"]
     c = {'category': 'report'}
     c.update(csrf(request))
@@ -133,14 +136,14 @@ def report(request, *args, **kwargs):
         reports = Report.objects.all().order_by('-date')
         for report in reports:
             report.url_report_date = reverse("report", args=[report.id])
-        c.update({"selected_report": selected_report,"reports": reports})
+        c.update({"selected_report": selected_report, "reports": reports})
     except:
-        c.update({ "message_empty_r": "Pas de rapport"})
+        c.update({"message_empty_r": "Pas de rapport"})
     return render_to_response('report.html', c)
 
 
 def download(request, path):
-    """ """
+    """ Telecharger un rapport """
     fullpath = '/'.join(["media", path])
     response = HttpResponse(file(fullpath).read())
     response['Content-Type'] = 'application/pdf'
@@ -148,13 +151,14 @@ def download(request, path):
 
 
 def help(request):
+    """ Page d'aide """
     c = {'category': 'aide'}
     c.update(csrf(request))
     return render_to_response("help.html", c)
 
 
 def organization_chart(request):
-    """ """
+    """ Affiche l'organigramme """
     c = {'category': 'organization_chart'}
     c.update(csrf(request))
     try:
@@ -217,7 +221,7 @@ def add_member(request):
 
 @login_required
 def member(request):
-    """ """
+    """ Liste des membres """
 
     c = {'category': 'member'}
     c.update(csrf(request))
@@ -231,7 +235,7 @@ def member(request):
 
 @login_required
 def edit_member(request, *args, **kwargs):
-    """ """
+    """ Modification de membre """
 
     c = {'category': 'edit_member'}
     c.update(csrf(request))
@@ -270,7 +274,7 @@ def edit_member(request, *args, **kwargs):
 
 @login_required
 def news(request):
-    """ """
+    """ Ajout d'avis de reunion """
     c = {'category': 'news'}
     c.update(csrf(request))
     c.update({"user": request.user})
@@ -288,7 +292,7 @@ def news(request):
 
 @login_required
 def newsletter(request):
-    """ """
+    """ Liste des newsletter """
     c = {'category': 'newsletter'}
     c.update(csrf(request))
     c.update({"user": request.user})
@@ -305,7 +309,7 @@ def newsletter(request):
 
 @login_required
 def del_newsletter(request, *args, **kwargs):
-    """ """
+    """ Suppression de newsletter"""
 
     c = {'category': 'edit_member'}
     c.update(csrf(request))
