@@ -3,36 +3,31 @@
 {% block page-id %}report{% endblock %}
 {% block content %}
 
-    <h1>Rapports</h1>
-    {% if reports %}
-        <div id=menu_report>
-            <ul>
-                {% for rep in reports %}<li {%ifequal selected_report.date rep.date%} class="current" {%endifequal%}><p><a href="{{rep.url_report_date}}"> {{rep.date}}</a></p></li>{%endfor%}
-            </ul>
+    <form id="rech" class="form-search">
+        <div class="input-prepend">
+        <button type="submit" class="btn">Search</button>
+        <input type="text" class="span2 search-query">
         </div>
-        <fieldset >
-            <div id="report">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td> Date </td><td>{{selected_report.date}}</td>
-                        </td>
-                        <tr>
-                            <td> Titre </td><td>{{selected_report.type_report}}</td>
-                        </td>
-                        <tr>
-                            <td> Description </td><td>{{selected_report.description}}</td>
-                        </td>
-                        <tr>
-                            <td> Rapporteur </td><td>{{selected_report.author}}</td>
-                        </td>
-                    </tbody>
-                </table>
-            </div>
-            <div id="telechargement">
-                <a href="{{selected_report.url_report}}" class = "buttons">Téléchager       <img src="/static/css/images/pdf.png" width="80"></a>
-            </div>
-        </fieldset>
+    </form>
+    <h2 class="page-header">Rapports</h2>
+    {% if reports %}
+        <div class="tabbable tabs-left">
+            <ul class="nav nav-tabs">
+                {% for rep in reports %}
+                    <li {%ifequal selected_report.id rep.id%} class="active" {%endifequal%}><a href="{{rep.url_report_date}}"> {{rep.date}}</a></li>
+                {%endfor%}
+            </ul>
+            <div class="tab-content">
+                <h4>
+                    <div id="telechargement">
+                        <a href="{{selected_report.url_report}}" class = "btn">Téléchager<img src="/static/css/images/pdf.png" width="100"></a>
+                    </div>
+                    <div> Date : <small>{{selected_report.date}}</small></div>
+                    <div> Titre : <small>{{selected_report.type_report}}</small></div>
+                    <div> Description : <small>{{selected_report.description}}</small></div>
+                    <div> Rapporteur : <small>{{selected_report.author}}</small></div>
+                </h4>
+
     {%else%}
         <fieldset >
             <div id="report">{{message_empty_r}}</td></div>

@@ -3,10 +3,10 @@
 {% block page-id %}add_member{% endblock %}
 {% block content %}
 
-    <h1>Ajout de membre de la Commission Finance</h1>
-    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <h2  class="page-header">Ajout de membre de la Commission Finance</h2>
+    <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
         <div id="member_form">
-            <table>
+            <table class="table table-bordered table-striped">
                 <tr>
                     <td>{{form.last_name.label}}:</td>
                     <td>{{form.last_name}}</td>
@@ -42,9 +42,10 @@
                         <td>{{form.email.errors}}</td>
                     {% endif %}
                 </tr>
+                <tr>
+                    <td></td><td><input type='submit' class="btn" value =  "Envoyer"/></td>
+                </tr>
             </table>
-
-            <input type='submit' value =  "Envoyer"/>
         </div>
     </form>
 

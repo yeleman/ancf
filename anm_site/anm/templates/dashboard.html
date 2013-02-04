@@ -3,8 +3,11 @@
 {% block page-id %}dashboard{% endblock %}
 {% block content %}
 
-    <h1 >Accueil </h1>
-    <div id="sidebar">
+    <!-- <h2 >Accueil </h2> -->
+    <div class="container-fluid">
+    <div class="row-fluid">
+    <div class="span3">
+    <!--Sidebar content-->
         <fieldset ><legend>Comminiqué:</legend>
             {%if statement%}
                 <h4>Titre: {{statement.title}}</h4>
@@ -19,9 +22,9 @@
             {% endif %}
         </fieldset>
         <fieldset ><legend>Newsletter:</legend>
-            <form action="" method="post">{% csrf_token %}
+            <form action="" class="form-search" method="post">{% csrf_token %}
                 {{form.email.label}}:{{form.email}}{{form.email.errors}}
-                <input type='submit' value =  "OK"/>
+                <input type='submit' class="btn" value =  "OK"/>
             </form>
         </fieldset>
         <fieldset ><legend>Derniers rapports:</legend>
@@ -36,7 +39,8 @@
             {% endif %}
         </fieldset>
     </div>
-    <div class="entry">
+    <div class="span9">
+    <!--Body content-->
         <fieldset class="module aligned ">
 
             Là, je me trouve dans les onglets et je travaille sur les liens.
@@ -44,7 +48,29 @@
             du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
             on met une marge aux quatre bords des cellules, donc padding : 4px.
             Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
+            Là, je me trouve dans les onglets et je travaille sur les liens.
+            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
+            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
+            on met une marge aux quatre bords des cellules, donc padding : 4px.
+            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
+            Là, je me trouve dans les onglets et je travaille sur les liens.
+            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
+            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
+            on met une marge aux quatre bords des cellules, donc padding : 4px.
+            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
+            Là, je me trouve dans les onglets et je travaille sur les liens.
+            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
+            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
+            on met une marge aux quatre bords des cellules, donc padding : 4px.
+            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
+            Là, je me trouve dans les onglets et je travaille sur les liens.
+            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
+            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
+            on met une marge aux quatre bords des cellules, donc padding : 4px.
+            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
         </fieldset>
+    </div>
+    </div>
     </div>
 
 {% endblock %}

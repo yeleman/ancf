@@ -3,12 +3,12 @@
 {% block page-id %}modiforganization_chart{% endblock %}
 {% block content %}
 
-    <h1>Modification de l'organigramme de la Commission Finance</h1>
+    <h2 class="page-header">Modification de l'organigramme de la Commission Finance</h2>
 
-    <form action="" method="post">{% csrf_token %}
+    <form action="" class="form-search" method="post">{% csrf_token %}
 
         <div id="org_form">
-            <table>
+            <table class="table table-bordered table-striped">
                 <tr>
                     <td>{{form.president.label}}:</td><td>{{form.president}}</td>
                 </tr>
@@ -21,8 +21,10 @@
                 <tr>
                     <td >{{form.treasurer.label}}:</td><td>{{form.treasurer}}</td>
                 </tr>
+                <tr>
+                    <td></td><td><input type='submit' class="btn" value =  "Enregistre la modification"/></td>
+                </tr>
             </table>
-            <input type='submit' value =  "Enregistre la modification"/>
         </div>
     </form>
 

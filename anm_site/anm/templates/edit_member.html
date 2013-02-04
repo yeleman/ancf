@@ -3,13 +3,13 @@
 {% block page-id %}edit_memeber{% endblock %}
 {% block content %}
 
-    <h1>Modification de membre de la Commission Finance</h1>
-    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <h2>Modification de membre de la Commission Finance</h2>
+    <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
         <div  style="float: left">
             <img src="/static/{{image}}" width="190" height ="190">
         </div>
         <div id="member_form">
-            <table>
+            <table class="table table-bordered table-striped">
                 <tr>
                     <td>{{form.last_name.label}}:</td><td>{{form.last_name}}</td>
                     {% if form.last_name.errors %}
@@ -47,7 +47,7 @@
                     {% endif %}
                 </tr>
                 <tr>
-                    <td></td><td><input type='submit' value =  "Enregistrer"/></td>
+                    <td></td><td><input type='submit' class="btn" value =  "Enregistrer"/></td>
                 </tr>
             </table>
         </div>

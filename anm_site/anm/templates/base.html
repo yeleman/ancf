@@ -3,17 +3,31 @@
     <head>
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="/static/css/menu.css" type="text/css" />
+         <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="/static/css/ancf_style.css" type="text/css" />
-        <link rel="stylesheet" href="/static/css/tableau.css" type="text/css" />
-        <link rel="stylesheet" href="/static/css/button.css" type="text/css" />
-
+        <!-- <link rel="stylesheet" href="/static/css/tableau.css" type="text/css" /> -->
+        <!-- <link rel="stylesheet" href="/static/css/button.css" type="text/css" /> -->
         <script src="/static/js/jquery.min.js"></script>
         <link rel="stylesheet" href="/static/css/jquery-ui-date.css" type="text/css" />
+         <script src="/static/js/jquery-latest.js"></script>
+         <script src="/static/bootstrap/js/bootstrap.min.js"></script>
         <script src="/static/js/jquery-ui.min.js"></script>
 
     </head>
 
     <body>
+        <div class="container">
+            <!-- <div class=""><img src="/static/css/images/Armoiries_Mali.png" width="200"></div> -->
+            <div id="myCarousel" class="carousel slide">
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item"><img  class="img-rounded" alt="" src="/static/css/images/waraba.jpg" width="200"></div>
+                    <div class="item"><img   class="img-rounded" alt="" src="/static/css/images/mali-drapeau.jpg" width="200"></div>
+                </div>
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
         <div id="bienvenu">
             {% if user %}
                     <span>{% include "_bienvenu_utilisateur.html" %}</span>
@@ -21,7 +35,6 @@
             <a href = '{% url login %}'>Administration</a>
             {% endif %}
         </div>
-        <div id="page">
         {% if messages %}
             <ul>
                 {% for message in messages %} <li>{{ message }}</li>
@@ -34,9 +47,9 @@
                     {% endblock %}
                 </div>
             </div>
-            <div id="footer">
-                <p><a href="http://yeleman.com/">yɛlɛman</a></p>
-            </div>
         </div>
     </body>
+    <div id="footer">
+        <p><a href="http://yeleman.com/">yɛlɛman</a></p>
+    </div>
 </html>

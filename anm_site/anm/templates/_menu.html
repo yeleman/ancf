@@ -1,22 +1,21 @@
-<div id="menu">
-    {% if user %}
-        <ul>
-            <li ><a {% if category = 'add_member' %}class="current"{% endif %} href="{% url add_member %}" ><span>Ajout de membre</span></a>
-            <li ><a {% if category = 'modif_organization_chart' %}class="current"{% endif %} href="{% url modif_organization_chart %}" ><span>Organigramme</span></a>
-            <li ><a {% if category = 'member' %}class="current"{% endif %} href="{% url member %}" ><span>Liste membre</span></a>
-            <li ><a {% if category = 'add_report' %}class="current"{% endif %} href="{% url add_report %}" > <span>Ajout rapport</span></a></li>
-            <li ><a {% if category = 'news' %}class="current"{% endif %} href="{% url news %}" ><span>news</span></a>
-            <li ><a {% if category = 'newsletter' %}class="current"{% endif %} href="{% url newsletter %}" ><span>newsletter</span></a>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            {% if user %}
+                    <li {% if category = 'add_member' %} class="active"{% endif %}><a class="brand" href="{% url add_member %}" >Ajout de membre</a></li>
+                    <li {% if category = 'modif_organization_chart' %}class="active"{% endif %} ><a class="brand" href="{% url modif_organization_chart %}" >Organigramme</a></li>
+                    <li {% if category = 'member' %} class="active"{% endif %}><a class="brand" href="{% url member %}">Liste membre</a></li>
+                    <li {% if category = 'add_report' %} class="active"{% endif %}><a class="brand" href="{% url add_report %}"> Ajout rapport</a></li>
+                    <li {% if category = 'news' %} class="active"{% endif %}><a class="brand" href="{% url news %}">news</a></li>
+                    <li {% if category = 'newsletter' %} class="active"{% endif %}><a class="brand" href="{% url newsletter %}">newsletter</a></li>
+            {% else %}
+                    <li {% if category = 'dashboard' %} class="active"{% endif %}><a class="brand"  href="{% url dashboard %}" > Accueil</a></li>
+                    <li {% if category = 'report' %} class="active"{% endif %}><a class="brand" href="{% url report %}">Rapports</a></li>
+                    <li {% if category = 'organization_chart' %} class="active"{% endif %}><a class="brand" href="{% url organization_chart %}" >Organigramme</a></li>
+        <!--
+                    <li ><a class="brand" {% if category = 'aide' %}class="active"{% endif %} href= "{% url help %}"><span>Aide</span></a></li>
+        -->
+            {% endif %}
         </ul>
-    {% else %}
-        <ul>
-            <li ><a {% if category = 'dashboard' %}class="current"{% endif %} href="{% url dashboard %}" > <span>Accueil</span></a></li>
-            <li ><a {% if category = 'report' %}class="current"{% endif %} href="{% url report %}" ><span>Rapports</span></a></li>
-            <li ><a {% if category = 'organization_chart' %}class="current"{% endif %} href="{% url organization_chart %}" ><span>Organigramme</span></a>
-<!--
-            <li ><a {% if category = 'aide' %}class="current"{% endif %} href= "{% url help %}"><span>Aide</span></a></li>
--->
-        </ul>
-    {% endif %}
-
+    </div>
 </div>

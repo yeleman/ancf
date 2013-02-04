@@ -3,7 +3,7 @@
 {% block page-id %}newsletter{% endblock %}
 {% block content %}
 
-    <h1>Liste des membres inscrits</h1>
+    <h2 class="page-header">Liste des membres inscrits</h2>
     <script type="text/javascript">
     function confirmation() {
         var answer = confirm("Voulez vous vraiment supprimer?")
@@ -15,7 +15,7 @@
         }
     }
     </script>
-    <table>{{newsletter}}
+    <table class="table table-bordered table-striped">{{newsletter}}
         <thead>
             <tr>
                <th> Email </th>

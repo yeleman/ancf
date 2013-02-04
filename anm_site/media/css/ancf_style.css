@@ -3,38 +3,25 @@
 
 /** commone **/
 #bienvenu {  float:right;}
-#page {-moz-box-shadow: 1px 1px 16px 2px; background:#F7F6F6; \
+#page {-moz-box-shadow: 1px 1px 16px 2px;
                             margin: 0 auto;width: 960px;  height: 80em;}
 a {text-decoration: none;}
 h1 {text-align: center;}
-body {margin: 0;padding: 0;background: #DDDDDD;
-    font-family: inherit,Helvetica,sans-serif; font-size: 12px;color: #402F2F;
+body {margin: 0;padding: 0;
+    font-family: inherit,Helvetica,sans-serif;color: #402F2F;
     }
 li {list-style-type: none;
 }
-fieldset ul {background-color: #E0D8D8; border: 2px solid #C5CED9; padding: 0.6em;
+fieldset ul {background-color: #E5E5E5; border: 2px solid #C5CED9; padding: 0.6em;
 }
-fieldset a { color: highlighttext; cursor: pointer;
+fieldset a { color: MenuText; cursor: pointer;
 }
-/* Footer */
-#footer{background-color: transparent;color: #B2B2B2;font-size: 10px;
-                            text-align: center;text-transform: inherit;}
-#footer a {color: brown;}
-#page {margin: 0 auto;width: 960px;}
-/** Add member **/
+/** Add member **//*
 #add_member {width: 800px; margin: 0pt auto;}
 #add_member h1{width: 740px; margin: 0pt auto;height: 35px; text-align: center;}
 #add_member #member_form input[type="submit"] {padding-left: 5px; margin-left: 205px;}
 #add_member #member_form {width: 740px; margin: 0pt auto;}
-#add_member #member_form table{margin: 0pt auto;}
-
-/** Modif org char **/
-
-#modiforganization_chart {width: 800px; margin: 0pt auto;}
-#modiforganization_chart h1{width: 795px; margin: 0pt auto;height: 35px; text-align: center;}
-#modiforganization_chart #org_form input[type="submit"] {padding-left: 5px; margin-left: 302px;}
-#modiforganization_chart #org_form {width: 740px; margin: 0pt auto;}
-#modiforganization_chart #org_form table{margin: 0pt auto;}
+#add_member #member_form table{margin: 0pt auto;}*/
 
 /** Add rapport **/
 
@@ -48,7 +35,7 @@ fieldset a { color: highlighttext; cursor: pointer;
 #sidebar {float: left;left: -3em;width: 225px;}
 
 /* dashboard */
-#dashboard input[type="text"] {width: 141px;}
+/*#dashboard input[type="text"] {width: 141px;}*/
 #menu_report {
     float:left;
     width:130px;
@@ -62,4 +49,18 @@ fieldset a { color: highlighttext; cursor: pointer;
     border-left: medium solid Grey;
     }
 #menu_report ul{margin-left: -34px;}
-#telechargement {margin-top: 128px;}
+#telechargement {float: right;}
+.navbar .nav a{padding:0px;font-size: 13px;text-transform: uppercase;}
+#rech {float: right;}
+
+/* Footer */
+#footer{
+    background-color: transparent;
+    border-top: 1px dotted #D6D6D6;
+    clear: both;
+    color: brown;
+    font-size: 10px;
+    margin: 2em auto 5em;
+    padding-top: 2em;
+    text-transform: inherit;
+}

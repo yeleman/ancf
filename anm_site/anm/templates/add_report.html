@@ -4,10 +4,9 @@
 {% block content %}
 
 
-    <h1>Envoi du rapport</h1>
-    <div id="create_envoi_form">
-        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-                <table>
+    <h2 class="page-header">Envoi du rapport</h2>
+        <form action="" method="post"  class="form-search" enctype="multipart/form-data">{% csrf_token %}
+                <table class="table table-bordered table-striped">
                     <tbody>
                         <tr>
                             <td>{{form.date.label}}:</td>
@@ -33,16 +32,16 @@
                             <td> {{form.author.label}}:</td>
                             <td>{{form.author}} {{form.author.errors}}</td>
                         </tr>
+                        <tr>
+                            <td></td><td><input type='submit' class="btn" value =  "Envoyer"/></td>
+                        </tr>
                     </tbody>
                 </table>
-                <p id = '' class= "{{save}}">
-                <input type='submit' value =  "Envoyer"/></p>
         </form>
         <script type="text/javascript">
             jQuery('#id_date').datepicker({
                  dateFormat: 'dd/mm/yy',
                 });
         </script>
-    </div>
 
 {% endblock %}

@@ -7,7 +7,7 @@
         {{state}}
         <ul id="menu_login">
             <form action="{% url login %}" method="post">{% csrf_token %}
-                <table>
+                <table class="table table-bordered table-striped">
                     <tr>
                         <td>{{ form.as_table }}</td>
                     </tr>

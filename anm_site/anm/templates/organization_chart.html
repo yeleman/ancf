@@ -3,9 +3,10 @@
 {% block page-id %}Organization_chart{% endblock %}
 {% block content %}
 
-    <h1>L'organigramme de la Commission Finance</h1>
+    <h2  class="page-header">L'organigramme de la Commission Finance</h2>
     {% if org %}
-        <table style="text-align: center;">
+
+        <table style="text-align: center;" class="table table-bordered table-striped">
             <tr>
                 <td colspan=15><img src="/static/{{org.president.image}}" width="100" height ="100">
                     <p>{{org.president}}<br>Président</p>
@@ -36,6 +37,7 @@
                 </td>
             </tr>
         </table>
+
     {% else%}
         <table style="text-align: center;">
             <tr> <td colspan=15> <p>Pas d'organigramme</p></td></tr>
