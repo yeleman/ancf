@@ -41,21 +41,33 @@ class Organization_chart(models.Model):
         {'president': self.president, 'date': self.date}
 
 
+class TypeReport(models.Model):
+    """ """
+    slug = models.SlugField("Slug", max_length=75, primary_key=True)
+    name = models.CharField(u"Name", max_length=150)
+
+    def __unicode__(self):
+        return (u'%(name)s/%(slug)s') % \
+        {'name': self.name, 'slug': self.slug}
+
+
 class Report(models.Model):
     """ """
     date = models.DateField(verbose_name=("Fait le"),\
                              default=datetime.datetime.today)
-    type_report = models.CharField(max_length=100, verbose_name=("Titre"))
+    title_report = models.CharField(max_length=100, verbose_name=("Titre"))
     description = models.CharField(max_length=100, \
                                             verbose_name=("description"))
     report_pdf = models.FileField(upload_to='report_doc/', \
                                   verbose_name=('Le rapport'), null=True)
     author = models.ForeignKey(Member, verbose_name=("Rapporteur"))
+    type_report = models.ForeignKey(TypeReport,
+                                    verbose_name=("Type de rapport"))
 
     def __unicode__(self):
         return (u'%(author)s %(type)s %(description)s %(date)s') % \
-                {'author': self.author, 'description': self.description, \
-                            'type': self.type_report,'date': self.date}
+                {'author': self.author, 'description': self.description,
+                            'type': self.title_report, 'date': self.date}
 
 
 class News(models.Model):
