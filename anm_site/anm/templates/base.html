@@ -48,8 +48,12 @@
             </div>
         </div>
     </body>
-    <div id="footer">
-        <p><a href="http://yeleman.com/">yɛlɛman</a> | <a href = '{% url login %}'>Administration</a></p>
-
+    <div id="footer"><h4>
+        <a href="http://yeleman.com/">yɛlɛman</a> |
+            {% if user %}
+                <a href = '{% url dashboard %}'>Accueil du site
+            {% else %}
+                <a href = '{% url login %}'>Administration
+            {% endif %}</a></h4>
     </div>
 </html>
