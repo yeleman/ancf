@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "anm.member", "fields": {"status": true, "first_name": "Ouaili", "last_name": "Diawarra", "image": "", "post": "Pr\u00e9sident", "email": "ouali@ancf.gov.ml"}}, {"pk": 2, "model": "anm.member", "fields": {"status": true, "first_name": "Aboubacary", "last_name": "Coulibaly", "image": "", "post": "Vice-Pr\u00e9sident", "email": "aboubacary@ancf.gov.ml"}}]
