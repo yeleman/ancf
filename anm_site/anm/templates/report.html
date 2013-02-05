@@ -34,4 +34,9 @@
             <div id="report">{{message_empty_r}}</td></div>
         </fieldset>
     {% endif %}
+        <script type="text/javascript">
+            jQuery('#id_date').datepicker({
+                 dateFormat: 'dd/mm/yy',
+                });
+        </script>
 {% endblock %}

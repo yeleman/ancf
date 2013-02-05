@@ -130,12 +130,15 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'fanga.computing@gmail.com'
 EMAIL_HOST_PASSWORD = 'administrateur'
 EMAIL_PORT = 587
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 1025
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

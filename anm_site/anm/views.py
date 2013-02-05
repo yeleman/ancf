@@ -106,13 +106,16 @@ def add_report(request):
                 recipients = [user.email for user in Newsletter.objects.all()]
             except:
                 recipients = []
-            print "message sending ..."
-            send_mail(u"Alerte ancf",
-                    u"Un nouveau rapport a été publié sur sur le  " \
-                    + u"http://www.yeleman.com ",
-                    'fanga.computing@gmail.com',
+            print "message sending ... "
+            message = u"Un nouveau rapport a été publié sur sur le " \
+                      + u"http://www.yeleman.com"
+            try:
+                send_mail(u"Alerte ancf", message, 'Commission des Finances, de l’Economie de Assemblée nationale du Mali',
                     recipients, fail_silently=False)
-            print "success"
+                print "success"
+            except Exception as e:
+                print(e)
+
             return redirect('report')
     else:
         form = AddReportform()
