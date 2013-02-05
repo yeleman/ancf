@@ -1,30 +1,16 @@
 /** CSS **/
 
-
 /** commone **/
 #bienvenu {  float:right;}
-#page {-moz-box-shadow: 1px 1px 16px 2px;
-                            margin: 0 auto;width: 960px;  height: 80em;}
+#page {-moz-box-shadow: 1px 1px 16px 2px;margin: 0 auto;width: 960px;  height: 80em;}
 a {text-decoration: none;}
 h1 {text-align: center;}
-body {margin: 0;padding: 0;
-    font-family: inherit,Helvetica,sans-serif;color: #402F2F;
-    }
-li {list-style-type: none;
-}
-fieldset ul {background-color: #E5E5E5; border: 2px solid #C5CED9; padding: 0.6em;
-}
-fieldset a { color: MenuText; cursor: pointer;
-}
-/** Add member **//*
-#add_member {width: 800px; margin: 0pt auto;}
-#add_member h1{width: 740px; margin: 0pt auto;height: 35px; text-align: center;}
-#add_member #member_form input[type="submit"] {padding-left: 5px; margin-left: 205px;}
-#add_member #member_form {width: 740px; margin: 0pt auto;}
-#add_member #member_form table{margin: 0pt auto;}*/
+body {margin: 0;padding: 0;font-family: inherit,Helvetica,sans-serif;color: #402F2F;}
+li {list-style-type: none;}
+fieldset ul {background-color: #E5E5E5; border: 2px solid #C5CED9; padding: 0.6em;}
+fieldset a { color: MenuText; cursor: pointer;}
 
 /** Add rapport **/
-
 #add_rapport #create_envoi_form {width: 800px; margin: 0pt auto;}
 #add_rapport h1{width: 795px; margin: 0pt auto;height: 35px; text-align: center;}
 
@@ -33,35 +19,10 @@ fieldset a { color: MenuText; cursor: pointer;
 
 /* Sidebar */
 #sidebar {float: left;left: -3em;width: 225px;}
-
-/* dashboard */
-/*#dashboard input[type="text"] {width: 141px;}*/
-#menu_report {
-    float:left;
-    width:130px;
-    background-color:#E0D8D8;
-    }
-#menu_report .current{
-    width:122px;
-    background-color:#F7F6F6;
-    border-top: medium solid Grey;
-    border-bottom: medium solid Grey;
-    border-left: medium solid Grey;
-    }
-#menu_report ul{margin-left: -34px;}
 #telechargement {float: right;}
-.navbar .nav a{padding:0px;font-size: 13px;text-transform: uppercase;}
+.navbar .nav a{padding:0px;font-size: 11px;text-transform: uppercase;}
 #rech {float: right;}
 
 /* Footer */
-#footer{
-    background-color: transparent;
-    border-top: 1px dotted #D6D6D6;
-    clear: both;
-    font-size: 10px;
-    margin: 2em auto 5em;
-    padding-top: 2em;
-    text-transform: inherit;
-}
-#footer a{
-    color: brown;}
+#footer{background-color: transparent;border-top: 1px dotted #D6D6D6;clear: both;text-transform: inherit;bottom: 0px;position: fixed;}
+#footer a{color: darkred;}
