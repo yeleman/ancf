@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Historique des communiqués{% endblock %}
+{% block page-id %}history_news{% endblock %}
+{% block content %}
+    <h2  class="page-header">Historique des communiqués de la commission des finances</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+               <th> Titre </th>
+               <th> Message </th>
+               <th> Rapporteur </th>
+               <th> Fait le </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if news %}
+                {% for new in news %}
+                    <tr>
+                        <td>{{new.title}}</td>
+                        <td>{{new.comment}}</td>
+                        <td>{{new.author}}</td>
+                        <td>{{new.date}}</td>
+                    </tr>
+                {%endfor%}
+            {% else %}
+                <tr><td style="text-align: center;" colspan=4>{{message_empty_m}}</td></tr>
+            {%endif%}
+        </tbody>
+    </table>
+{% endblock %}

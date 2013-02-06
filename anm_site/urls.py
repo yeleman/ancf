@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r"^logout$", "anm.views.logout", name="logout"),
     url(r'^login$', "anm.views.login", name="login"),
     url(r'^dashboard$', "anm.views.dashboard", name="dashboard"),
+    url(r'^history_news$', "anm.views.history_news", name="history_news"),
     url(r'^help$', "anm.views.help", name="help"),
     url(r'^organization_chart$', "anm.views.organization_chart", \
                                             name="organization_chart"),

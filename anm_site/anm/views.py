@@ -66,11 +66,10 @@ def dashboard(request):
     c = {'category': 'dashboard'}
     c.update(csrf(request))
     try:
-        statement = News.objects.latest('id')
-        c.update({"statement": statement})
+        last_new = News.objects.latest('id')
+        c.update({"last_new": last_new})
     except:
-        message_empty_c = "Pas de comminiqué"
-        c.update({"message_empty_c": message_empty_c})
+        c.update({"message_empty_c": "Pas de comminiqué"})
 
     reports = Report.objects.all().order_by('-date')[:5]
     for report in reports:
@@ -291,6 +290,14 @@ def news(request):
         form = Newsform()
     c.update({'form': form})
     return render_to_response("news.html", c)
+
+
+def history_news(request):
+    """ Affiche l'historique des avis de reunion """
+    c = {'category': 'history_news'}
+    news = News.objects.all()
+    c.update({'news': news})
+    return render_to_response("history_news.html", c)
 
 
 @login_required

@@ -1,6 +1,7 @@
 
 from django.contrib import admin
-from models import Member, Report, Organization_chart, News, Newsletter, TypeReport
+from models import (Member, Report, Organization_chart, News, Newsletter,
+                    TypeReport)
 
 admin.site.register(Member)
 admin.site.register(Organization_chart)

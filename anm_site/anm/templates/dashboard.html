@@ -8,15 +8,16 @@
     <div class="row-fluid">
     <div class="span3">
     <!--Sidebar content-->
-        <fieldset ><legend>Comminiqué:</legend>
-            {%if statement%}
-                <h4>Titre: {{statement.title}}</h4>
+        <fieldset ><legend>Communiqué:</legend>
+            {%if last_new%}
+                <h4>Titre: {{last_new.title}}</h4>
                 <ul>
-                    <li>Le {{statement.date}}</li>
+                    <li>Le {{last_new.date}}</li>
                 </ul>
                 <ul>
-                    <li>Message</li><li>{{statement.comment}}</li>
+                    <li>Message</li><li>{{last_new.comment}}</li>
                 </ul>
+                <a href="{% url history_news %}">Historique</a>
             {% else %}
             <ul><li> {{message_empty_c}}</li></ul>
             {% endif %}
