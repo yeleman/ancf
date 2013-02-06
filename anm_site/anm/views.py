@@ -26,13 +26,13 @@ from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
 def login(request):
     """ Page de connection """
 
+    form = LoginForm()
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('add_member'))
     else:
         c = {}
         c.update(csrf(request))
         state = "Se connecter"
-
         if request.method == 'POST':
             username = request.POST['username']
             password = request.POST['password']
@@ -48,8 +48,7 @@ def login(request):
                 state = u"Votre nom d'utilisateur et / ou \
                                     votre mot de passe est incorrect. \
                                     Veuillez réessayer."
-        else:
-            form = LoginForm()
+
         c.update({'form': form, 'state': state})
     return render_to_response('login.html', c)
 
