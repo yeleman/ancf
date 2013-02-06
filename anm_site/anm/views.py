@@ -6,19 +6,19 @@
 from datetime import date
 
 from django.contrib import messages
-from django.shortcuts import render_to_response, redirect, \
-                                                    HttpResponseRedirect
+from django.shortcuts import (render_to_response, redirect,
+                                                    HttpResponseRedirect)
 from django.core.context_processors import csrf
-from django.contrib.auth import authenticate, login as django_login, \
-                                                logout as django_logout
+from django.contrib.auth import (authenticate, login as django_login,
+                                                logout as django_logout)
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.core.mail import send_mail
 
 
-from anm.models import Report, Organization_chart, News, Member, \
-                                                Newsletter
+from anm.models import (Report, Organization_chart, News, Member,
+                                                Newsletter, TypeReport)
 from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
                                 Newsletterform, Newsform, Editmemberform)
 
@@ -87,7 +87,8 @@ def dashboard(request):
     else:
         form = Newsletterform()
 
-    c.update({'form': form, })
+    c.update({'form': form})
+
     return render_to_response('dashboard.html', c)
 
 
@@ -110,8 +111,9 @@ def add_report(request):
             message = u"Un nouveau rapport a été publié sur sur le " \
                       + u"http://www.yeleman.com"
             try:
-                send_mail(u"Alerte ancf", message, 'Commission des Finances, de l’Economie de Assemblée nationale du Mali',
-                    recipients, fail_silently=False)
+                send_mail(u"Commission des Finances de l'Assemblée Nationale",
+                          message, "Commission des Finances de l'Assemblée Nationale",
+                          recipients, fail_silently=False)
                 print "success"
             except Exception as e:
                 print(e)
@@ -125,23 +127,46 @@ def add_report(request):
 
 def report(request, *args, **kwargs):
     """ Liste des rapports """
-    report_id = kwargs["id"]
+    report_id = kwargs["report_id"] or 0
+    type_slug = kwargs["type_slug"] or ""
+
     c = {'category': 'report'}
     c.update(csrf(request))
-    try:
-        if report_id:
-            selected_report = Report.objects.get(id=report_id)
-        else:
-            selected_report = Report.objects.latest('date')
-        selected_report.url_report = reverse("download", \
-                                    args=[selected_report.report_pdf])
 
-        reports = Report.objects.all().order_by('-date')
-        for report in reports:
-            report.url_report_date = reverse("report", args=[report.id])
-        c.update({"selected_report": selected_report, "reports": reports})
-    except:
-        c.update({"message_empty_r": "Pas de rapport"})
+    type_reports = TypeReport.objects.all()
+    selected_report = Report.objects.latest('date')
+
+    for type_report in type_reports:
+        type_report.url_type_report = reverse("report", args=[report_id, type_report.slug])
+    c.update({'type_reports': type_reports})
+
+    reports = Report.objects.all().order_by('-date')
+
+    if type_slug != "":
+        reports = Report.objects.filter(type_report__slug=type_slug).order_by("-date")
+        try:
+            selected_type = TypeReport.objects.get(slug=type_slug)
+            selected_report = reports[0]
+            c.update({"selected_type": selected_type})
+        except:
+            pass
+    else:
+        reports = Report.objects.all().order_by("-date")
+        selected_report = reports[0]
+
+    if report_id != 0:
+        try:
+            selected_report = Report.objects.get(id=report_id)
+        except:
+            pass
+    selected_report.url_report = reverse("download",
+                                         args=[selected_report.report_pdf])
+    for report in reports:
+        report.url_report_date = reverse("report", args=[report.id, type_slug])
+
+    c.update({"selected_report": selected_report, "reports": reports,
+              "message_empty_r": "Pas de rapport"})
+
     return render_to_response('report.html', c)
 
 

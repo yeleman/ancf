@@ -2,13 +2,20 @@
 {% block title %}Rapport{% endblock %}
 {% block page-id %}report{% endblock %}
 {% block content %}
-
-    <form id="rech" class="form-search">
-        <div class="input-prepend">
-        <button type="submit" class="btn">Search</button>
-        <input type="text" class="span2 search-query">
+    <div id="rech"><h4>Filtrer par: </h4>
+        <div  class="btn-group">
+            <button class="btn btn-small">{%if selected_type%}{{selected_type.name}}{%else%}Tous les types de rapports {%endif%}</button>
+            <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                {% for type in type_reports %}
+                    <li {%ifequal selected_type.slug type.slug%} class="active" {%endifequal%}><a href="{{type.url_type_report}}"> {{type.name}}</a></li>
+                {%endfor%}
+            </ul>
         </div>
-    </form>
+    </div>
+
     <h2 class="page-header">Rapports</h2>
     {% if reports %}
         <div class="tabbable tabs-left">
@@ -22,10 +29,11 @@
                     <div id="telechargement">
                         <a href="{{selected_report.url_report}}" class = "btn">Téléchager<img src="/static/css/images/pdf.png" width="100"></a>
                     </div>
-                    <div> Date : <small>{{selected_report.date}}</small></div>
-                    <div> Titre : <small>{{selected_report.title_report}}</small></div>
-                    <div> Description : <small>{{selected_report.description}}</small></div>
+                    <div> <h3>{{selected_report.title_report}}</h3></div>
+                    <div> Publié le : <small>{{selected_report.date}}</small></div>
                     <div> Rapporteur : <small>{{selected_report.author}}</small></div>
+                    <div> Description :</div>
+                    <div><small>{{selected_report.description}}</small></div>
                 </h4>
             </div>
         </div>
