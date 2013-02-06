@@ -8,16 +8,16 @@
     <div class="row-fluid">
     <div class="span3">
     <!--Sidebar content-->
-        <fieldset ><legend>Communiqué:</legend>
+        <fieldset ><legend>Brèves</legend>
             {%if last_new%}
-                <h4>Titre: {{last_new.title}}</h4>
+                <h4>{{last_new.title}}</h4>
                 <ul>
                     <li>Le {{last_new.date}}</li>
                 </ul>
                 <ul>
                     <li>Message</li><li>{{last_new.comment}}</li>
                 </ul>
-                <a href="{% url history_news %}">Historique</a>
+                <a href="{% url history_news %}">Voir tous</a>
             {% else %}
             <ul><li> {{message_empty_c}}</li></ul>
             {% endif %}
@@ -32,7 +32,7 @@
             {%if reports%}
                 <ul>
                     {% for rep in reports %}
-                        <li><p><a href="{{rep.url_report_date}}">{{rep.date}}</a></p></li>
+                        <li><p><a href="{{rep.url_report_date}}">{{rep.title_report}}</a></p></li>
                     {%endfor%}
                 </ul>
             {% else %}
@@ -43,32 +43,10 @@
     <div class="span9">
     <!--Body content-->
         <fieldset class="module aligned ">
-
-            Là, je me trouve dans les onglets et je travaille sur les liens.
-            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
-            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
-            on met une marge aux quatre bords des cellules, donc padding : 4px.
-            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
-            Là, je me trouve dans les onglets et je travaille sur les liens.
-            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
-            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
-            on met une marge aux quatre bords des cellules, donc padding : 4px.
-            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
-            Là, je me trouve dans les onglets et je travaille sur les liens.
-            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
-            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
-            on met une marge aux quatre bords des cellules, donc padding : 4px.
-            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
-            Là, je me trouve dans les onglets et je travaille sur les liens.
-            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
-            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
-            on met une marge aux quatre bords des cellules, donc padding : 4px.
-            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
-            Là, je me trouve dans les onglets et je travaille sur les liens.
-            On fait ici un affichage bloc, ça permet de pouvoir cliquer partout dans l'onglet pour activer le lien. La couleur
-            du lien se change aussi ici. Le text-decoration : none sert à enlever le trait de soulignement en dessous des liens. Enfin,
-            on met une marge aux quatre bords des cellules, donc padding : 4px.
-            Et la touche finale : quand on passe avec la souris dessus, le fond change de couleur : :D , il faut donc se placer dans l'id onglet avec a:hover pour le lien.
+            {% if textstatic %} {{textstatic.text}}
+            {% else %}
+                Pas de contenu
+            {% endif %}
         </fieldset>
     </div>
     </div>

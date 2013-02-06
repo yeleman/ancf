@@ -17,8 +17,8 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 
 
-from anm.models import Report, Organization_chart, News, Member, \
-                                                Newsletter
+from anm.models import (Report, Organization_chart, News, Member, TextStatic,
+                                                Newsletter)
 from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
                                 Newsletterform, Newsform, Editmemberform)
 
@@ -70,11 +70,16 @@ def dashboard(request):
     except:
         c.update({"message_empty_c": "Pas de comminiqué"})
 
-    reports = Report.objects.all().order_by('-date')[:5]
+    reports = Report.objects.all().order_by('-date')[:3]
+    try:
+        textstatic = TextStatic.objects.get(slug='dashboard')
+    except:
+        textstatic = None
     for report in reports:
         report.url_report_date = reverse("report", args=[report.id])
     message_empty_r = "Pas de rapport"
-    c.update({"reports": reports, "message_empty_r": message_empty_r})
+    c.update({"reports": reports, "message_empty_r": message_empty_r,
+              "textstatic": textstatic})
 
     if request.method == 'POST':
         form = Newsletterform(request.POST)

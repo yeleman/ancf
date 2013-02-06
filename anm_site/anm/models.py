@@ -6,13 +6,24 @@ import datetime
 from django.db import models
 
 
+class TypePost(models.Model):
+    """ """
+    slug = models.SlugField("Code", max_length=75, primary_key=True)
+    name = models.CharField(u"Nom", max_length=150)
+
+    def __unicode__(self):
+        return (u'%(name)s/%(slug)s') % \
+        {'name': self.name, 'slug': self.slug}
+
+
 class Member(models.Model):
     """ """
     last_name = models.CharField(max_length=100, verbose_name=("Nom"))
     first_name = models.CharField(max_length=100, verbose_name=("Prénom"))
     image = models.ImageField(upload_to='images_member/', blank=True,\
                                                 verbose_name=("Photo"))
-    post = models.CharField(max_length=100, verbose_name=("Poste occupé"))
+    post = models.ForeignKey(TypePost,
+                                    verbose_name=("Poste occupé"))
     email = models.EmailField(max_length=75, verbose_name=("Email"))
     status = models.BooleanField(default=True, verbose_name=("Status"))
 
@@ -91,3 +102,11 @@ class Newsletter(models.Model):
     def __unicode__(self):
         return (u'%(email)s %(date)s') % \
                 {'email': self.email, 'date': self.date}
+
+
+class TextStatic(models.Model):
+    slug = models.SlugField("Code", max_length=75, primary_key=True)
+    text = models.TextField(blank=True, verbose_name=("Texte"))
+
+    def __unicode__(self):
+        return (u'%(slug)s') % {'slug': self.slug}
