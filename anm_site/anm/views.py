@@ -17,8 +17,8 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 
 
-from anm.models import (Report, Organization_chart, News, Member,
-                                                Newsletter, TypeReport)
+from anm.models import (Report, Organization_chart, News, Member, Newsletter,
+                        TypeReport, TextStatic)
 from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
                                 Newsletterform, Newsform, Editmemberform)
 
@@ -26,6 +26,7 @@ from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
 def login(request):
     """ Page de connection """
 
+    form = LoginForm()
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('add_member'))
     else:
@@ -48,8 +49,7 @@ def login(request):
                 state = u"Votre nom d'utilisateur et / ou \
                                     votre mot de passe est incorrect. \
                                     Veuillez réessayer."
-        else:
-            form = LoginForm()
+
         c.update({'form': form, 'state': state})
     return render_to_response('login.html', c)
 
@@ -66,17 +66,21 @@ def dashboard(request):
     c = {'category': 'dashboard'}
     c.update(csrf(request))
     try:
-        statement = News.objects.latest('id')
-        c.update({"statement": statement})
+        last_new = News.objects.latest('id')
+        c.update({"last_new": last_new})
     except:
-        message_empty_c = "Pas de comminiqué"
-        c.update({"message_empty_c": message_empty_c})
+        c.update({"message_empty_c": "Pas de comminiqué"})
 
-    reports = Report.objects.all().order_by('-date')[:5]
+    reports = Report.objects.all().order_by('-date')[:3]
+    try:
+        textstatic = TextStatic.objects.get(slug='dashboard')
+    except:
+        textstatic = None
     for report in reports:
         report.url_report_date = reverse("report", args=[report.id])
     message_empty_r = "Pas de rapport"
-    c.update({"reports": reports, "message_empty_r": message_empty_r})
+    c.update({"reports": reports, "message_empty_r": message_empty_r,
+              "textstatic": textstatic})
 
     if request.method == 'POST':
         form = Newsletterform(request.POST)
@@ -130,17 +134,18 @@ def report(request, *args, **kwargs):
     report_id = kwargs["report_id"] or 0
     type_slug = kwargs["type_slug"] or ""
 
-    c = {'category': 'report'}
+    c = {'category': 'report', "message_empty_r": "Pas de rapport"}
     c.update(csrf(request))
+    try:
+        selected_report = Report.objects.latest('date')
+    except:
+        return render_to_response('report.html', c)
 
     type_reports = TypeReport.objects.all()
-    selected_report = Report.objects.latest('date')
 
     for type_report in type_reports:
         type_report.url_type_report = reverse("report", args=[report_id, type_report.slug])
     c.update({'type_reports': type_reports})
-
-    reports = Report.objects.all().order_by('-date')
 
     if type_slug != "":
         reports = Report.objects.filter(type_report__slug=type_slug).order_by("-date")
@@ -164,8 +169,7 @@ def report(request, *args, **kwargs):
     for report in reports:
         report.url_report_date = reverse("report", args=[report.id, type_slug])
 
-    c.update({"selected_report": selected_report, "reports": reports,
-              "message_empty_r": "Pas de rapport"})
+    c.update({"selected_report": selected_report, "reports": reports})
 
     return render_to_response('report.html', c)
 
@@ -316,6 +320,14 @@ def news(request):
         form = Newsform()
     c.update({'form': form})
     return render_to_response("news.html", c)
+
+
+def history_news(request):
+    """ Affiche l'historique des avis de reunion """
+    c = {'category': 'history_news'}
+    news = News.objects.all()
+    c.update({'news': news})
+    return render_to_response("history_news.html", c)
 
 
 @login_required

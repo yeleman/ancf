@@ -11,10 +11,10 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    url(r'^$', "anm.views.login", name="login"),
+    url(r'^$', "anm.views.dashboard", name="dashboard"),
     url(r"^logout$", "anm.views.logout", name="logout"),
     url(r'^login$', "anm.views.login", name="login"),
-    url(r'^dashboard$', "anm.views.dashboard", name="dashboard"),
+    url(r'^history_news$', "anm.views.history_news", name="history_news"),
     url(r'^help$', "anm.views.help", name="help"),
     url(r'^organization_chart$', "anm.views.organization_chart",
                                             name="organization_chart"),
