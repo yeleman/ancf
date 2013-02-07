@@ -4,10 +4,10 @@
 {% block content %}
 
     <h2>Modification de membre de la commission des finances</h2>
-    <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
-        <div  style="float: left">
-            <img src="/static/{{image}}" width="190" height ="190">
-        </div>
+    <div class="media">
+    <a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64"src="/static/{{image}}" width="190" height ="190"></a>
+    <div class="media-body">
+        <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
         <div id="member_form">
             <table class="table table-bordered table-striped">
                 <tr>
@@ -17,39 +17,26 @@
                     {% endif %}
                 </tr>
                 <tr>
-                    <td>{{form.first_name.label}}:</td><td>{{form.first_name}}</td>
-                    {% if form.first_name.errors %}
-                        <td>{{form.first_name.errors}}</td>
-                    {% endif %}
+                    <td>{{form.first_name.label}}:</td><td>{{form.first_name}} {{form.first_name.errors}}</td>
                 </tr>
                 <tr>
-                    <td>{{form.image.label}}: {{image}}</td><td>{{form.image}}</td>
-                    {% if form.image.errors %}
-                        <td>{{form.image.errors}}</td>
-                    {% endif %}
+                    <td>{{form.image.label}}: {{image}}</td><td>{{form.image}} {{form.image.errors}}</td>
                 </tr>
                 <tr>
-                    <td>{{form.post.label}}:</td><td>{{form.post}}</td>
-                    {% if form.post.errors %}
-                        <td>{{form.post.errors}}</td>
-                    {% endif %}
+                    <td>{{form.post.label}}:</td><td>{{form.post}} {{form.post.errors}}</td>
                 </tr>
                 <tr>
-                    <td>{{form.email.label}}:</td><td>{{form.email}}</td>
-                    {% if form.email.errors %}
-                        <td>{{form.email.errors}}</td>
-                    {% endif %}
+                    <td>{{form.email.label}}:</td><td>{{form.email}} {{form.email.errors}}</td>
                 </tr>
                 <tr>
-                    <td>{{form.status.label}}:</td><td>{{form.status}}</td>
-                    {% if form.status.errors %}
-                        <td>{{form.status.errors}}</td>
-                    {% endif %}
+                    <td>{{form.status.label}}:</td><td>{{form.status}} {{form.status.errors}}</td>
                 </tr>
                 <tr>
                     <td></td><td><input type='submit' class="btn" value =  "Enregistrer"/></td>
                 </tr>
             </table>
         </div>
+    </div>
+    </div>
     </form>
 {% endblock %}

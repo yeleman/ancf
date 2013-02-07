@@ -1,12 +1,10 @@
 /** CSS **/
 
 /** commone **/
-#bienvenu {  float:right;}
+#bienvenu {float:right;}
 a {text-decoration: none;}
-li {list-style-type: none;}
-fieldset ul {background-color: #E5E5E5; border: 1px solid #C5CED9; padding: 0.6em;}
-fieldset a { color: MenuText; cursor: pointer;}
-
+fieldset li a {list-style-type: disc; font-size: 11px;}
+.errorlist {color: #B94A48; list-style-type: none; margin: auto; font-size: 12px;}
 /** Add rapport **/
 #add_rapport #create_envoi_form {width: 800px; margin: 0pt auto;}
 #add_rapport h1{width: 795px; margin: 0pt auto;height: 35px; text-align: center;}
@@ -22,3 +20,5 @@ fieldset a { color: MenuText; cursor: pointer;}
 /* Footer */
 #footer{background-color: transparent;border-top: 1px dotted #D6D6D6;clear: both;text-transform: inherit;bottom: 0px;position: fixed;}
 #footer a{color: darkred;font-size: 13px;}
+
+#id_comment {height: 178px; width: 771px;"}

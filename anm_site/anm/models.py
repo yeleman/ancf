@@ -25,7 +25,7 @@ class Member(models.Model):
                                                 verbose_name=("Photo"))
     post = models.ForeignKey(TypePost,
                                     verbose_name=("Poste occupé"))
-    email = models.EmailField(max_length=75, verbose_name=("Email"))
+    email = models.EmailField(max_length=75, verbose_name=("Email"), unique=True)
     status = models.BooleanField(default=True, verbose_name=("Status"))
 
     def __unicode__(self):
@@ -97,7 +97,7 @@ class Newsletter(models.Model):
     """ """
     date = models.DateField(verbose_name=("Date d'inscription"),
                              default=datetime.datetime.today)
-    email = models.EmailField(max_length=75, verbose_name=("Email"))
+    email = models.EmailField(max_length=75, verbose_name=("Email"), unique=True)
 
     def __unicode__(self):
         return (u'%(email)s %(date)s') % \
