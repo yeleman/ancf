@@ -18,7 +18,7 @@ from django.core.mail import send_mail
 
 
 from anm.models import (Report, Organization_chart, News, Member, Newsletter,
-                        TypeReport, TextStatic)
+                        TypeReport, TextStatic, TypePost)
 from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
                                 Newsletterform, Newsform, Editmemberform)
 
@@ -289,7 +289,8 @@ def edit_member(request, *args, **kwargs):
             selected_member.first_name = request.POST.get('first_name')
             if not request.FILES.get('image') == None:
                 selected_member.image = request.FILES.get('image')
-            selected_member.post = request.POST.get('post')
+            post = TypePost.objects.get(slug=request.POST.get('post'))
+            selected_member.post = post
             selected_member.email = request.POST.get('email')
             if request.POST.get('status'):
                 selected_member.status = request.POST.get('status')
