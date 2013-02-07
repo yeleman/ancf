@@ -4,6 +4,7 @@
 
 import datetime
 from django.db import models
+from tinymce.models import HTMLField
 
 
 class TypePost(models.Model):
@@ -66,9 +67,8 @@ class Report(models.Model):
     date = models.DateField(verbose_name=("Fait le"),\
                              default=datetime.datetime.today)
     title_report = models.CharField(max_length=100, verbose_name=("Titre"))
-    description = models.CharField(max_length=100, \
-                                            verbose_name=("Description"))
-    report_pdf = models.FileField(upload_to='report_doc/', \
+    description = models.TextField(blank=True, verbose_name=("Description"))
+    report_pdf = models.FileField(upload_to='report_doc/',
                                   verbose_name=('Le rapport'), null=True)
     author = models.ForeignKey(Member, verbose_name=("Rapporteur"))
     type_report = models.ForeignKey(TypeReport,
@@ -85,7 +85,7 @@ class News(models.Model):
     title = models.CharField(max_length=100, verbose_name=("Titre"))
     comment = models.TextField(blank=True, verbose_name=("Commentaire"))
     author = models.ForeignKey(Member, verbose_name=("Auteur"))
-    date = models.DateField(verbose_name=("Fait le"),\
+    date = models.DateField(verbose_name=("Fait le"),
                              default=datetime.datetime.today)
 
     def __unicode__(self):
@@ -95,7 +95,7 @@ class News(models.Model):
 
 class Newsletter(models.Model):
     """ """
-    date = models.DateField(verbose_name=("Date d'inscription"),\
+    date = models.DateField(verbose_name=("Date d'inscription"),
                              default=datetime.datetime.today)
     email = models.EmailField(max_length=75, verbose_name=("Email"))
 
@@ -106,7 +106,7 @@ class Newsletter(models.Model):
 
 class TextStatic(models.Model):
     slug = models.SlugField("Code", max_length=75, primary_key=True)
-    text = models.TextField(blank=True, verbose_name=("Texte"))
+    text = HTMLField(blank=True, verbose_name=("Texte"))
 
     def __unicode__(self):
         return (u'%(slug)s') % {'slug': self.slug}

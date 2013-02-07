@@ -20,7 +20,8 @@ from django.core.mail import send_mail
 from anm.models import (Report, Organization_chart, News, Member, Newsletter,
                         TypeReport, TextStatic, TypePost)
 from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
-                                Newsletterform, Newsform, Editmemberform)
+                                Newsletterform, Newsform, Editmemberform,
+                                AddTextStaticform)
 
 
 def login(request):
@@ -76,6 +77,7 @@ def dashboard(request):
         textstatic = TextStatic.objects.get(slug='dashboard')
     except:
         textstatic = None
+
     for report in reports:
         report.url_report_date = reverse("report", args=[report.id])
     message_empty_r = "Pas de rapport"
@@ -359,3 +361,24 @@ def del_newsletter(request, *args, **kwargs):
     selected = Newsletter.objects.get(id=id_)
     selected.delete()
     return redirect('newsletter')
+
+
+@login_required
+def edit_text_static(request, *args, **kwargs):
+    """ Ajout de nouveau texte de bienvenu """
+    c = {'category': 'edit_text_static'}
+
+    textstatic = TextStatic.objects.get(slug='dashboard')
+    c.update({"user": request.user})
+    c.update(csrf(request))
+    if request.method == 'POST':
+        form = AddTextStaticform(request.POST, instance=textstatic)
+        if form.is_valid():
+            form.save()
+            messages.info(request,
+                            u"le nouveau texte de bienvenu à été ajouter")
+            return redirect('dashboard')
+    else:
+        form = AddTextStaticform(instance=textstatic)
+    c.update({'form': form})
+    return render_to_response('edit_text_static.html', c)

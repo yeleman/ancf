@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load tinymce_tags %}
 {% block title %}Accueil{% endblock %}
 {% block page-id %}dashboard{% endblock %}
 {% block content %}
@@ -43,7 +44,7 @@
     <div class="span9">
     <!--Body content-->
         <fieldset class="module aligned ">
-            {% if textstatic %} {{textstatic.text}}
+            {% if textstatic %} <html>{{textstatic.text|safe}}</html>
             {% else %}
                 Pas de contenu
             {% endif %}

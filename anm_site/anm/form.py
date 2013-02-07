@@ -4,13 +4,21 @@
 
 from django import forms
 
-from models import Member, Report, Organization_chart, News, Newsletter
+from models import (Member, Report, Organization_chart, News, Newsletter,
+                    TextStatic)
 
 
 class AddReportform(forms.ModelForm):
 
     class Meta:
         model = Report
+
+
+class AddTextStaticform(forms.ModelForm):
+
+    class Meta:
+        model = TextStatic
+        exclude = ['slug']
 
 
 class ModifOrgform(forms.ModelForm):
