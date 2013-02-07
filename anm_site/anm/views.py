@@ -243,6 +243,9 @@ def add_member(request):
         form = Memberform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            news_letter = Newsletter()
+            news_letter.email = request.POST.get('email')
+            news_letter.save()
             messages.info(request, u"le nouveau membre à été ajouter")
             return redirect('member')
     else:
