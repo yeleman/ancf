@@ -15,7 +15,7 @@
                     <h4>{{last_new.title}}
                         <small>Publié le {{last_new.date}}</small></h4>
                     <p class="text-info">{{last_new.comment}}</p>
-                    <p><button class="btn btn-small"><i class="icon-flag"></i> <a href="{% url history_news %}">Voir toutes les brèves</a></button></p>
+                    <p><a href="{% url history_news %}"><button class="btn btn-small">Voir toutes les brèves <i class="icon-flag"></i></button></a></p>
                 </div>
             {% else %}
             <ul><li> {{message_empty_c}}</li></ul>

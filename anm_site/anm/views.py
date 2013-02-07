@@ -29,7 +29,7 @@ def login(request):
 
     form = LoginForm()
     if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('add_member'))
+        return HttpResponseRedirect(reverse('edit_text_static'))
     else:
         c = {}
         c.update(csrf(request))
