@@ -8,16 +8,10 @@
         <fieldset class="module aligned ">
             <form action="" class="form-search" method="post">{% csrf_token %}
                 <table class="table table-bordered table-striped" >
-                    <tr><td> {{form.title.label}}:</td><td>{{form.title}}<span class="help-inline">{{form.title.errors}}</span></td>
-                    </tr>
-                    <tr><td>{{form.date.label}}:</td><td>{{form.date}}<span class="help-inline">{{form.date.errors}}</span></td>
-                    </tr>
-                    <tr><td>{{form.author.label}}:</td><td>{{form.author}}<span class="help-inline">{{form.author.errors}}</span></td>
-                    </tr>
-                    <tr><td>{{form.comment.label}}:</td>
-                    <tr></tr>
-                    <td colspan=4>{{form.comment}}<span class="help-inline">{{form.comment.errors}}</span></td>
-                    </tr>
+                    <tr><td> {{form.title.label}}:</td><td>{{form.title}} {{form.title.errors}}</td></tr>
+                    <tr><td>{{form.date.label}}:</td><td>{{form.date}} {{form.date.errors}}</td></tr>
+                    <tr><td>{{form.author.label}}:</td><td>{{form.author}} {{form.author.errors}}</td></tr>
+                    <tr><td>{{form.comment.label}}:</td><td colspan=4>{{form.comment}} {{form.comment.errors}}</td></tr>
                     <tr><td colspan=4><input type='submit' class="btn"  value =  "Publier"/></td></tr>
 
                 </table>

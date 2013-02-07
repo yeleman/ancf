@@ -20,3 +20,5 @@ fieldset li a {list-style-type: disc; font-size: 11px;}
 /* Footer */
 #footer{background-color: transparent;border-top: 1px dotted #D6D6D6;clear: both;text-transform: inherit;bottom: 0px;position: fixed;}
 #footer a{color: darkred;font-size: 13px;}
+
+#id_comment {height: 178px; width: 771px;"}
