@@ -18,7 +18,7 @@ fieldset li a {list-style-type: disc; font-size: 11px;}
 #rech {float: right;}
 
 /* Footer */
-#footer{background-color: transparent;border-top: 1px dotted #D6D6D6;clear: both;text-transform: inherit;bottom: 0px;position: fixed;}
-#footer a{color: darkred;font-size: 13px;}
+#footer{background-color: transparent;clear: both;text-transform: inherit;bottom: 1em;position: fixed;}
+#footer a{color: darkred;font-size: 13px; margin-left: 1em;}
 
 #id_comment {height: 178px; width: 771px;"}

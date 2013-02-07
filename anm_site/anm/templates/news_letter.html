@@ -1,26 +1,25 @@
 {% extends "base.html" %}
-{% block title %}newsletter{% endblock %}
+{% block title %}Newletter{% endblock %}
 {% block page-id %}newsletter{% endblock %}
 {% block content %}
-
-    <h2 class="page-header">Liste des membres inscrits</h2>
     <script type="text/javascript">
     function confirmation() {
-        var answer = confirm("Voulez vous vraiment supprimer?")
-        if (answer){
-            window.location = "http://www.google.com/";
-        }
-        else{
-            alert("Thanks for sticking around!")
-        }
+
     }
     </script>
+
+    <h2 class="page-header">Gestion de la liste de diffusion (newsletter)</h2>
+    <p>Chaque fois qu'un rapport ou une brèves est publiée sur le site, toutes les personnes inscrites (listées ci-dessous) recevront un e-mail avec un lien vers le contenu.</p>
+    <p>Tout le monde peut s'inscrire via la page d'accueil du site.</p>
+    <p>Les abonnés peuvent se désabonner via un lien présent dans chaque e-mail. Vous pouvez aussi les désabonner ci-dessous.</p>
+
+    <h3>Liste des inscrits</h3>
     <table class="table table-bordered table-striped">{{newsletter}}
         <thead>
             <tr>
-               <th> Email </th>
-               <th> date </th>
-               <th> Suppression </th>
+               <th>Adresse e-mail</th>
+               <th>Date d'inscription</th>
+               <th>Suppression</th>
             </tr>
         </thead>
         <tbody>
@@ -30,9 +29,7 @@
                         <td>{{newsletter.email}}</td>
                         <td>{{newsletter.date}}</td>
                         <td>
-                            <a  onclick="confirmation()" href="{{newsletter.url_newsletter}}">
-                                <img src="/static/css/images/del.png" width="20">
-                            </a>
+                            <a onclick="return confirm('Voulez vous vraiment désabonner {{newsletter.email}} ?')" href="{{newsletter.url_newsletter}}"><button class="btn btn-small btn-danger"><i class="icon-trash"></i> Désabonner</button></a>
                         </td>
                     </tr>
                 {%endfor%}

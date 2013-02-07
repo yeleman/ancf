@@ -1,24 +1,21 @@
 {% extends "base.html" %}
-{% block title %}Ajout Membre{% endblock %}
+{% block title %}Gestion de la présentation{% endblock %}
 {% block page-id %}add_member{% endblock %}
 {% block content %}
 
-    <h2  class="page-header">Modification la présentation de la commission des finances</h2>
+    <h2 class="page-header">Gestion de la présentation</h2>
+
+    <p>Cette section permet de modifier la présentation de la comission visible sur la page d'accueil du site.</p>
+    <p>Utilisez les boutons ci-dessous pour mettre en forme la page.</p>
+
+    <h3>Modifier la présentation de la comission</h3>
+
     <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
-        <div id="member_form">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>{{form.text.label}}:</td>
-                    <td>{{form.text}}</td>
-                    {% if form.text.errors %}
-                        <td>{{form.text.errors}}</td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    <td></td><td><input type='submit' class="btn" value =  "Modifier"/></td>
-                </tr>
-            </table>
-        </div>
+        {% if form.text.errors %}
+        <p>{{form.text.errors}}</p>
+        {% endif %}
+        <p>{{form.text}}</p>
+          <input type='submit' class="btn btn-primary" value =  "Enregistrer les modifications"/>
     </form>
 
 {% endblock %}

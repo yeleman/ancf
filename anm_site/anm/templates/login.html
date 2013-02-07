@@ -1,22 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Connexion{% endblock %}
+{% block title %}Identification{% endblock %}
 {% block page-id %}login{% endblock %}
 {% block content %}
 
     <div id='page_login'>
-        {{state}}
-        <ul id="menu_login">
-            <form action="{% url login %}" method="post">{% csrf_token %}
-                <table class="table table-bordered table-striped">
-                    <tr>
-                        <td>{{ form.as_table }}</td>
-                    </tr>
-                    <tr>
-                        <td></td><td><input id = 'id_Connexion' type="submit" value="Se connecter" ></td>
-                    </tr>
-                </table>
-            </form>
-        </ul>
+        <h2 class="page-header">Identification nécessaire</h2>
+        <form action="{% url login %}" method="post">{% csrf_token %}
+            {{ form.as_p }}<input class="btn btn-primary" id= 'id_Connexion' type="submit" value="Se connecter" >
+        </form>
     </div>
 
 {% endblock %}

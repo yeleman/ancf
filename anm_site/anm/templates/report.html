@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Rapport{% endblock %}
+{% block title %}Liste des rapports de la comission des finances{% endblock %}
 {% block page-id %}report{% endblock %}
 {% block content %}
     <div id="rech"><h4>Filtrer par: </h4>
         <div  class="btn-group">
-            <button class="btn btn-small">{%if selected_type%}{{selected_type.name}}{%else%}Tous les types de rapports {%endif%}</button>
+            <button class="btn btn-small">{%if selected_type%}{{selected_type.name}}{%else%}Tous types de rapports {%endif%}</button>
             <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
             <span class="caret"></span>
             </button>
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <h2 class="page-header">Rapports</h2>
+    <h2 class="page-header">Liste des rapports de la comission</h2>
     {% if reports %}
         <div class="tabbable tabs-left">
             <ul class="nav nav-tabs">
@@ -40,7 +40,7 @@
         </div>
     {%else%}
         <fieldset >
-            <div id="report">{{message_empty_r}}</td></div>
+            <div id="report">Aucun rapport publié pour le moment.</div>
         </fieldset>
     {% endif %}
         <script type="text/javascript">

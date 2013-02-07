@@ -42,7 +42,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     django_login(request, user)
-                    return HttpResponseRedirect(reverse('add_member'))
+                    return HttpResponseRedirect(reverse('edit_text_static'))
                 else:
                     state = "Your Account is not active,\
                                         please contact the site admin."

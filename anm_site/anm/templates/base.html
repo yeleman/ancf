@@ -10,7 +10,7 @@
         <script src="/static/js/jquery-ui.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
         <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-		<script src="/static/tiny_mce/tiny_mce.js"></script>    
+		<script src="/static/tiny_mce/tiny_mce.js"></script>
 </head>
 
     <body>
@@ -26,12 +26,6 @@
                 <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
                 <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
             </div>
-        <div id="bienvenu">
-            {% if user %}
-                    <span>{% include "_bienvenu_utilisateur.html" %}</span>
-            {% else %}
-            {% endif %}
-        </div>
         {% if messages %}
             <ul>
                 {% for message in messages %} <li>{{ message }}</li>
@@ -46,12 +40,11 @@
             </div>
         </div>
     </body>
-    <div id="footer"><h4>
-        <a href="http://yeleman.com/">yɛlɛman</a> |
+    <div id="footer">
             {% if user %}
-                <a href = '{% url dashboard %}'>Accueil du site
+                <a href = '{% url dashboard %}'><span class="label label-info">Retourner au site</span></a> <a href="{% url logout %}"><span class="label label-info">Se déconnecter</span></a>
             {% else %}
-                <a href = '{% url login %}'>Administration
-            {% endif %}</a></h4>
+                <a href = '{% url login %}'><span class="label label-info">Espace d'administration</span></a>
+            {% endif %}</a>
     </div>
 </html>

@@ -2,13 +2,14 @@
     <div class="navbar-inner">
         <ul class="nav">
             {% if user %}
-                    <li {% if category = 'add_member' %} class="active"{% endif %}><a class="brand" href="{% url add_member %}" >Ajouter un membre</a></li>
-                    <li {% if category = 'modif_organization_chart' %}class="active"{% endif %} ><a class="brand" href="{% url modif_organization_chart %}" >Organigramme</a></li>
-                    <li {% if category = 'member' %} class="active"{% endif %}><a class="brand" href="{% url member %}">Les membres</a></li>
-                    <li {% if category = 'add_report' %} class="active"{% endif %}><a class="brand" href="{% url add_report %}"> Ajouter un rapport</a></li>
-                    <li {% if category = 'news' %} class="active"{% endif %}><a class="brand" href="{% url news %}">Faire un communiqué</a></li>
-                    <li {% if category = 'newsletter' %} class="active"{% endif %}><a class="brand" href="{% url newsletter %}">newsletter</a></li>
                     <li {% if category = 'edit_text_static' %} class="active"{% endif %}><a class="brand" href="{% url edit_text_static %}">Présentation</a></li>
+                    <!-- <li {% if category = 'add_member' %} class="active"{% endif %}><a class="brand" href="{% url add_member %}" >Ajouter un membre</a></li> -->
+                    <li {% if category = 'modif_organization_chart' %}class="active"{% endif %} ><a class="brand" href="{% url modif_organization_chart %}" >Organigramme</a></li>
+                    <!-- <li {% if category = 'member' %} class="active"{% endif %}><a class="brand" href="{% url member %}">Les membres</a></li> -->
+                    <li {% if category = 'add_report' %} class="active"{% endif %}><a class="brand" href="{% url add_report %}"> Rapports</a></li>
+                    <li {% if category = 'news' %} class="active"{% endif %}><a class="brand" href="{% url news %}">Brèves</a></li>
+                    <li {% if category = 'newsletter' %} class="active"{% endif %}><a class="brand" href="{% url newsletter %}">Newsletter</a></li>
+
             {% else %}
                     <li {% if category = 'dashboard' %} class="active"{% endif %}><a class="brand"  href="{% url dashboard %}" > Accueil</a></li>
                     <li {% if category = 'report' %} class="active"{% endif %}><a class="brand" href="{% url report %}">Les rapports</a></li>

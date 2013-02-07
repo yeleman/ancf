@@ -1,10 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Ajout Rapport{% endblock %}
+{% block title %}Gestion des rapports{% endblock %}
 {% block page-id %}add_rapport{% endblock %}
 {% block content %}
 
+<h2 class="page-header">Gestion des rapports</h2>
+    <p>Cette section concerne les rapports émis par la comission des finances. Ils sont constitués d'une brève description et d'un fichier PDF à charger.</p>
+    <p>Les visiteurs peuvent rechercher et télécharger les rapports par types depuis le site web. Ils pourront ensuite l'imprimer.</p>
+    <p>Un e-mail est envoyé à tous les abonnés de la liste dès la publication du rapport.</p>
 
-    <h2 class="page-header">Envoi du rapport</h2>
+
+    <h3>Publier un nouveau rapport</h3>
         <form action="" method="post"  class="form-search" enctype="multipart/form-data">{% csrf_token %}
                 <table class="table table-bordered table-striped">
                     <tbody>
@@ -47,5 +52,5 @@
                  dateFormat: 'dd/mm/yy',
                 });
         </script>
-
+<h2>Archives</h2>
 {% endblock %}

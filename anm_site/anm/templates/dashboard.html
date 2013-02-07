@@ -13,9 +13,9 @@
             {%if last_new%}
                 <div class="well well-small">
                     <h4>{{last_new.title}}
-                        <small>Publié le : {{last_new.date}}</small></h4>
+                        <small>Publié le {{last_new.date}}</small></h4>
                     <p class="text-info">{{last_new.comment}}</p>
-                    <p><a href="{% url history_news %}">Voir tous</a></p>
+                    <p><button class="btn btn-small"><i class="icon-flag"></i> <a href="{% url history_news %}">Voir toutes les brèves</a></button></p>
                 </div>
             {% else %}
             <ul><li> {{message_empty_c}}</li></ul>
@@ -23,13 +23,15 @@
         </fieldset>
         <fieldset ><legend>Newsletter:</legend>
             <form action="" class="form-search" method="post">{% csrf_token %}
-                {{form.email.errors}}
-                {{form.email.label}}:{{form.email}}
+                <p>Recevoir les annonces</p>
+
+                <input id="id_email" type="text" maxlength="75" name="email" value="{{form.email.value|default:''}}" placeholder="{% if form.email.errors %}{% for error in form.email.errors %}{{ error }}{% endfor %}{% else %}Entrez votre e-mail{% endif %}" />
+                {{ form.email.errors }}
                 <input type='submit' class="btn" value =  "OK"/>
             </form>
         </fieldset>
         <fieldset ><legend>Derniers rapports:</legend>
-            <div class="well well-small">
+            <div class="">
                 {%if reports%}
                     <ul>
                         {% for rep in reports %}
@@ -37,7 +39,7 @@
                         {%endfor%}
                     </ul>
                 {% else %}
-                    <ul><li> {{message_empty_r}}</li></ul>
+                    Aucun rapport publié.
                 {% endif %}
             </div>
         </fieldset>
@@ -47,7 +49,7 @@
         <fieldset class="module aligned ">
             {% if textstatic %} <html>{{textstatic.text|safe}}</html>
             {% else %}
-                Pas de contenu
+                Présentation de la comission à venir...
             {% endif %}
         </fieldset>
     </div>

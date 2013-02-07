@@ -1,9 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Modification Organigramme{% endblock %}
+{% block title %}Gestion de l'organigramme{% endblock %}
 {% block page-id %}modiforganization_chart{% endblock %}
 {% block content %}
 
-    <h2 class="page-header">Modification de l'organigramme de la commission des finances</h2>
+    <h2 class="page-header">Gestion de l'organigramme</h2>
+
+    <p>Cette section permet de gérer l'organigramme de la comission, mais aussi de l'UNACEM et les assistants  parlementaires de la comission.</p>
+    <p><span class="label label-warning">Attention</span> Tous les membres ne disposant pas de poste clés seront listés comme <em>membres simples</em> ; il est donc important de supprimer de la liste des membres les personnes qui quittent la comission.</p>
+
+    <h3>Assigner les postes clés de l'organigramme.</h3>
 
     <form action="" class="form-search" method="post">{% csrf_token %}
 
@@ -28,4 +33,41 @@
         </div>
     </form>
 
+    <h3>Liste des membres (tous postes confondus)</h3>
+    <p>Ci-dessous figurent tous les membres. Toutes les personnes de la liste seront visibles dans l'organigramme. Suprrimer ou modifier les membres pour mettre à jour l'organigramme.</p>
+    <a class="brand" href="{% url add_member %}" ><button class="btn">Ajouter un membre</button></a>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+               <th> Nom </th>
+               <th> Prénoms </th>
+               <th> Poste </th>
+               <th> Email </th>
+               <th> Modification </th>
+               <th> Status </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if members %}
+                {% for member in members %}
+                    <tr>
+                        <td>{{member.last_name}}</td>
+                        <td>{{member.first_name}}</td>
+                        <td>{{member.post}}</td>
+                        <td>{{member.email}}</td>
+                        <td>
+                            <a href="{{member.url_member}}"> <img src="/static/css/images/edit.png" width="20"></a>
+                        </td>
+                        {% ifequal member.status True %}
+                            <td>{{member.status}}<img src="/static/css/images/no.png" width="12"/> </td>
+                        {%else%}
+                            <td>{{member.status}}<img src="/static/css/images/active.png" width="12"/> </td>
+                        {% endifequal %}
+                    </tr>
+                {%endfor%}
+            {% else %}
+                <tr><td style="text-align: center;" colspan=6>{{message_empty_m}}</td></tr>
+            {%endif%}
+        </tbody>
+    </table>
 {% endblock %}
