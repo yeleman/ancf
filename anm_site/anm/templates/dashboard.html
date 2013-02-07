@@ -10,34 +10,35 @@
     <!--Sidebar content-->
         <fieldset ><legend>Brèves</legend>
             {%if last_new%}
-                <h4>{{last_new.title}}</h4>
-                <ul>
-                    <li>Le {{last_new.date}}</li>
-                </ul>
-                <ul>
-                    <li>Message</li><li>{{last_new.comment}}</li>
-                </ul>
-                <a href="{% url history_news %}">Voir tous</a>
+                <div class="well well-small">
+                    <h4>{{last_new.title}}
+                        <small>Publié le : {{last_new.date}}</small></h4>
+                    <p class="text-info">{{last_new.comment}}</p>
+                    <p><a href="{% url history_news %}">Voir tous</a></p>
+                </div>
             {% else %}
             <ul><li> {{message_empty_c}}</li></ul>
             {% endif %}
         </fieldset>
         <fieldset ><legend>Newsletter:</legend>
             <form action="" class="form-search" method="post">{% csrf_token %}
-                {{form.email.label}}:{{form.email}}{{form.email.errors}}
+                {{form.email.errors}}
+                {{form.email.label}}:{{form.email}}
                 <input type='submit' class="btn" value =  "OK"/>
             </form>
         </fieldset>
         <fieldset ><legend>Derniers rapports:</legend>
-            {%if reports%}
-                <ul>
-                    {% for rep in reports %}
-                        <li><p><a href="{{rep.url_report_date}}">{{rep.title_report}}</a></p></li>
-                    {%endfor%}
-                </ul>
-            {% else %}
-                <ul><li> {{message_empty_r}}</li></ul>
-            {% endif %}
+            <div class="well well-small">
+                {%if reports%}
+                    <ul>
+                        {% for rep in reports %}
+                            <li><p><a href="{{rep.url_report_date}}">{{rep.title_report}}</a></p></li>
+                        {%endfor%}
+                    </ul>
+                {% else %}
+                    <ul><li> {{message_empty_r}}</li></ul>
+                {% endif %}
+            </div>
         </fieldset>
     </div>
     <div class="span9">

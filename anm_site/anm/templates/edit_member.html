@@ -4,10 +4,10 @@
 {% block content %}
 
     <h2>Modification de membre de la commission des finances</h2>
-    <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
-        <div  style="float: left">
-            <img src="/static/{{image}}" width="190" height ="190">
-        </div>
+    <div class="media">
+    <a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64"src="/static/{{image}}" width="190" height ="190"></a>
+    <div class="media-body">
+        <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
         <div id="member_form">
             <table class="table table-bordered table-striped">
                 <tr>
@@ -51,5 +51,7 @@
                 </tr>
             </table>
         </div>
+    </div>
+    </div>
     </form>
 {% endblock %}
