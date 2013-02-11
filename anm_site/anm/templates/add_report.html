@@ -19,30 +19,30 @@
                         </tr>
 
                         <tr>
-                            <td> {{form.title_report.label}}:</td>
+                            <td>{{form.title_report.label}}:</td>
                             <td>{{form.title_report}} {{form.title_report.errors}}</td>
                         </tr>
 
                         <tr>
-                            <td> {{form.description.label}}:</td>
+                            <td>{{form.description.label}}:</td>
                             <td>{{form.description}} {{form.description.errors}}</td>
                         </tr>
 
                         <tr>
-                            <td> {{form.report_pdf.label}}:</td>
+                            <td>{{form.report_pdf.label}}:</td>
                             <td>{{form.report_pdf}} {{form.report_pdf.errors}}</td>
                         </tr>
 
                         <tr>
-                            <td> {{form.author.label}}:</td>
+                            <td>{{form.author.label}}:</td>
                             <td>{{form.author}} {{form.author.errors}}</td>
                         </tr>
                         <tr>
-                            <td> {{form.type_report.label}}:</td>
+                            <td>{{form.type_report.label}}:</td>
                             <td>{{form.type_report}} {{form.type_report.errors}}</td>
                         </tr>
                         <tr>
-                            <td></td><td><input type='submit' class="btn" value =  "Envoyer"/></td>
+                            <td></td><td><input type='submit' class="btn btn-primary" value =  "Publier"/></td>
                         </tr>
                     </tbody>
                 </table>
@@ -52,5 +52,29 @@
                  dateFormat: 'dd/mm/yy',
                 });
         </script>
-<h2>Archives</h2>
+    <h2>Archives</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Type de rapport</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if reports %}
+                {% for report in reports %}
+                    <tr>
+                        <td>{{report.title_report}}</td>
+                        <td>{{report.description}}</td>
+                        <td>{{report.date}}</td>
+                        <td><a onclick="return confirm('Voulez vous vraiment supprimer {{report.title_report}} ?')" href="{{report.url_del}}"><button class="btn btn-small btn-danger"><i class="icon-trash"></i>Supprimer</button></a></td>
+                    </tr>
+                {%endfor%}
+            {% else %}
+                <tr><td style="text-align: center;" colspan=4>Aucun rapport publié pour le moment.</td></tr>
+            {%endif%}
+        </tbody>
+    </table>
 {% endblock %}
