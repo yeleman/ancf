@@ -20,6 +20,8 @@ urlpatterns = patterns('',
                                             name="organization_chart"),
     url(r'^download/(?P<path>.*)$', 'anm.views.download', name="download"),
     url(r'^add_report$', "anm.views.add_report", name="add_report"),
+    url(r'^del_report/(?P<id>\d+)$', "anm.views.del_report",
+                                                name="del_report"),
     url(r'^modif_organization_chart$', "anm.views.modif_organization_chart",
                                             name="modif_organization_chart"),
 

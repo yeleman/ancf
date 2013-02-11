@@ -129,10 +129,14 @@ def add_report(request):
             except Exception as e:
                 print(e)
 
-            return redirect('report')
+            return redirect('add_report')
     else:
         form = AddReportform()
-    c.update({'form': form})
+    reports = Report.objects.order_by('-date')
+    for report in reports:
+        report.url_del = reverse("del_report", args=[report.id])
+
+    c.update({'form': form, 'reports': reports})
     return render_to_response('add_report.html', c)
 
 
@@ -179,6 +183,19 @@ def report(request, *args, **kwargs):
     c.update({"selected_report": selected_report, "reports": reports})
 
     return render_to_response('report.html', c)
+
+
+@login_required
+def del_report(request, *args, **kwargs):
+    """ Suppression de rapport"""
+
+    c = {'category': 'del_report'}
+    c.update(csrf(request))
+    c.update({"user": request.user})
+    id_ = kwargs["id"]
+    selected = Report.objects.get(id=id_)
+    selected.delete()
+    return redirect('add_report')
 
 
 def download(request, path):
@@ -235,7 +252,11 @@ def modif_organization_chart(request):
     else:
         form = ModifOrgform(dict_org)
 
-    c.update({'form': form})
+    members = Member.objects.all()
+    for member in members:
+        member.url_member = reverse("edit_member", args=[member.id])
+
+    c.update({'form': form, 'members': members})
 
     return render_to_response('modif_organization_chart.html', c)
 
@@ -326,10 +347,11 @@ def news(request):
         form = Newsform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('news')
     else:
         form = Newsform()
-    c.update({'form': form})
+    news = News.objects.order_by('-date')
+    c.update({'form': form, 'news': news})
     return render_to_response("news.html", c)
 
 
@@ -362,7 +384,7 @@ def newsletter(request):
 def del_newsletter(request, *args, **kwargs):
     """ Suppression de newsletter"""
 
-    c = {'category': 'edit_member'}
+    c = {'category': 'del_newsletter'}
     c.update(csrf(request))
     c.update({"user": request.user})
     id_ = kwargs["id"]

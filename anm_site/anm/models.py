@@ -83,7 +83,7 @@ class Report(models.Model):
 class News(models.Model):
     """ """
     title = models.CharField(max_length=100, verbose_name=("Titre"))
-    comment = models.TextField(blank=True, verbose_name=("Commentaire"))
+    comment = models.TextField(blank=True, verbose_name=("Contenu"))
     author = models.ForeignKey(Member, verbose_name=("Auteur"))
     date = models.DateField(verbose_name=("Fait le"),
                              default=datetime.datetime.today)
