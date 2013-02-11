@@ -14,11 +14,12 @@ from django.contrib.auth import (authenticate, login as django_login,
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.core.mail import send_mail
-
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 
 from anm.models import (Report, Organization_chart, News, Member, Newsletter,
                         TypeReport, TextStatic, TypePost)
+from anm.utils import send_multipart_email
 from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
                                 Newsletterform, Newsform, Editmemberform,
                                 AddTextStaticform)
@@ -110,16 +111,20 @@ def add_report(request):
             form.save()
             messages.info(request, u"Le rapport a été bien enregistre")
             try:
-                recipients = [user.email for user in Newsletter.objects.all()]
+                recipient_list = [user.email for user in Newsletter.objects.all()]
             except:
-                recipients = []
-            print "message sending ... "
-            message = u"Un nouveau rapport a été publié sur sur le " \
+                recipient_list = []
+            report = Report.objects.order_by('-id')[0]
+
+            report.url_report_dl = reverse("download", args=[report.report_pdf])
+            report.url_report = reverse("report", args=[report.id, report.type_report.slug])
+            data_dict = {"report": report}
+            u"Un nouveau rapport a été publié sur sur le " \
                       + u"http://www.yeleman.com"
+
             try:
-                send_mail(u"Commission des Finances de l'Assemblée Nationale",
-                          message, "Commission des Finances de l'Assemblée Nationale",
-                          recipients, fail_silently=False)
+                subject = u'Alerte du site ANM'
+                send_multipart_email(subject, data_dict, recipient_list)
                 print "success"
             except Exception as e:
                 print(e)
