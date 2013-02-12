@@ -14,8 +14,6 @@ from django.contrib.auth import (authenticate, login as django_login,
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.core.mail import EmailMultiAlternatives
-from django.conf import settings
 
 from anm.models import (Report, Organization_chart, News, Member, Newsletter,
                         TypeReport, TextStatic, TypePost)
@@ -119,8 +117,6 @@ def add_report(request):
             report.url_report_dl = reverse("download", args=[report.report_pdf])
             report.url_report = reverse("report", args=[report.id, report.type_report.slug])
             data_dict = {"report": report}
-            u"Un nouveau rapport a été publié sur sur le " \
-                      + u"http://www.yeleman.com"
 
             try:
                 subject = u'Alerte du site ANM'
@@ -147,16 +143,17 @@ def report(request, *args, **kwargs):
 
     c = {'category': 'report', "message_empty_r": "Pas de rapport"}
     c.update(csrf(request))
-    try:
-        selected_report = Report.objects.latest('date')
-    except:
-        return render_to_response('report.html', c)
 
     type_reports = TypeReport.objects.all()
 
     for type_report in type_reports:
         type_report.url_type_report = reverse("report", args=[report_id, type_report.slug])
     c.update({'type_reports': type_reports})
+
+    try:
+        selected_report = Report.objects.latest('date')
+    except:
+        return render_to_response('report.html', c)
 
     if type_slug != "":
         reports = Report.objects.filter(type_report__slug=type_slug).order_by("-date")

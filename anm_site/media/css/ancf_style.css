@@ -21,4 +21,14 @@ fieldset li a {list-style-type: disc; font-size: 11px;}
 #footer{background-color: transparent;clear: both;text-transform: inherit;bottom: 1em;position: fixed;}
 #footer a{color: darkred;font-size: 13px; margin-left: 1em;}
 
-#id_comment {height: 178px; width: 771px;"}
+#edit_text_static form textarea {height: 47em;width: -moz-available;}
+.carousel {margin-bottom: 0;}
+body {background-color: whitesmoke;}
+.container {
+    background-color: #fff;
+    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.77);
+    color: #2D2D2D;
+    padding: 2px 11px;
+    position: relative;
+    margin-bottom: 4em;
+}
