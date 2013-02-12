@@ -116,6 +116,7 @@ def add_report(request):
 
             report.url_report_dl = reverse("download", args=[report.report_pdf])
             report.url_report = reverse("report", args=[report.id, report.type_report.slug])
+
             data_dict = {"report": report}
 
             try:

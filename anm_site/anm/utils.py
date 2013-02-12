@@ -42,7 +42,7 @@ def html_content(data_dict):
                             </div>
                             <table style="border-top: blue 1px solid;">
                                 <tr><td><div style="font-family:arial,helvetica,sans-serif;font-size:12px;color:#333333"><div style="text-align:center;width:740px"><center><span>Si vous ne souhaitez plus recevoir de messages de notre part, veuillez demander votre désinscription
-                                <a target="_blank" href="%(url_report)s"> en cliquant ici</a></span><img width="1" height="1" border="0"></center>
+                                <a target="_blank" href="%(url_del_newsletter)s"> en cliquant ici</a></span><img width="1" height="1" border="0"></center>
                             </table>
                         </body>
                         </html>
