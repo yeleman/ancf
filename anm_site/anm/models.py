@@ -39,13 +39,27 @@ class Organization_chart(models.Model):
                              default=datetime.datetime.today)
     president = models.ForeignKey(Member,  related_name=(u"president"), \
                                             verbose_name=(u"Président"))
-    treasurer = models.ForeignKey(Member, related_name=("treasurer"), \
-                                            verbose_name=(u"Trésorier"))
-    assistant_Treasurer = models.ForeignKey(Member, \
-                                related_name=("assistant_Treasurer"), \
-                                verbose_name=(u"Adjoint trésorier"))
-    secretary = models.ForeignKey(Member, related_name=(u"secretary"), \
-                                            verbose_name=(u"Secrétaire"))
+    vice_president = models.ForeignKey(Member, related_name=("vice_president"), \
+                                            verbose_name=(u"Vice Président"))
+    raporter = models.ForeignKey(Member, \
+                                related_name=("raporter"), \
+                                verbose_name=(u"Rapporteur Général"))
+    assistant1 = models.ForeignKey(Member, related_name=(u"assistant1"), \
+                                            verbose_name=(u"Assistant"))
+    assistant2 = models.ForeignKey(Member, related_name=(u"assistant2"), \
+                                            verbose_name=(u"Assistant"))
+    assistant3 = models.ForeignKey(Member, related_name=(u"assistant3"), \
+                                            verbose_name=(u"Assistant"))
+    cordinator = models.ForeignKey(Member, related_name=(u"cordinator"), \
+                                            verbose_name=(u"Coordinateur"))
+    vice_cordinator = models.ForeignKey(Member, related_name=(u"vice_cordinator"), \
+                                            verbose_name=(u"Vice Coordinateur"))
+    fix = models.ForeignKey(Member, related_name=(u"fix"), \
+                                            verbose_name=(u"Expert en fixalité"))
+    gestion = models.ForeignKey(Member, related_name=(u"gestion"), \
+                                            verbose_name=(u"Assistante de gestion"))
+    assistant_fix = models.ForeignKey(Member, related_name=(u"assistant_fix"), \
+                                            verbose_name=(u"Assistant en fixalité"))
 
     def __unicode__(self):
         return (u'%(president)s %(date)s') % \

@@ -31,11 +31,25 @@ class ModifOrgform(forms.ModelForm):
         super(ModifOrgform, self).__init__(*args, **kwargs)
         self.fields['president'].choices = [(member.id, member)
                          for member in Member.objects.filter(status=True)]
-        self.fields['treasurer'].choices = [(member.id, member)
+        self.fields['vice_president'].choices = [(member.id, member)
                          for member in Member.objects.filter(status=True)]
-        self.fields['assistant_Treasurer'].choices = [(member.id, member)
+        self.fields['raporter'].choices = [(member.id, member)
                          for member in Member.objects.filter(status=True)]
-        self.fields['secretary'].choices = [(member.id, member)
+        self.fields['assistant1'].choices = [(member.id, member)
+                         for member in Member.objects.filter(status=True)]
+        self.fields['assistant2'].choices = [(member.id, member)
+                         for member in Member.objects.filter(status=True)]
+        self.fields['assistant3'].choices = [(member.id, member)
+                         for member in Member.objects.filter(status=True)]
+        self.fields['cordinator'].choices = [(member.id, member)
+                         for member in Member.objects.filter(status=True)]
+        self.fields['vice_cordinator'].choices = [(member.id, member)
+                         for member in Member.objects.filter(status=True)]
+        self.fields['fix'].choices = [(member.id, member)
+                         for member in Member.objects.filter(status=True)]
+        self.fields['gestion'].choices = [(member.id, member)
+                         for member in Member.objects.filter(status=True)]
+        self.fields['assistant_fix'].choices = [(member.id, member)
                          for member in Member.objects.filter(status=True)]
 
 
