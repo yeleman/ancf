@@ -225,8 +225,13 @@ def organization_chart(request):
     c = {'category': 'organization_chart'}
     c.update(csrf(request))
     try:
+        type_member = TypePost.objects.get(slug='membre')
+    except:
+        type_member = None
+    members = Member.objects.filter(post=type_member)
+    try:
         organization_chart = Organization_chart.objects.latest('id')
-        c.update({"org": organization_chart})
+        c.update({"org": organization_chart, 'members': members})
     except:
         c.update({"message_empty_org": "Pas de organigramme"})
     return render_to_response("organization_chart.html", c)
@@ -238,17 +243,11 @@ def modif_organization_chart(request):
     c = {'category': 'modif_organization_chart'}
     c.update({"user": request.user})
     c.update(csrf(request))
-    date_today = date.today()
 
     try:
         org_latest = Organization_chart.objects.latest('id')
-        dict_org = {'president': org_latest.president, \
-                    'assistant_Treasurer': org_latest.assistant_Treasurer, \
-                    'treasurer': org_latest.treasurer, \
-                    'secretary': org_latest.secretary, \
-                    'date': org_latest.date}
     except Organization_chart.DoesNotExist:
-        dict_org = {'date': date_today}
+        org_latest = None
 
     if request.method == 'POST':
         form = ModifOrgform(request.POST)
@@ -257,7 +256,7 @@ def modif_organization_chart(request):
             messages.info(request, u"L'organigramme à été mise à jour")
             return redirect('organization_chart')
     else:
-        form = ModifOrgform(dict_org)
+        form = ModifOrgform(instance=org_latest)
 
     members = Member.objects.all()
     for member in members:
@@ -313,15 +312,8 @@ def edit_member(request, *args, **kwargs):
     messages.add_message(request, messages.INFO, 'Hello world.')
     member_id = kwargs["id"]
     selected_member = Member.objects.get(id=member_id)
-    dict_member = {"last_name": selected_member.last_name, \
-                    "first_name": selected_member.first_name,\
-                    "image": selected_member.image, \
-                    "post": selected_member.post, \
-                    "email": selected_member.email,\
-                    "status": selected_member.status,\
-                }
     if request.method == 'POST':
-        form = Editmemberform(request.POST, request.FILES)
+        form = Editmemberform(request.POST, request.FILES, instance=selected_member)
         if form.is_valid():
             selected_member.last_name = request.POST.get('last_name')
             selected_member.first_name = request.POST.get('first_name')
@@ -338,7 +330,7 @@ def edit_member(request, *args, **kwargs):
             messages.info(request, u"les informations ont été ajouter")
             return redirect('member')
     else:
-        form = Editmemberform(dict_member)
+        form = Editmemberform(instance=selected_member)
     c.update({'form': form, 'image': selected_member.image})
     return render_to_response("edit_member.html", c)
 

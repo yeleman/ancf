@@ -5,42 +5,56 @@
 
     <h2  class="page-header">Organigramme de la commission des finances</h2>
     {% if org %}
-
-        <table style="text-align: center;" class="table table-bordered table-striped">
-            <tr>
-                <td colspan=15><img src="/static/{{org.president.image}}" width="100" height ="100">
-                    <p>{{org.president}}<br>Président</p>
-                </td>
-            </tr>
-            <tr> </tr>
-            <tr>
-                <td colspan=5><img src="/static/{{org.secretary.image}}" width="100" height ="100">
-                    <p>{{org.secretary}}<br>Tresorier</p>
-                </td>
-                <td colspan=5><img src="/static/{{org.assistant_Treasurer.image}}" width="100" height ="100">
-                    <p>{{org.assistant_Treasurer}}<br>Adjoint tresorier</p>
-                </td>
-                <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
-                    <p>{{org.treasurer}} <br>Secretaire</p>
-                </td>
-            </tr>
-            <tr> </tr>
-            <tr>
-                <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
-                    <p>{{org.treasurer}}</p>
-                </td>
-                <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
-                    <p>{{org.treasurer}}</p>
-                </td>
-                <td colspan=5><img src="/static/{{org.treasurer.image}}" width="100" height ="100">
-                    <p>{{org.treasurer}}</p>
-                </td>
-            </tr>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span4">
+                    <fieldset ><legend>Bureau de la commission</legend>
+                        <img class="photo" src="/static/{{org.president.image}}" width="121px" height ="121px"><p>{{org.president}}<br>Président</p>
+                        <img src="/static/{{org.vice_president.image}}" width="100" height ="100"><p>{{org.vice_president}}<br>Vice-Président</p>
+                        <img src="/static/{{org.raporter.image}}" width="100" height ="100"><p>{{org.raporter}}<br>Rapporteur General</p>
+                    </fieldset>
+                </div>
+                <div class="span4">
+                    <fieldset><legend>Assistants Parlemantaires</legend>
+                        <img src="/static/{{org.assistant1.image}}" width="100" height ="100"><p>{{org.assistant1}}<br>Assistant</p>
+                        <img src="/static/{{org.assistant2.image}}" width="100" height ="100"><p>{{org.assistant2}}<br>Assistant</p>
+                        <img src="/static/{{org.assistant3.image}}" width="100" height ="100"><p>{{org.assistant3}}<br>Assistant</p>
+                    </fieldset>
+                </div>
+                <div class="span4">
+                    <fieldset><legend>UNACEM</legend>
+                        <img src="/static/{{org.cordinator.image}}" width="100" height ="100"><p>{{org.cordinator}}<br>Coordinateur</p>
+                        <img src="/static/{{org.vice_cordinator.image}}" width="100" height ="100"><p>{{org.vice_cordinator}}<br>Coordinateur Adjoint</p>
+                        <img src="/static/{{org.fix.image}}" width="100" height ="100"><p>{{org.fix}}<br>Expert en fixalité</p>
+                        <img src="/static/{{org.gestion.image}}" width="100" height ="100"><p>{{org.gestion}}<br>Assistante de gestion</p>
+                        <img src="/static/{{org.assistant_fix.image}}" width="100" height ="100"><p>{{org.assistant_fix}}<br>Assistant en fixalité</p>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <h3>Membres</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Nom et Prénoms</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if members %}
+                    {% for member in members %}
+                        <tr>
+                            <td><img src="/static/{{member.image}}" width="100" height ="100"></td>
+                            <td>{{member}}</td>
+                        </tr>
+                    {%endfor%}
+                {% else %}
+                    <tr><td style="text-align: center;" colspan=4>Pas de brèves pour le moment.</td></tr>
+                {%endif%}
+            </tbody>
         </table>
 
     {% else%}
-        <table style="text-align: center;">
-            <tr> <td colspan=15> <p>Pas d'organigramme</p></td></tr>
-        </table>
+        <p>Pas d'organigramme</p></td>
     {%endif%}
 {% endblock %}
