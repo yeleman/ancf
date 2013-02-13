@@ -69,3 +69,8 @@ class LoginForm(forms.Form):
     username = forms.CharField(max_length=100, label="Identifiant")
     password = forms.CharField(max_length=100, label="Mot de passe",\
                                widget=forms.PasswordInput)
+
+
+class UnsubscribeForm(forms.Form):
+    email_unsubscribe = forms.EmailField(max_length=100,
+                        label="Vérifiez l'adresse e-mail pour vous désabonner")

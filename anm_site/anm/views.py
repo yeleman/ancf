@@ -14,13 +14,15 @@ from django.contrib.auth import (authenticate, login as django_login,
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.contrib.sites.models import Site
 
 from anm.models import (Report, Organization_chart, News, Member, Newsletter,
                         TypeReport, TextStatic, TypePost)
 from anm.utils import send_multipart_email
 from form import (AddReportform, ModifOrgform, Memberform, LoginForm,
-                                Newsletterform, Newsform, Editmemberform,
-                                AddTextStaticform)
+                  Newsletterform, Newsform, Editmemberform, UnsubscribeForm,
+                  AddTextStaticform)
 
 
 def login(request):
@@ -113,17 +115,24 @@ def add_report(request):
             except:
                 recipient_list = []
             report = Report.objects.order_by('-id')[0]
-
+            name_site = Site.objects.get_current().name
             report.url_report_dl = reverse("download", args=[report.report_pdf])
-            report.url_report = reverse("report", args=[report.id, report.type_report.slug])
+            report.url_report = reverse("report", args=[report.id,
+                                                        report.type_report.slug])
 
-            data_dict = {"report": report}
+            data_dict = {"report": report,
+                         "unsubscribe_url":  reverse("unsubscribe"),
+                         "site_url": name_site}
 
             try:
-                subject = u'Alerte du site ANM'
-                send_multipart_email(subject, data_dict, recipient_list)
+                print "send email ...."
+                subject = u"Un nouveau rapport a été publié sur sur le " + \
+                          u"%s" % name_site
+                message_html = render_to_string("message_html.html", data_dict)
+                send_multipart_email(subject, message_html, data_dict, recipient_list)
                 print "success"
             except Exception as e:
+                raise
                 print(e)
 
             return redirect('add_report')
@@ -410,3 +419,33 @@ def edit_text_static(request, *args, **kwargs):
         form = AddTextStaticform(instance=textstatic)
     c.update({'form': form})
     return render_to_response('edit_text_static.html', c)
+
+
+def unsubscribe(request,):
+    """  """
+    c = {'category': 'unsubscribe'}
+
+    c.update({"user": request.user})
+    c.update(csrf(request))
+    if request.method == 'POST':
+        form = UnsubscribeForm(request.POST)
+        if form.is_valid():
+            email = request.POST.get('email_unsubscribe')
+            try:
+                selected = Newsletter.objects.get(email=email)
+            except:
+                messages.info(request, u"vous n'avez jamais été sur la liste"\
+                                u" de diffusion. Si vous ne souhaitez plus " \
+                                u"recevoir ces courriels, assurez-vous de " \
+                                u"dire à votre ami de cesser de les " \
+                                u"transmettre à vous.")
+            try:
+                selected.delete()
+                return redirect('dashboard')
+                messages.info(request, u"Bye bye")
+            except:
+                pass
+    else:
+        form = UnsubscribeForm()
+    c.update({'form': form})
+    return render_to_response('unsubscribe.html', c)

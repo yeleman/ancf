@@ -1,0 +1,42 @@
+
+{% block content %}
+<html>
+        <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+          <title>html title</title>
+          <style type="text/css" media="screen">
+            table{
+                background-color: #AAD373;
+                empty-cells:hide;
+            }
+            td.cell{
+                background-color: white;
+            }
+            #telechargement {
+                float: right;padding: 4px 12px;
+            }
+            #footer {border-top: 1px ridge cornflowerblue;margin-top: 10em;}
+          </style>
+        <div class="tab-content">
+            <div id="telechargement" style='float: right;'>
+                <a href="{{ site_url }}{{report.url_report_dl }}" class = "btn">Téléchager<img src="/static/css/images/pdf.png" width="100"></a>
+                <a href="{{ site_url }}" class = "btn">Visité le site</a>
+            </div>
+            <div> <strong>Titre :</strong> <small>{{report.title_report}}</small></div>
+            <div> <strong>Publié le :</strong> <small>{{report.date}}</small></div>
+            <div> <strong>Rapporteur :</strong> <small>{{report.author}}</small></div>
+            <div> <fieldset ><legend><strong>Description :</strong></legend>
+                        <div><small> {{report.description}}</small></div>
+                  </fieldset>
+            </div>
+        </div>
+        </div>
+            <table id="footer" >
+                <tr><td><div style="font-family:arial,helvetica,sans-serif;font-size:12px;color:#333333"><div style="text-align:center;width:740px"><center><span>Si vous ne souhaitez plus recevoir de messages de notre part, veuillez demander votre désinscription
+                <a target="_blank" href="{{ site_url }}{{unsubscribe_url}}"> en cliquant ici</a></span><img width="1" height="1" border="0"></center>
+            </table>
+        </div>
+    </body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Identification{% endblock %}
+{% block page-id %}login{% endblock %}
+{% block content %}
+
+    <h2  class="page-header" class="help-inline">S'il vous plaît confirmer votre Désabonnement</h2>
+    <div class="control-group error">
+            <div class="controls">
+            <fieldset ><legend>Entrez votre adresse email pour vous désinscrire de cette liste de diffusion.</legend>
+            <form action="" class="form-search" method="post">{% csrf_token %}
+
+                <input id="id_email_unsubscribe" type="text" maxlength="75" name="email_unsubscribe" value="{{form.email_unsubscribe.value|default:''}}" placeholder="{% if form.email_unsubscribe.errors %}{% for error in form.email_unsubscribe.errors %}{{ error }}{% endfor %}{% else %}Entrez votre e-mail{% endif %}" />
+                {{ form.email_unsubscribe.errors }}
+                <button class="btn btn-small btn-danger"><i class="icon-trash"></i>Se désabonner</button>
+            </form>
+        </fieldset>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -2,6 +2,7 @@
 
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
+from django.views.generic.simple import direct_to_template
 
 admin.autodiscover()
 
@@ -37,6 +38,10 @@ urlpatterns = patterns('',
     url(r'^newsletter$', "anm.views.newsletter", name="newsletter"),
     url(r'^del_newsletter/(?P<id>\d+)$', "anm.views.del_newsletter",
                                                 name="del_newsletter"),
+    url(r'^unsubscribe/$', "anm.views.unsubscribe",
+                                                name="unsubscribe"),
+    url(r'^email-report/$', direct_to_template,
+         {'template': 'message_html.html'}, name='message_html'),
 
 )
 
