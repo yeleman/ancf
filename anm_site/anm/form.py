@@ -27,31 +27,6 @@ class ModifOrgform(forms.ModelForm):
         model = Organization_chart
         exclude = ['date']
 
-    def __init__(self, *args, **kwargs):
-        super(ModifOrgform, self).__init__(*args, **kwargs)
-        self.fields['president'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['vice_president'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['raporter'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['assistant1'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['assistant2'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['assistant3'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['cordinator'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['vice_cordinator'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['fix'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['gestion'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-        self.fields['assistant_fix'].choices = [(member.id, member)
-                         for member in Member.objects.filter(status=True)]
-
 
 class Newsform(forms.ModelForm):
 

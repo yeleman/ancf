@@ -24,9 +24,9 @@ class Member(models.Model):
                                                 verbose_name=("Photo"))
     post = models.ForeignKey(TypePost,
                                     verbose_name=("Poste occupé"))
-    email = models.EmailField(max_length=75, verbose_name=("Email"),
+    email = models.EmailField(max_length=75, verbose_name=("E-mail"),
                                                            unique=True)
-    status = models.BooleanField(default=True, verbose_name=("Status"))
+    status = models.BooleanField(default=True, verbose_name=("Statut"))
 
     def __unicode__(self):
         return (u'%(last_name)s %(first_name)s') % \
@@ -37,30 +37,39 @@ class Organization_chart(models.Model):
     """ """
     date = models.DateField(verbose_name=("Fait le"),
                                                default=datetime.datetime.today)
-    president = models.ForeignKey(Member,  related_name=(u"president"),
-                                                   verbose_name=(u"Président"))
-    vice_president = models.ForeignKey(Member, related_name=("vice_president"),
+    president = models.ForeignKey(Member, null=True, blank=True,
+                                          related_name=(u"president"),
+                                          verbose_name=(u"Président"))
+    vice_president = models.ForeignKey(Member, null=True, blank=True,
+                                              related_name=("vice_president"),
                                               verbose_name=(u"Vice Président"))
-    raporter = models.ForeignKey(Member,
+    raporter = models.ForeignKey(Member, null=True, blank=True,
                                 related_name=("raporter"),
                                 verbose_name=(u"Rapporteur Général"))
-    assistant1 = models.ForeignKey(Member, related_name=(u"assistant1"),
+    assistant1 = models.ForeignKey(Member, null=True, blank=True,
+                                            related_name=(u"assistant1"),
                                             verbose_name=(u"Assistant"))
-    assistant2 = models.ForeignKey(Member, related_name=(u"assistant2"),
+    assistant2 = models.ForeignKey(Member, null=True, blank=True,
+                                            related_name=(u"assistant2"),
                                             verbose_name=(u"Assistant"))
-    assistant3 = models.ForeignKey(Member, related_name=(u"assistant3"),
+    assistant3 = models.ForeignKey(Member, null=True, blank=True,
+                                            related_name=(u"assistant3"),
                                             verbose_name=(u"Assistant"))
-    cordinator = models.ForeignKey(Member, related_name=(u"cordinator"),
+    cordinator = models.ForeignKey(Member, null=True, blank=True,
+                                         related_name=(u"cordinator"),
                                          verbose_name=(u"Coordinateur"))
-    vice_cordinator = models.ForeignKey(Member,
-                                      related_name=(u"vice_cordinator"),
-                                    verbose_name=(u"Vice Coordinateur"))
-    fix = models.ForeignKey(Member, related_name=(u"fix"),
-                                   verbose_name=(u"Expert en fixalité"))
-    gestion = models.ForeignKey(Member, related_name=(u"gestion"),
-                                verbose_name=(u"Assistante de gestion"))
-    assistant_fix = models.ForeignKey(Member, related_name=(u"assistant_fix"),
-                                 verbose_name=(u"Assistant en fixalité"))
+    vice_cordinator = models.ForeignKey(Member, null=True, blank=True,
+                                        related_name=(u"vice_cordinator"),
+                                        verbose_name=(u"Vice Coordinateur"))
+    fix = models.ForeignKey(Member, null=True, blank=True,
+                                    related_name=(u"fix"),
+                                    verbose_name=(u"Expert en fixalité"))
+    gestion = models.ForeignKey(Member, null=True, blank=True,
+                                    related_name=(u"gestion"),
+                                    verbose_name=(u"Assistante de gestion"))
+    assistant_fix = models.ForeignKey(Member, null=True, blank=True,
+                                        related_name=(u"assistant_fix"),
+                                        verbose_name=(u"Assistant en fixalité"))
 
     def __unicode__(self):
         return (u'%(president)s %(date)s') % {'president': self.president,
@@ -111,7 +120,7 @@ class Newsletter(models.Model):
     """ """
     date = models.DateField(verbose_name=("Date d'inscription"),
                                                default=datetime.datetime.today)
-    email = models.EmailField(max_length=75, verbose_name=("Email"),
+    email = models.EmailField(max_length=75, verbose_name=("E-mail"),
                                                                    unique=True)
 
     def __unicode__(self):
