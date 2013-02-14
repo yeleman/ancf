@@ -32,4 +32,14 @@ body {background-color: whitesmoke;}
     position: relative;
     margin-bottom: 4em;
 }
-#Organization_chart img{height: 10em;width: 10em;}
+#Organization_chart .row-fluid img{height: 15em;width: 54em;}
+#Organization_chart a {text-decoration: none;}
+.thumbnail {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 39px 4px;
+    box-shadow: 0 19px 12px rgba(0, 0, 0, 0.055);
+    display: block;
+    line-height: 20px;
+    padding: 4px;
+    transition: all 0.2s ease-in-out 0s;
+}
