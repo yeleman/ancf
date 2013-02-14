@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 # maintainer: Alou & Fadiga
 
-
-from datetime import date
-
 from django.contrib import messages
 from django.shortcuts import (render_to_response, redirect,
                                                     HttpResponseRedirect)
@@ -228,17 +225,58 @@ def help(request):
 def organization_chart(request):
     """ Affiche l'organigramme """
     c = {'category': 'organization_chart'}
-    c.update(csrf(request))
     try:
         type_member = TypePost.objects.get(slug='membre')
     except:
         type_member = None
     members = Member.objects.filter(post=type_member)
+    for member in members:
+        member.url_display = reverse("display_member", args=[member.id])
     try:
         organization_chart = Organization_chart.objects.latest('id')
+        if organization_chart.president:
+            organization_chart.president.url_display = reverse("display_member",
+                                        args=[organization_chart.president.id])
+        if organization_chart.vice_president:
+            organization_chart.vice_president.url_display = \
+                                    reverse("display_member",
+                                    args=[organization_chart.vice_president.id])
+        if organization_chart.raporter:
+            organization_chart.raporter.url_display = reverse("display_member",
+                                        args=[organization_chart.raporter.id])
+        if organization_chart.assistant1:
+            organization_chart.assistant1.url_display = \
+                                        reverse("display_member",
+                                        args=[organization_chart.assistant1.id])
+        if organization_chart.assistant2:
+            organization_chart.assistant2.url_display = \
+                                        reverse("display_member",
+                                        args=[organization_chart.assistant2.id])
+        if organization_chart.assistant3:
+            organization_chart.assistant3.url_display = \
+                                        reverse("display_member",
+                                        args=[organization_chart.assistant3.id])
+        if organization_chart.cordinator:
+            organization_chart.cordinator.url_display = \
+                                        reverse("display_member",
+                                        args=[organization_chart.cordinator.id])
+        if organization_chart.vice_cordinator:
+            organization_chart.vice_cordinator.url_display = \
+                                reverse("display_member",
+                                args=[organization_chart.vice_cordinator.id])
+        if organization_chart.fix:
+            organization_chart.fix.url_display = reverse("display_member",
+                                        args=[organization_chart.fix.id])
+        if organization_chart.gestion:
+            organization_chart.gestion.url_display = reverse("display_member",
+                                        args=[organization_chart.gestion.id])
+        if organization_chart.assistant_fix:
+            organization_chart.assistant_fix.url_display = \
+                                    reverse("display_member",
+                                    args=[organization_chart.assistant_fix.id])
         c.update({"org": organization_chart, 'members': members})
     except:
-        c.update({"message_empty_org": "Pas de organigramme"})
+        raise
     return render_to_response("organization_chart.html", c)
 
 
@@ -291,6 +329,14 @@ def add_member(request):
         form = Memberform()
     c.update({'form': form})
     return render_to_response('add_member.html', c)
+
+
+def display_member(request, *args, **kwargs):
+    c = {'category': 'display_member'}
+    member_id = kwargs["id"]
+    member = Member.objects.get(id=member_id)
+    c.update({'member': member})
+    return render_to_response("display_member.html", c)
 
 
 @login_required

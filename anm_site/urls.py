@@ -27,6 +27,8 @@ urlpatterns = patterns('',
                                             name="modif_organization_chart"),
 
     url(r'^add_member$', "anm.views.add_member", name="add_member"),
+    url(r'^display_member/(?P<id>\d+)$', "anm.views.display_member",
+                                                        name="display_member"),
     url(r'^edit_member/(?P<id>\d+)$', "anm.views.edit_member",
                                                         name="edit_member"),
     url(r'^edit_text_static$', "anm.views.edit_text_static",
