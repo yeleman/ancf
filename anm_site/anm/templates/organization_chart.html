@@ -9,42 +9,42 @@
             <div class="row-fluid">
                 <div class="span4">
                     <fieldset ><legend>Bureau de la commission</legend>
-                        {% if org.president %}
-                            <img class="photo" src="/static/{{org.president.image}}" width="121px" height ="121px"><p><a href="{{org.president.url_display}}">{{org.president}}</a><br>Président</p>
+                        {% if org.president %}<h4>Président</h4>
+                            <a href="{{org.president.url_display}}"><img class="photo" src="/static/{{org.president.image}}"><h4><small>{{org.president}}</small></a>
                         {% endif %}
-                        {% if org.vice_president %}
-                            <img src="/static/{{org.vice_president.image}}" width="100" height ="100"><p><a href="{{org.vice_president.url_display}}">{{org.vice_president}}</a><br>Vice-Président</p>
+                        {% if org.vice_president %}<h4>Vice-Président</h4>
+                            <a href="{{org.vice_president.url_display}}"><img src="/static/{{org.vice_president.image}}"><h4><small>{{org.vice_president}}</small></h4></a>
                         {% endif %}
-                        {% if org.raporter %}
-                            <img src="/static/{{org.raporter.image}}" width="100" height ="100"><p><a href="{{org.raporter.url_display}}">{{org.raporter}}</a><br>Rapporteur General</p>
+                        {% if org.raporter %}<h4>Rapporteur General</h4>
+                            <a href="{{org.raporter.url_display}}"><img src="/static/{{org.raporter.image}}"><h4><small>{{org.raporter}}</small></h4></a>
                         {% endif %}
                     </fieldset>
                 </div>
                 <div class="span4">
                     <fieldset><legend>Assistants Parlemantaires</legend>
-                        {% if org.assistant1 %}
-                            <img src="/static/{{org.assistant1.image}}" width="100" height ="100"><p><a href="{{org.assistant1.url_display}}">{{org.assistant1}}</a><br>Assistant</p>{% endif %}
-                        {% if org.assistant2 %}
-                            <img src="/static/{{org.assistant2.image}}" width="100" height ="100"><p><a href="{{org.assistant2.url_display}}">{{org.assistant2}}</a><br>Assistant</p>{% endif %}
-                        {% if org.assistant3 %}
-                            <img src="/static/{{org.assistant3.image}}" width="100" height ="100"><p><a href="{{org.assistant3.url_display}}">{{org.assistant3}}</a><br>Assistant</p>{% endif %}
+                        {% if org.assistant1 %}<h4>Assistant</h4>
+                            <a href="{{org.assistant1.url_display}}"><img src="/static/{{org.assistant1.image}}"><h4><small>{{org.assistant1}}</small></h4></a>{% endif %}
+                        {% if org.assistant2 %}<h4>Assistant</h4>
+                            <a href="{{org.assistant2.url_display}}"><img src="/static/{{org.assistant2.image}}"><h4><small>{{org.assistant2}}</small></h4></a>{% endif %}
+                        {% if org.assistant3 %}<h4>Assistant</h4>
+                            <a href="{{org.assistant3.url_display}}"><img src="/static/{{org.assistant3.image}}"><h4><small>{{org.assistant3}}</small></h4></a>{% endif %}
                     </fieldset>
                 </div>
                 <div class="span4">
                     <fieldset><legend>UNACEM</legend>
-                        {% if org.cordinator %}
-                            <img src="/static/{{org.cordinator.image}}" width="100" height ="100"><p><a href="{{org.cordinator.url_display}}">{{org.cordinator}}</a><br>Coordinateur</p>
+                        {% if org.cordinator %}<h4>Coordinateur</h4>
+                            <a href="{{org.cordinator.url_display}}"><img src="/static/{{org.cordinator.image}}"><h4><small>{{org.cordinator}}</small></h4></a>
                         {% endif %}
-                        {% if org.vice_cordinator %}
-                            <img src="/static/{{org.vice_cordinator.image}}" width="100" height ="100"><p><a href="{{org.vice_cordinator.url_display}}">{{org.vice_cordinator}}</a><br>Coordinateur Adjoint</p>{% endif %}
-                        {% if org.fix %}
-                            <img src="/static/{{org.fix.image}}" width="100" height ="100"><p><a href="{{org.fix.url_display}}">{{org.fix}}</a><br>Expert en fixalité</p>
+                        {% if org.vice_cordinator %}<h4>Coordinateur Adjoint</h4>
+                            <a href="{{org.vice_cordinator.url_display}}"><img src="/static/{{org.vice_cordinator.image}}"><h4><small>{{org.vice_cordinator}}</small></h4></a>{% endif %}
+                        {% if org.fix %}<h4>Expert en fixalité</h4>
+                            <a href="{{org.fix.url_display}}"><img src="/static/{{org.fix.image}}"><h4><small>{{org.fix}}</small></h4></a>
                         {% endif %}
-                        {% if org.gestion %}
-                            <img src="/static/{{org.gestion.image}}" width="100" height ="100"><p><a href="{{org.gestion.url_display}}">{{org.gestion}}</a><br>Assistante de gestion</p>
+                        {% if org.gestion %}<h4>Assistante de gestion</h4>
+                            <a href="{{org.gestion.url_display}}"><img src="/static/{{org.gestion.image}}"><h4><small>{{org.gestion}}</small></h4></a>
                         {% endif %}
-                        {% if org.assistant_fix %}
-                            <img src="/static/{{org.assistant_fix.image}}" width="100" height ="100"><p><a href="{{org.assistant_fix.url_display}}">{{org.assistant_fix}}</a><br>Assistant en fixalité</p>
+                        {% if org.assistant_fix %}<h4>Assistant en fixalité</h4>
+                            <a href="{{org.assistant_fix.url_display}}"><img src="/static/{{org.assistant_fix.image}}"><h4><small>{{org.assistant_fix}}</small></h4></a>
                         {% endif %}
                     </fieldset>
                 </div>
@@ -62,7 +62,7 @@
                 {% if members %}
                     {% for member in members %}
                         <tr>
-                            <td><img src="/static/{{member.image}}" width="100" height ="100"></td>
+                            <td><a href="{{member.url_display}}"><img src="/static/{{member.image}}"></a></td>
                             <td><a href="{{member.url_display}}">{{member}}</a></td>
                         </tr>
                     {%endfor%}
