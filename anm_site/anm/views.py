@@ -108,13 +108,13 @@ def add_report(request):
         form = AddReportform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, u"Le rapport a été bien enregistre")
+            messages.success(request, u"Le rapport a été mis en ligne")
             try:
                 recipient_list = [user.email for user in
                                                       Newsletter.objects.all()]
             except:
                 recipient_list = []
-            report = Report.objects.order_by('-id')[0]
+            report = Report.objects.latest('id')
             name_site = Site.objects.get_current().name
             report.url_report_dl = reverse("download",
                                                       args=[report.report_pdf])
@@ -127,15 +127,17 @@ def add_report(request):
 
             try:
                 print "send email ...."
-                subject = u"Un nouveau rapport a été publié sur sur le " + \
-                          u"%s" % name_site
-                message_html = render_to_string("message_html.html", data_dict)
-                send_multipart_email(subject, message_html, data_dict,
+                subject = u"Un nouveau rapport a été publié sur sur le site \
+                                                                %s" % name_site
+                text_content = subject
+                message_html = render_to_string("message_new_report.html",
+                                                                     data_dict)
+                send_multipart_email(subject, message_html, text_content,
                                                                 recipient_list)
                 print "success"
             except Exception as e:
-                raise
                 print(e)
+                raise
 
             return redirect('add_report')
     else:
@@ -206,7 +208,7 @@ def del_report(request, *args, **kwargs):
     id_ = kwargs["id"]
     selected = Report.objects.get(id=id_)
     selected.delete()
-    messages.success(request, u"Le rapport a été bien supprimé")
+    messages.success(request, u"Le rapport a été supprimé")
     return redirect('add_report')
 
 
@@ -285,7 +287,7 @@ def add_member(request):
             news_letter = Newsletter()
             news_letter.email = request.POST.get('email')
             news_letter.save()
-            messages.success(request, u"le nouveau membre à été ajouter")
+            messages.success(request, u"le nouveau membre a été ajouter")
             return redirect('modif_organization_chart')
     else:
         form = Memberform()
@@ -337,7 +339,28 @@ def news(request):
         form = Newsform(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, u"les informations ont été publié")
+
+            name_site = Site.objects.get_current().name
+            try:
+                recipient_list = [user.email for user in Member.objects.all()]
+            except:
+                recipient_list = []
+            data_dict = {"new": News.objects.latest('date'),
+                         "site_url": name_site}
+
+            try:
+                print "send email ...."
+                subject = u"Une nouvelle brève a été publié sur sur le site " + \
+                          u"%s" % name_site
+                text_content = subject
+                message_html = render_to_string("message_news.html", data_dict)
+                send_multipart_email(subject, message_html, text_content,
+                                                                recipient_list)
+                print "success"
+            except Exception as e:
+                print(e)
+                raise
+            messages.success(request, u"l'informations a été publié")
             return redirect('news')
     else:
         form = Newsform()
@@ -397,7 +420,7 @@ def edit_text_static(request, *args, **kwargs):
         if form.is_valid():
             form.save()
             messages.success(request,
-                            u"le nouveau texte de bienvenu à été ajouter")
+                            u"Le nouveau texte de présentation a été publié.")
             return redirect('dashboard')
     else:
         form = AddTextStaticform(instance=textstatic)
@@ -425,8 +448,8 @@ def unsubscribe(request):
                                 u"transmettre à vous.")
             try:
                 selected.delete()
-                return redirect('dashboard')
                 messages.warning(request, u"Bye bye")
+                return redirect('dashboard')
             except:
                 pass
     else:
