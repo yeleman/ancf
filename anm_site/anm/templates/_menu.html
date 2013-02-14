@@ -5,7 +5,7 @@
                     <li {% if category = 'edit_text_static' %} class="active"{% endif %}><a class="brand" href="{% url edit_text_static %}"><strong>Présentation</strong></a></li>
                     <!-- <li {% if category = 'add_member' %} class="active"{% endif %}><a class="brand" href="{% url add_member %}" >Ajouter un membre</a></li> -->
                     <li {% if category = 'modif_organization_chart' %}class="active"{% endif %} ><a class="brand" href="{% url modif_organization_chart %}" ><strong>Organigramme</strong></a></li>
-                    <!-- <li {% if category = 'member' %} class="active"{% endif %}><a class="brand" href="{% url member %}">Les membres</a></li> -->
+
                     <li {% if category = 'add_report' %} class="active"{% endif %}><a class="brand" href="{% url add_report %}"> <strong>Rapports</strong></a></li>
                     <li {% if category = 'news' %} class="active"{% endif %}><a class="brand" href="{% url news %}"><strong>Brèves</strong></a></li>
                     <li {% if category = 'newsletter' %} class="active"{% endif %}><a class="brand" href="{% url newsletter %}"><strong>Newsletter</strong></a></li>

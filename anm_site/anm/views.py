@@ -111,14 +111,16 @@ def add_report(request):
             form.save()
             messages.info(request, u"Le rapport a été bien enregistre")
             try:
-                recipient_list = [user.email for user in Newsletter.objects.all()]
+                recipient_list = [user.email for user in
+                                                      Newsletter.objects.all()]
             except:
                 recipient_list = []
             report = Report.objects.order_by('-id')[0]
             name_site = Site.objects.get_current().name
-            report.url_report_dl = reverse("download", args=[report.report_pdf])
+            report.url_report_dl = reverse("download",
+                                                      args=[report.report_pdf])
             report.url_report = reverse("report", args=[report.id,
-                                                        report.type_report.slug])
+                                                      report.type_report.slug])
 
             data_dict = {"report": report,
                          "unsubscribe_url":  reverse("unsubscribe"),
@@ -129,7 +131,8 @@ def add_report(request):
                 subject = u"Un nouveau rapport a été publié sur sur le " + \
                           u"%s" % name_site
                 message_html = render_to_string("message_html.html", data_dict)
-                send_multipart_email(subject, message_html, data_dict, recipient_list)
+                send_multipart_email(subject, message_html, data_dict,
+                                                                recipient_list)
                 print "success"
             except Exception as e:
                 raise
@@ -157,7 +160,8 @@ def report(request, *args, **kwargs):
     type_reports = TypeReport.objects.all()
 
     for type_report in type_reports:
-        type_report.url_type_report = reverse("report", args=[report_id, type_report.slug])
+        type_report.url_type_report = reverse("report", args=[report_id,
+                                                             type_report.slug])
     c.update({'type_reports': type_reports})
 
     try:
@@ -166,7 +170,8 @@ def report(request, *args, **kwargs):
         return render_to_response('report.html', c)
 
     if type_slug != "":
-        reports = Report.objects.filter(type_report__slug=type_slug).order_by("-date")
+        reports = Report.objects.filter(type_report__slug=type_slug) \
+                                                             .order_by("-date")
         try:
             selected_type = TypeReport.objects.get(slug=type_slug)
             selected_report = reports[0]
@@ -281,25 +286,11 @@ def add_member(request):
             news_letter.email = request.POST.get('email')
             news_letter.save()
             messages.info(request, u"le nouveau membre à été ajouter")
-            return redirect('member')
+            return redirect('modif_organization_chart')
     else:
         form = Memberform()
     c.update({'form': form})
     return render_to_response('add_member.html', c)
-
-
-@login_required
-def member(request):
-    """ Liste des membres """
-
-    c = {'category': 'member'}
-    c.update(csrf(request))
-    c.update({"user": request.user})
-    members = Member.objects.all()
-    for member in members:
-        member.url_member = reverse("edit_member", args=[member.id])
-    c.update({"members": members, "message_empty_m": "Pas de membre"})
-    return render_to_response("member.html", c)
 
 
 @login_required
@@ -313,11 +304,12 @@ def edit_member(request, *args, **kwargs):
     member_id = kwargs["id"]
     selected_member = Member.objects.get(id=member_id)
     if request.method == 'POST':
-        form = Editmemberform(request.POST, request.FILES, instance=selected_member)
+        form = Editmemberform(request.POST, request.FILES,
+                                                      instance=selected_member)
         if form.is_valid():
             selected_member.last_name = request.POST.get('last_name')
             selected_member.first_name = request.POST.get('first_name')
-            if not request.FILES.get('image') == None:
+            if request.FILES.get('image'):
                 selected_member.image = request.FILES.get('image')
             post = TypePost.objects.get(slug=request.POST.get('post'))
             selected_member.post = post
@@ -328,7 +320,7 @@ def edit_member(request, *args, **kwargs):
                 selected_member.status = False
             selected_member.save()
             messages.info(request, u"les informations ont été ajouter")
-            return redirect('member')
+            return redirect('modif_organization_chart')
     else:
         form = Editmemberform(instance=selected_member)
     c.update({'form': form, 'image': selected_member.image})
@@ -371,9 +363,9 @@ def newsletter(request):
 
     newsletters = Newsletter.objects.all()
     for newsletter in newsletters:
-        newsletter.url_newsletter = reverse("del_newsletter", \
-                                                    args=[newsletter.id])
-    c.update({"newsletters": newsletters, \
+        newsletter.url_newsletter = reverse("del_newsletter",
+                                                          args=[newsletter.id])
+    c.update({"newsletters": newsletters,
                                     "message_empty_n": "Pas d'inscrit"})
 
     return render_to_response("news_letter.html", c)
@@ -426,10 +418,10 @@ def unsubscribe(request,):
             try:
                 selected = Newsletter.objects.get(email=email)
             except:
-                messages.info(request, u"vous n'avez jamais été sur la liste"\
-                                u" de diffusion. Si vous ne souhaitez plus " \
-                                u"recevoir ces courriels, assurez-vous de " \
-                                u"dire à votre ami de cesser de les " \
+                messages.info(request, u"vous n'avez jamais été sur la liste"
+                                u" de diffusion. Si vous ne souhaitez plus "
+                                u"recevoir ces courriels, assurez-vous de "
+                                u"dire à votre ami de cesser de les "
                                 u"transmettre à vous.")
             try:
                 selected.delete()
