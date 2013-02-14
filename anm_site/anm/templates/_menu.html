@@ -1,7 +1,7 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            {% if user %}
+            {% ifequal menu 'admin' %}
                     <li {% if category = 'edit_text_static' %} class="active"{% endif %}><a class="brand" href="{% url edit_text_static %}"><strong>Présentation</strong></a></li>
                     <!-- <li {% if category = 'add_member' %} class="active"{% endif %}><a class="brand" href="{% url add_member %}" >Ajouter un membre</a></li> -->
                     <li {% if category = 'modif_organization_chart' %}class="active"{% endif %} ><a class="brand" href="{% url modif_organization_chart %}" ><strong>Organigramme</strong></a></li>
@@ -17,7 +17,7 @@
         <!--
                     <li ><a class="brand" {% if category = 'aide' %}class="active"{% endif %} href= "{% url help %}"><span>Aide</span></a></li>
         -->
-            {% endif %}
+            {% endifequal %}
         </ul>
     </div>
 </div>

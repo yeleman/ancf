@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 # maintainer: Alou & Fadiga
 
+
 from django.contrib import messages
-from django.shortcuts import (render_to_response, redirect,
+from django.shortcuts import (render_to_response,  redirect, render,
                                                     HttpResponseRedirect)
 from django.core.context_processors import csrf
 from django.contrib.auth import (authenticate, login as django_login,
@@ -86,33 +87,34 @@ def dashboard(request):
         form = Newsletterform(request.POST)
         if form.is_valid():
             form.save()
-            messages.info(request, u"Votre email a été bien enregistre")
+            messages.success(request, u"Votre email a été bien enregistre")
+            messages.set_level(request, messages.WARNING)
             return redirect('dashboard')
     else:
         form = Newsletterform()
 
     c.update({'form': form})
 
-    return render_to_response('dashboard.html', c)
+    return render(request, 'dashboard.html', c)
 
 
 @login_required
 def add_report(request):
     """ Ajout de nouveau rapport """
-    c = {'category': 'add_report'}
+    c = {'category': 'add_report', 'menu': 'admin'}
     c.update({"user": request.user})
     c.update(csrf(request))
     if request.method == 'POST':
         form = AddReportform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.info(request, u"Le rapport a été bien enregistre")
+            messages.success(request, u"Le rapport a été mis en ligne")
             try:
                 recipient_list = [user.email for user in
                                                       Newsletter.objects.all()]
             except:
                 recipient_list = []
-            report = Report.objects.order_by('-id')[0]
+            report = Report.objects.latest('id')
             name_site = Site.objects.get_current().name
             report.url_report_dl = reverse("download",
                                                       args=[report.report_pdf])
@@ -125,10 +127,12 @@ def add_report(request):
 
             try:
                 print "send email ...."
-                subject = u"Un nouveau rapport a été publié sur sur le " + \
-                          u"%s" % name_site
-                message_html = render_to_string("message_html.html", data_dict)
-                send_multipart_email(subject, message_html, data_dict,
+                subject = u"Un nouveau rapport a été publié sur sur le site \
+                                                                %s" % name_site
+                text_content = subject
+                message_html = render_to_string("message_new_report.html",
+                                                                     data_dict)
+                send_multipart_email(subject, message_html, text_content,
                                                                 recipient_list)
                 print "success"
             except Exception as e:
@@ -143,7 +147,7 @@ def add_report(request):
         report.url_del = reverse("del_report", args=[report.id])
 
     c.update({'form': form, 'reports': reports})
-    return render_to_response('add_report.html', c)
+    return render(request, 'add_report.html', c)
 
 
 def report(request, *args, **kwargs):
@@ -164,7 +168,7 @@ def report(request, *args, **kwargs):
     try:
         selected_report = Report.objects.latest('date')
     except:
-        return render_to_response('report.html', c)
+        return render(request, 'report.html', c)
 
     if type_slug != "":
         reports = Report.objects.filter(type_report__slug=type_slug) \
@@ -191,19 +195,20 @@ def report(request, *args, **kwargs):
 
     c.update({"selected_report": selected_report, "reports": reports})
 
-    return render_to_response('report.html', c)
+    return render(request, 'report.html', c)
 
 
 @login_required
 def del_report(request, *args, **kwargs):
     """ Suppression de rapport"""
 
-    c = {'category': 'del_report'}
+    c = {'category': 'del_report', 'menu': 'admin'}
     c.update(csrf(request))
     c.update({"user": request.user})
     id_ = kwargs["id"]
     selected = Report.objects.get(id=id_)
     selected.delete()
+    messages.success(request, u"Le rapport a été supprimé")
     return redirect('add_report')
 
 
@@ -219,7 +224,7 @@ def help(request):
     """ Page d'aide """
     c = {'category': 'aide'}
     c.update(csrf(request))
-    return render_to_response("help.html", c)
+    return render(request, "help.html", c)
 
 
 def organization_chart(request):
@@ -276,14 +281,16 @@ def organization_chart(request):
                                     args=[organization_chart.assistant_fix.id])
         c.update({"org": organization_chart, 'members': members})
     except:
-        raise
-    return render_to_response("organization_chart.html", c)
+        pass
+
+    c.update({"message_empty_org": "Pas de organigramme"})
+    return render(request, "organization_chart.html", c)
 
 
 @login_required
 def modif_organization_chart(request):
     """ Modification du dernier organigramme """
-    c = {'category': 'modif_organization_chart'}
+    c = {'category': 'modif_organization_chart', 'menu': 'admin'}
     c.update({"user": request.user})
     c.update(csrf(request))
 
@@ -307,13 +314,13 @@ def modif_organization_chart(request):
 
     c.update({'form': form, 'members': members})
 
-    return render_to_response('modif_organization_chart.html', c)
+    return render(request, 'modif_organization_chart.html', c)
 
 
 @login_required
 def add_member(request):
     """ Ajout de nouveau membre """
-    c = {'category': 'add_member'}
+    c = {'category': 'add_member', 'menu': 'admin'}
     c.update({"user": request.user})
     c.update(csrf(request))
     if request.method == 'POST':
@@ -323,12 +330,12 @@ def add_member(request):
             news_letter = Newsletter()
             news_letter.email = request.POST.get('email')
             news_letter.save()
-            messages.info(request, u"le nouveau membre à été ajouter")
+            messages.success(request, u"le nouveau membre a été ajouter")
             return redirect('modif_organization_chart')
     else:
         form = Memberform()
     c.update({'form': form})
-    return render_to_response('add_member.html', c)
+    return render(request, 'add_member.html', c)
 
 
 def display_member(request, *args, **kwargs):
@@ -338,15 +345,13 @@ def display_member(request, *args, **kwargs):
     c.update({'member': member})
     return render_to_response("display_member.html", c)
 
-
 @login_required
 def edit_member(request, *args, **kwargs):
     """ Modification de membre """
 
-    c = {'category': 'edit_member'}
+    c = {'category': 'edit_member', 'menu': 'admin'}
     c.update(csrf(request))
     c.update({"user": request.user})
-    messages.add_message(request, messages.INFO, 'Hello world.')
     member_id = kwargs["id"]
     selected_member = Member.objects.get(id=member_id)
     if request.method == 'POST':
@@ -365,18 +370,18 @@ def edit_member(request, *args, **kwargs):
             else:
                 selected_member.status = False
             selected_member.save()
-            messages.info(request, u"les informations ont été ajouter")
+            messages.success(request, u"les informations ont été mise jour")
             return redirect('modif_organization_chart')
     else:
         form = Editmemberform(instance=selected_member)
     c.update({'form': form, 'image': selected_member.image})
-    return render_to_response("edit_member.html", c)
+    return render(request, "edit_member.html", c)
 
 
 @login_required
 def news(request):
     """ Ajout d'avis de reunion """
-    c = {'category': 'news'}
+    c = {'category': 'news', 'menu': 'admin'}
     c.update(csrf(request))
     c.update({"user": request.user})
 
@@ -384,12 +389,34 @@ def news(request):
         form = Newsform(request.POST)
         if form.is_valid():
             form.save()
+
+            name_site = Site.objects.get_current().name
+            try:
+                recipient_list = [user.email for user in Member.objects.all()]
+            except:
+                recipient_list = []
+            data_dict = {"new": News.objects.latest('date'),
+                         "site_url": name_site}
+
+            try:
+                print "send email ...."
+                subject = u"Une nouvelle brève a été publié sur sur le site " + \
+                          u"%s" % name_site
+                text_content = subject
+                message_html = render_to_string("message_news.html", data_dict)
+                send_multipart_email(subject, message_html, text_content,
+                                                                recipient_list)
+                print "success"
+            except Exception as e:
+                print(e)
+                raise
+            messages.success(request, u"l'informations a été publié")
             return redirect('news')
     else:
         form = Newsform()
     news = News.objects.order_by('-date')
     c.update({'form': form, 'news': news})
-    return render_to_response("news.html", c)
+    return render(request, "news.html", c)
 
 
 def history_news(request):
@@ -397,13 +424,13 @@ def history_news(request):
     c = {'category': 'history_news'}
     news = News.objects.all()
     c.update({'news': news})
-    return render_to_response("history_news.html", c)
+    return render(request, "history_news.html", c)
 
 
 @login_required
 def newsletter(request):
     """ Liste des newsletter """
-    c = {'category': 'newsletter'}
+    c = {'category': 'newsletter', 'menu': 'admin'}
     c.update(csrf(request))
     c.update({"user": request.user})
 
@@ -414,14 +441,14 @@ def newsletter(request):
     c.update({"newsletters": newsletters,
                                     "message_empty_n": "Pas d'inscrit"})
 
-    return render_to_response("news_letter.html", c)
+    return render(request, "news_letter.html", c)
 
 
 @login_required
 def del_newsletter(request, *args, **kwargs):
     """ Suppression de newsletter"""
 
-    c = {'category': 'del_newsletter'}
+    c = {'category': 'del_newsletter', 'menu': 'admin'}
     c.update(csrf(request))
     c.update({"user": request.user})
     id_ = kwargs["id"]
@@ -433,7 +460,7 @@ def del_newsletter(request, *args, **kwargs):
 @login_required
 def edit_text_static(request, *args, **kwargs):
     """ Ajout de nouveau texte de bienvenu """
-    c = {'category': 'edit_text_static'}
+    c = {'category': 'edit_text_static', 'menu': 'admin'}
 
     textstatic = TextStatic.objects.get(slug='dashboard')
     c.update({"user": request.user})
@@ -442,16 +469,16 @@ def edit_text_static(request, *args, **kwargs):
         form = AddTextStaticform(request.POST, instance=textstatic)
         if form.is_valid():
             form.save()
-            messages.info(request,
-                            u"le nouveau texte de bienvenu à été ajouter")
+            messages.success(request,
+                            u"Le nouveau texte de présentation a été publié.")
             return redirect('dashboard')
     else:
         form = AddTextStaticform(instance=textstatic)
     c.update({'form': form})
-    return render_to_response('edit_text_static.html', c)
+    return render(request, 'edit_text_static.html', c)
 
 
-def unsubscribe(request,):
+def unsubscribe(request):
     """  """
     c = {'category': 'unsubscribe'}
 
@@ -464,18 +491,18 @@ def unsubscribe(request,):
             try:
                 selected = Newsletter.objects.get(email=email)
             except:
-                messages.info(request, u"vous n'avez jamais été sur la liste"
+                messages.warning(request, u"vous n'avez jamais été sur la liste"
                                 u" de diffusion. Si vous ne souhaitez plus "
                                 u"recevoir ces courriels, assurez-vous de "
                                 u"dire à votre ami de cesser de les "
                                 u"transmettre à vous.")
             try:
                 selected.delete()
+                messages.warning(request, u"Bye bye")
                 return redirect('dashboard')
-                messages.info(request, u"Bye bye")
             except:
                 pass
     else:
         form = UnsubscribeForm()
     c.update({'form': form})
-    return render_to_response('unsubscribe.html', c)
+    return render(request, 'unsubscribe.html', c)

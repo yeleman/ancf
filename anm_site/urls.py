@@ -42,7 +42,9 @@ urlpatterns = patterns('',
     url(r'^unsubscribe/$', "anm.views.unsubscribe",
                                                 name="unsubscribe"),
     url(r'^email-report/$', direct_to_template,
-         {'template': 'message_html.html'}, name='message_html'),
+         {'template': 'message_new_report.html'}, name='message_new_report'),
+    url(r'^email-news/$', direct_to_template,
+         {'template': 'message_news.html'}, name='message_news'),
 
 )
 

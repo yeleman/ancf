@@ -1,0 +1,35 @@
+
+{% block content %}
+<html>
+        <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+          <title>brève</title>
+          <style type="text/css" media="screen">
+            table{
+                background-color: #AAD373;
+                empty-cells:hide;
+            }
+            td.cell{
+                background-color: white;
+            }
+            #right {
+                float: right;padding: 4px 12px;
+            }
+            #footer {border-top: 1px ridge cornflowerblue;margin-top: 10em;}
+          </style>
+        <div class="tab-content">
+            <div id="right" style='float: right;'>
+                <a href="{{ site_url }}" class = "btn">Visité le site</a>
+            </div>
+            <div> <strong>Titre :</strong> <small>{{new.title}}</small></div>
+            <div> <strong>Publié le :</strong> <small>{{new.date}}</small></div>
+            <div> <strong>Par :</strong> <small>{{new.author}}</small></div>
+            <div> <fieldset ><legend><strong>Contenu :</strong></legend>
+                        <div><small> {{new.comment}}</small></div>
+                  </fieldset>
+            </div>
+        </div>
+    </body>
+</html>
+
+{% endblock %}
