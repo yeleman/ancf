@@ -303,7 +303,7 @@ def modif_organization_chart(request):
         form = ModifOrgform(request.POST)
         if form.is_valid():
             form.save()
-            messages.info(request, u"L'organigramme à été mise à jour")
+            messages.info(request, u"L'organigramme a été mise à jour")
             return redirect('organization_chart')
     else:
         form = ModifOrgform(instance=org_latest)
