@@ -26,9 +26,11 @@
                     <td>Intitulé du poste</td><td>{{member.job_title}}</td>
                 </tr>
                 {% endif %}
+                {% if member.email %}
                 <tr>
                     <td>E-mail</td><td>{{member.email}}</td>
                 </tr>
+                {% endif %}
                 <tr>
                     <td>Visible</td><td>{% if member.status %}OUI {% else %}NON{% endif %}</td>
                 </tr>
