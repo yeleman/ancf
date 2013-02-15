@@ -11,7 +11,7 @@
                     <fieldset ><legend>Bureau de la commission</legend>
                         {% if org.president %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Président</h6>
                                     <a href="{{org.president.url_display}}" class="thumbnail"><img class="photo" src="/static/{{org.president.image}}"><h4><small>{{org.president}}</small></h4></a>
                                 </li>
@@ -19,7 +19,7 @@
                         {% endif %}
                         {% if org.vice_president %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Vice-Président</h6>
                                     <a href="{{org.vice_president.url_display}}"  class="thumbnail"><img src="/static/{{org.vice_president.image}}"><h4><small>{{org.vice_president}}</small></h4></a>
                                 </li>
@@ -27,7 +27,7 @@
                         {% endif %}
                         {% if org.raporter %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Rapporteur General</h6>
                                     <a href="{{org.raporter.url_display}}"  class="thumbnail"><img src="/static/{{org.raporter.image}}"><h4><small>{{org.raporter}}</small></h4></a>
                                 </li>
@@ -39,32 +39,32 @@
                     <fieldset><legend>Assistants Parlemantaires</legend>
                         {% if org.assistant1 %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Assistant</h6>
                             <a href="{{org.assistant1.url_display}}"  class="thumbnail"><img src="/static/{{org.assistant1.image}}"><h4><small>{{org.assistant1}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
                         {% if org.assistant2 %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Assistant</h6>
                             <a href="{{org.assistant2.url_display}}"  class="thumbnail"><img src="/static/{{org.assistant2.image}}"><h4><small>{{org.assistant2}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
                         {% if org.assistant3 %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Assistant</h6>
                             <a href="{{org.assistant3.url_display}}"  class="thumbnail"><img src="/static/{{org.assistant3.image}}"><h4><small>{{org.assistant3}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
                     </fieldset>
                 </div>
-                <div class="span3">
+                <div class="span4">
                     <fieldset><legend>UNACEM</legend>
                         {% if org.cordinator %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Coordinateur</h6>
                                     <a href="{{org.cordinator.url_display}}"  class="thumbnail"><img src="/static/{{org.cordinator.image}}"><h4><small>{{org.cordinator}}</small></h4></a>
                                 </li>
@@ -72,7 +72,7 @@
                         {% endif %}
                         {% if org.vice_cordinator %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Coordinateur Adjoint</h6>
                                     <a href="{{org.vice_cordinator.url_display}}"  class="thumbnail"><img src="/static/{{org.vice_cordinator.image}}"><h4><small>{{org.vice_cordinator}}</small></h4></a>
                                 </li>
@@ -80,7 +80,7 @@
                             {% endif %}
                         {% if org.fix %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Expert en fixalité</h6>
                                      <a href="{{org.fix.url_display}}"  class="thumbnail"><img src="/static/{{org.fix.image}}"><h4><small>{{org.fix}}</small></h4></a>
                                 </li>
@@ -88,7 +88,7 @@
                         {% endif %}
                         {% if org.gestion %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Assistante de gestion</h6>
                                     <a href="{{org.gestion.url_display}}"  class="thumbnail"><img src="/static/{{org.gestion.image}}"><h4><small>{{org.gestion}}</small></h4></a>
                                 </li>
@@ -96,7 +96,7 @@
                         {% endif %}
                         {% if org.assistant_fix %}
                             <ul class="thumbnails">
-                                <li class="span4">
+                                <li class="span6">
                                     <h6>Assistant en fixalité</h6>
                                     <a href="{{org.assistant_fix.url_display}}"  class="thumbnail"><img src="/static/{{org.assistant_fix.image}}"><h4><small>{{org.assistant_fix}}</small></h4></a>
                                 </li>
