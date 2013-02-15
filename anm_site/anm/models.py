@@ -27,7 +27,7 @@ class Member(models.Model):
     job_title = models.CharField(max_length=200, blank=True,
                                  verbose_name=("Intitulé du poste"))
     email = models.EmailField(max_length=75, verbose_name=("E-mail"),
-                                             blank=True, unique=True)
+                                             null=True, blank=True)
     status = models.BooleanField(default=True, verbose_name=("Visible"))
 
     def __unicode__(self):
