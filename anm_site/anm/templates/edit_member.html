@@ -5,7 +5,7 @@
 
     <h2>Modification de membre de la commission des finances</h2>
     <div class="media">
-    <a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64"src="/static/{{image}}" width="190" height ="190"></a>
+    <a class="pull-left" href="#"><img class="img-polaroid" class="media-object" data-src="holder.js/64x64"src="/static/{{image}}" width="190" height ="190"></a>
     <div class="media-body">
         <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
         <div id="member_form">
@@ -31,10 +31,8 @@
                 <tr>
                     <td>{{form.status.label}}:</td><td>{{form.status}} {{form.status.errors}}</td>
                 </tr>
-                <tr>
-                    <td></td><td><input type='submit' class="btn btn-primary" value =  "Enregistrer"/></td>
-                </tr>
             </table>
+            <input type='submit' class="btn btn-primary" value =  "Enregistrer"/>
         </div>
     </div>
     </div>
