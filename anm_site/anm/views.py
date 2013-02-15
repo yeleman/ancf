@@ -327,9 +327,10 @@ def add_member(request):
         form = Memberform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            news_letter = Newsletter()
-            news_letter.email = request.POST.get('email')
-            news_letter.save()
+            if request.POST.get('email'):
+                news_letter = Newsletter()
+                news_letter.email = request.POST.get('email')
+                news_letter.save()
             messages.success(request, u"le nouveau membre a été ajouter")
             return redirect('modif_organization_chart')
     else:
@@ -344,6 +345,7 @@ def display_member(request, *args, **kwargs):
     member = Member.objects.get(id=member_id)
     c.update({'member': member})
     return render_to_response("display_member.html", c)
+
 
 @login_required
 def edit_member(request, *args, **kwargs):

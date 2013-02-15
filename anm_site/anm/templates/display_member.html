@@ -14,21 +14,25 @@
                     <td>Nom</td><td>{{member.last_name}}</td>
                 </tr>
                 <tr>
-                    <td>Prénoms</td><td>{{member.first_name}}</td>
+                    <td>Prénom</td><td>{{member.first_name}}</td>
                 </tr>
                 {% if member.image %}
                 <tr>
                     <td>Photo</td><td><img src="/static/{{member.image}}" width="100" height ="100"></td>
                 </tr>
                 {% endif %}
+                {% if member.job_title %}
                 <tr>
-                    <td>Poste</td><td>{{member.post}}</td>
+                    <td>Intitulé du poste</td><td>{{member.job_title}}</td>
                 </tr>
+                {% endif %}
+                {% if member.email %}
                 <tr>
                     <td>E-mail</td><td>{{member.email}}</td>
                 </tr>
+                {% endif %}
                 <tr>
-                    <td>Statut</td><td>{{member.status}}</td>
+                    <td>Visible</td><td>{% if member.status %}OUI {% else %}NON{% endif %}</td>
                 </tr>
             </table>
         </div>
