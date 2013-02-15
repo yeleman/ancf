@@ -62,10 +62,10 @@
             <tr>
                <th> Nom </th>
                <th> Prénoms </th>
-               <th> Poste </th>
+               <th> Poste dans l'organigramme </th>
                <th> Email </th>
                <th> Modification </th>
-               <th> Statut </th>
+               <th> Visibilité </th>
             </tr>
         </thead>
         <tbody>
@@ -79,11 +79,11 @@
                         <td>
                             <a href="{{member.url_member}}"> <img src="/static/css/images/edit.png" width="20"></a>
                         </td>
-                        {% ifequal member.status True %}
-                            <td>{{member.status}}<img src="/static/css/images/no.png" width="12"/> </td>
+                        {% if member.status %}
+                            <td><img src="/static/css/images/no.png" width="12"/> </td>
                         {%else%}
-                            <td>{{member.status}}<img src="/static/css/images/active.png" width="12"/> </td>
-                        {% endifequal %}
+                            <td><img src="/static/css/images/active.png" width="12"/> </td>
+                        {% endif %}
                     </tr>
                 {%endfor%}
             {% else %}

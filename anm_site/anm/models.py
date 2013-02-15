@@ -23,10 +23,12 @@ class Member(models.Model):
     image = models.ImageField(upload_to='images_member/', blank=True,
                                                 verbose_name=("Photo"))
     post = models.ForeignKey(TypePost,
-                                    verbose_name=("Poste occupé"))
+                                    verbose_name=("Poste dans l'organigramme"))
+    job_title = models.CharField(max_length=200, blank=True,
+                                 verbose_name=("Intitulé du poste"))
     email = models.EmailField(max_length=75, verbose_name=("E-mail"),
-                                                           unique=True)
-    status = models.BooleanField(default=True, verbose_name=("Statut"))
+                                             blank=True, unique=True)
+    status = models.BooleanField(default=True, verbose_name=("Visible"))
 
     def __unicode__(self):
         return (u'%(last_name)s %(first_name)s') % \

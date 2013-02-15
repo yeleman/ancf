@@ -22,13 +22,16 @@
                 </tr>
                 {% endif %}
                 <tr>
-                    <td>Poste</td><td>{{member.post}}</td>
+                    <td>Poste dans l'organigramme</td><td>{{member.post}}</td>
+                </tr>
+                <tr>
+                    <td>Intitulé du poste</td><td>{{member.job_title}}</td>
                 </tr>
                 <tr>
                     <td>E-mail</td><td>{{member.email}}</td>
                 </tr>
                 <tr>
-                    <td>Statut</td><td>{{member.status}}</td>
+                    <td>Visible</td><td>{% if member.status %}OUI {% else %}NON{% endif %}</td>
                 </tr>
             </table>
         </div>
