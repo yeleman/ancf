@@ -80,9 +80,9 @@
                             <a href="{{member.url_member}}"><button class="btn btn-mini btn-primary"> <i class="icon-edit"></i> Modifier</button></a>
                         </td>
                         {% if member.status %}
-                            <td><img src="/static/css/images/no.png" width="12"/> </td>
-                        {%else%}
                             <td><img src="/static/css/images/active.png" width="12"/> </td>
+                        {%else%}
+                            <td><img src="/static/css/images/no.png" width="12"/> </td>
                         {% endif %}
                     </tr>
                 {%endfor%}
