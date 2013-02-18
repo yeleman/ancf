@@ -32,7 +32,7 @@ body {background-color: whitesmoke;}
     position: relative;
     margin-bottom: 4em;
 }
-#Organization_chart .row-fluid img{height: 15em;width: 54em;}
+#Organization_chart .row-fluid img{height: 15em;}
 #Organization_chart a {text-decoration: none;}
 .thumbnail {
     border: 1px solid #DDDDDD;
