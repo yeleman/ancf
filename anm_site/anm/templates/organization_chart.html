@@ -13,7 +13,7 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Président</h6>
-                                    <a href="{{org.president.url_display}}" class="thumbnail"><img class="photo" src="/media/{{org.president.image}}"><h4><small>{{org.president}}</small></h4></a>
+                                    <a href="{{org.president.url_display}}" class="thumbnail"><img class="photo" src="{{ MEDIA_URL}}images_member/{{org.president.image}}"><h4><small>{{org.president}}</small></h4></a>
                                 </li>
                             </ul>
                         {% endif %}
@@ -21,7 +21,7 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Vice-Président</h6>
-                                    <a href="{{org.vice_president.url_display}}"  class="thumbnail"><img src="/media/{{org.vice_president.image}}"><h4><small>{{org.vice_president}}</small></h4></a>
+                                    <a href="{{org.vice_president.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.vice_president.image}}"><h4><small>{{org.vice_president}}</small></h4></a>
                                 </li>
                             </ul>
                         {% endif %}
@@ -29,7 +29,7 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Rapporteur General</h6>
-                                    <a href="{{org.raporter.url_display}}"  class="thumbnail"><img src="/media/{{org.raporter.image}}"><h4><small>{{org.raporter}}</small></h4></a>
+                                    <a href="{{org.raporter.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.raporter.image}}"><h4><small>{{org.raporter}}</small></h4></a>
                                 </li>
                             </ul>
                         {% endif %}
@@ -41,21 +41,21 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Assistant</h6>
-                            <a href="{{org.assistant1.url_display}}"  class="thumbnail"><img src="/media/{{org.assistant1.image}}"><h4><small>{{org.assistant1}}</small></h4></a>
+                            <a href="{{org.assistant1.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.assistant1.image}}"><h4><small>{{org.assistant1}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
                         {% if org.assistant2 %}
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Assistant</h6>
-                            <a href="{{org.assistant2.url_display}}"  class="thumbnail"><img src="/media/{{org.assistant2.image}}"><h4><small>{{org.assistant2}}</small></h4></a>
+                            <a href="{{org.assistant2.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.assistant2.image}}"><h4><small>{{org.assistant2}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
                         {% if org.assistant3 %}
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Assistant</h6>
-                            <a href="{{org.assistant3.url_display}}"  class="thumbnail"><img src="/media/{{org.assistant3.image}}"><h4><small>{{org.assistant3}}</small></h4></a>
+                            <a href="{{org.assistant3.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.assistant3.image}}"><h4><small>{{org.assistant3}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
                     </fieldset>
@@ -66,7 +66,7 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Coordinateur</h6>
-                                    <a href="{{org.cordinator.url_display}}"  class="thumbnail"><img src="/media/{{org.cordinator.image}}"><h4><small>{{org.cordinator}}</small></h4></a>
+                                    <a href="{{org.cordinator.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.cordinator.image}}"><h4><small>{{org.cordinator}}</small></h4></a>
                                 </li>
                             </ul>
                         {% endif %}
@@ -74,7 +74,7 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Coordinateur Adjoint</h6>
-                                    <a href="{{org.vice_cordinator.url_display}}"  class="thumbnail"><img src="/media/{{org.vice_cordinator.image}}"><h4><small>{{org.vice_cordinator}}</small></h4></a>
+                                    <a href="{{org.vice_cordinator.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.vice_cordinator.image}}"><h4><small>{{org.vice_cordinator}}</small></h4></a>
                                 </li>
                             </ul>
                             {% endif %}
@@ -82,7 +82,7 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Expert en fixalité</h6>
-                                     <a href="{{org.fix.url_display}}"  class="thumbnail"><img src="/media/{{org.fix.image}}"><h4><small>{{org.fix}}</small></h4></a>
+                                     <a href="{{org.fix.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.fix.image}}"><h4><small>{{org.fix}}</small></h4></a>
                                 </li>
                             </ul>
                         {% endif %}
@@ -90,7 +90,7 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Assistante de gestion</h6>
-                                    <a href="{{org.gestion.url_display}}"  class="thumbnail"><img src="/media/{{org.gestion.image}}"><h4><small>{{org.gestion}}</small></h4></a>
+                                    <a href="{{org.gestion.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.gestion.image}}"><h4><small>{{org.gestion}}</small></h4></a>
                                 </li>
                             </ul>
                         {% endif %}
@@ -98,7 +98,7 @@
                             <ul class="thumbnails">
                                 <li class="span6">
                                     <h6>Assistant en fixalité</h6>
-                                    <a href="{{org.assistant_fix.url_display}}"  class="thumbnail"><img src="/media/{{org.assistant_fix.image}}"><h4><small>{{org.assistant_fix}}</small></h4></a>
+                                    <a href="{{org.assistant_fix.url_display}}"  class="thumbnail"><img src="{{ MEDIA_URL}}images_member/{{org.assistant_fix.image}}"><h4><small>{{org.assistant_fix}}</small></h4></a>
                                 </li>
                             </ul>
                         {% endif %}
@@ -118,7 +118,7 @@
                 {% if members %}
                     {% for member in members %}
                         <tr>
-                            <td><a href="{{member.url_display}}"><img src="/media/{{member.image}}"></a></td>
+                            <td><a href="{{member.url_display}}"><img src="{{ MEDIA_URL}}images_member/{{member.image}}"></a></td>
                             <td><a href="{{member.url_display}}">{{member}}</a></td>
                         </tr>
                     {%endfor%}

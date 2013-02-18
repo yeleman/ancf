@@ -6,6 +6,8 @@ import settings
 
 settings.DEBUG = True
 
+settings.MEDIA_URL = '/media/'
+
 settings.DATABASES = {'default': {
     'ENGINE': 'django.db.backends.sqlite3',
     'NAME': 'ancf.sqlite',
