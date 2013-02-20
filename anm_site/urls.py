@@ -4,6 +4,8 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 from django.views.generic.simple import direct_to_template
 
+from settings import MEDIA_ROOT
+
 admin.autodiscover()
 
 
@@ -39,12 +41,16 @@ urlpatterns = patterns('',
     url(r'^newsletter$', "anm.views.newsletter", name="newsletter"),
     url(r'^del_newsletter/(?P<id>\d+)$', "anm.views.del_newsletter",
                                                 name="del_newsletter"),
-    url(r'^unsubscribe/$', "anm.views.unsubscribe",
-                                                name="unsubscribe"),
+    url(r'^unsubscribe/$', "anm.views.unsubscribe", name="unsubscribe"),
     url(r'^email-report/$', direct_to_template,
          {'template': 'message_new_report.html'}, name='message_new_report'),
     url(r'^email-news/$', direct_to_template,
          {'template': 'message_news.html'}, name='message_news'),
+
+    url(r'^media/(?P<path>.*)$',
+         'django.views.static.serve',
+         {'document_root': MEDIA_ROOT, 'show_indexes': True},
+         name='media'),
 
 )
 

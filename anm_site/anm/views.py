@@ -71,6 +71,9 @@ def dashboard(request):
     except:
         c.update({"message_empty_c": "Pas de comminiqué"})
 
+    president = Member.objects.get(post__slug="president")
+    president.url_display = reverse("display_member", args=[president.id])
+
     reports = Report.objects.all().order_by('-date')[:3]
     try:
         textstatic = TextStatic.objects.get(slug='dashboard')
@@ -81,7 +84,7 @@ def dashboard(request):
         report.url_report_date = reverse("report", args=[report.id])
     message_empty_r = "Pas de rapport"
     c.update({"reports": reports, "message_empty_r": message_empty_r,
-              "textstatic": textstatic})
+              "textstatic": textstatic, "president": president})
 
     if request.method == 'POST':
         form = Newsletterform(request.POST)

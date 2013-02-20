@@ -9,6 +9,15 @@
     <div class="row-fluid">
     <div class="span3">
     <!--Sidebar content-->
+        <fieldset ><legend>President</legend>
+            {%if president%}
+            <ul class="thumbnails">
+                <li class="span6">
+                    <a href="{{president.url_display}}" class="thumbnail"><img class="photo" src="{% if president.image %}{{president.image.url}}{% endif %}"><h4><small>{{president.first_name}} {{president.last_name}}</small></h4><h4><small>{{president.job_title}}</small></h4></a>
+                </li>
+            </ul>
+            {% endif %}
+        </fieldset>
         <fieldset ><legend>Brèves</legend>
             {%if last_new%}
                 <div class="well well-small">
