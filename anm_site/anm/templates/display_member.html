@@ -1,41 +1,41 @@
 {% extends "base.html" %}
 {% block title %}Information sur {{member}}{% endblock %}
-{% block page-id %}edit_memeber{% endblock %}
+{% block page-id %}edit_member{% endblock %}
 {% block content %}
 
     <h2>Information sur {{member}}</h2>
     <div class="media">
         <ul class="thumbnails">
             <li class="span6">
-                <a class="pull-left" href="#"class="thumbnail"><img src="{{member.image.url}}"></a>
+                <a class="pull-left" href="#"class="thumbnail"> {% if member.image %}<img src="{{member.image.url}}">{% endif %}</a>
             </li>
         </ul>
-    <div class="media-body">
-        <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
-        <div id="member_form">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>Nom</td><td>{{member.last_name}}</td>
-                </tr>
-                <tr>
-                    <td>Prénom</td><td>{{member.first_name}}</td>
-                </tr>
-                {% if member.job_title %}
-                <tr>
-                    <td>Intitulé du poste</td><td>{{member.job_title}}</td>
-                </tr>
-                {% endif %}
-                {% if member.email %}
-                <tr>
-                    <td>E-mail</td><td>{{member.email}}</td>
-                </tr>
-                {% endif %}
-                <tr>
-                    <td>Visible</td><td>{% if member.status %}OUI {% else %}NON{% endif %}</td>
-                </tr>
-            </table>
+        <div class="media-body">
+            <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
+                <div id="member_form">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <td>Nom</td><td>{{member.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Prénom</td><td>{{member.first_name}}</td>
+                        </tr>
+                        {% if member.job_title %}
+                        <tr>
+                            <td>Intitulé du poste</td><td>{{member.job_title}}</td>
+                        </tr>
+                        {% endif %}
+                        {% if member.email %}
+                        <tr>
+                            <td>E-mail</td><td>{{member.email}}</td>
+                        </tr>
+                        {% endif %}
+                        <!-- <tr>
+                            <td>Visible</td><td>{% if member.status %}OUI {% else %}NON{% endif %}</td>
+                        </tr> -->
+                    </table>
+                </div>
+            </form>
         </div>
     </div>
-    </div>
-    </form>
 {% endblock %}

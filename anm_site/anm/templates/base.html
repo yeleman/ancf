@@ -15,6 +15,7 @@
             <link type="text/css" rel="stylesheet" media="all" href="{{ STATIC_URL }}css/ancf_ie7.css" />
         <![endif]-->
     </head>
+    <div class="logo_left"><img alt="" src="{{ STATIC_URL }}css/images/sigle.gif"></div>
     <body>
         <div class="container">
             <div id="myCarousel" class="carousel slide">
@@ -46,6 +47,7 @@
             </div>
         </div>
     </body>
+    <div class="logo_right"><img alt="" src="{{ STATIC_URL }}css/images/sigle.gif"></div>
     <div id="footer">
             {% ifequal menu 'admin' %}
                 <a href = '{% url dashboard %}'><span class="label label-info">Retourner au site</span></a> <a href="{% url logout %}"><span class="label label-info">Se déconnecter</span></a>

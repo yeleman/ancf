@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Gestion de la présentation{% endblock %}
+{% block page-id %}edit_text_unacem{% endblock %}
+{% block content %}
+
+    <h2 class="page-header">Gestion de la présentation</h2>
+
+    <p>Cette section permet de modifier la présentation de l'UNACEM.</p>
+    <p>Utilisez les boutons ci-dessous pour mettre en forme la page.</p>
+
+    <h3>Modifier la présentation de l'UNACEM</h3>
+
+    <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
+        {% if form.text.errors %}
+        <p>{{form.text.errors}}</p>
+        {% endif %}
+        <p>{{form.text}}</p>
+          <input type='submit' class="btn btn-primary" value =  "Publier les modifications"/>
+    </form>
+
+{% endblock %}

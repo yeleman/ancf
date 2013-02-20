@@ -347,7 +347,7 @@ def display_member(request, *args, **kwargs):
     member_id = kwargs["id"]
     member = Member.objects.get(id=member_id)
     c.update({'member': member})
-    return render_to_response("display_member.html", c)
+    return render(request, "display_member.html", c)
 
 
 @login_required
@@ -481,6 +481,42 @@ def edit_text_static(request, *args, **kwargs):
         form = AddTextStaticform(instance=textstatic)
     c.update({'form': form})
     return render(request, 'edit_text_static.html', c)
+
+
+def display_text_unacem(request):
+    """ Affichage du texte de présentation de l'UNACEM """
+    c = {'category': 'display_text_unacem'}
+
+    try:
+        textstatic = TextStatic.objects.get(slug='unacem')
+    except:
+        textstatic = None
+
+    cordinator = Member.objects.get(post__slug="coordinataire")
+    cordinator.url_display = reverse("display_member", args=[cordinator.id])
+    c.update({'textstatic': textstatic, 'cordinator': cordinator})
+    return render(request, 'display_text_unacem.html', c)
+
+
+@login_required
+def edit_text_unacem(request, *args, **kwargs):
+    """ Ajout de nouveau texte de bienvenu """
+    c = {'category': 'edit_text_uncef', 'menu': 'admin'}
+
+    textstatic = TextStatic.objects.get(slug='unacem')
+    c.update({"user": request.user})
+    c.update(csrf(request))
+    if request.method == 'POST':
+        form = AddTextStaticform(request.POST, instance=textstatic)
+        if form.is_valid():
+            form.save()
+            messages.success(request,
+                             u"Le nouveau texte de présentation a été publié.")
+            return redirect('edit_text_unacem')
+    else:
+        form = AddTextStaticform(instance=textstatic)
+    c.update({'form': form})
+    return render(request, 'edit_text_unacem.html', c)
 
 
 def unsubscribe(request):

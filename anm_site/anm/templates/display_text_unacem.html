@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load tinymce_tags %}
+{% block title %}Présentation de l'UNACEM{% endblock %}
+{% block page-id %}dashboard{% endblock %}
+{% block content %}
+
+    <!-- <h2 >Accueil </h2> -->
+    <h2  class="page-header">Présentation de l'UNACEM</h2>
+    <div class="container-fluid">
+    <div class="row-fluid">
+    <div class="span3">
+    <!--Sidebar content-->
+        <fieldset ><legend><h4>Coordinateur</h4></legend>
+            {%if cordinator%}
+            <ul class="thumbnails">
+                <li class="span6"><h6><small>{{cordinator.job_title}}</small></h6>
+                    <a href="{{cordinator.url_display}}" class="thumbnail"><img class="photo" src="{% if cordinator.image %}{{cordinator.image.url}}{% endif %}"><h4><small> {{cordinator}}</small></h4></a>
+                </li>
+            </ul>
+            {% endif %}
+        </fieldset>
+    </div>
+    <div class="span9">
+    <!--Body content-->
+        <fieldset class="module aligned ">
+            {% if textstatic %} <html>{{textstatic.text|safe}}</html>
+            {% else %}
+                Présentation de la comission à venir...
+            {% endif %}
+        </fieldset>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

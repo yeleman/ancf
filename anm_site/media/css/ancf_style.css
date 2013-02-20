@@ -92,3 +92,12 @@ h2, h3, h4, h5, .carousel-caption .lead {
     position: absolute;
     right: 9px;
 }
+
+.logo_left{
+    /*background-image: url(/static/css/images/sigle.gif);*/
+    position: fixed;
+    float: left;}
+.logo_right{
+    /*background-image: url(/static/css/images/sigle.gif);*/
+    /*position: fixed;*/
+    float: right;}
