@@ -5,7 +5,11 @@
 
     <h2>Information sur {{member}}</h2>
     <div class="media">
-    <a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64"src="/static/{{image}}" width="190" height ="190"></a>
+        <ul class="thumbnails">
+            <li class="span6">
+                <a class="pull-left" href="#"class="thumbnail"><img src="{{member.image.url}}"></a>
+            </li>
+        </ul>
     <div class="media-body">
         <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
         <div id="member_form">
@@ -16,11 +20,6 @@
                 <tr>
                     <td>Prénom</td><td>{{member.first_name}}</td>
                 </tr>
-                {% if member.image %}
-                <tr>
-                    <td>Photo</td><td><img src="{{member.image.url}}" width="100" height ="100"></td>
-                </tr>
-                {% endif %}
                 {% if member.job_title %}
                 <tr>
                     <td>Intitulé du poste</td><td>{{member.job_title}}</td>

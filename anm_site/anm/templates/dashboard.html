@@ -9,16 +9,16 @@
     <div class="row-fluid">
     <div class="span3">
     <!--Sidebar content-->
-        <fieldset ><legend>President</legend>
+        <fieldset ><legend><h4>Président</h4></legend>
             {%if president%}
-            <ul class="thumbnails">
+            <ul class="thumbnails" class="carousel-caption2">
                 <li class="span6">
-                    <a href="{{president.url_display}}" class="thumbnail"><img class="photo" src="{% if president.image %}{{president.image.url}}{% endif %}"><h4><small>{{president.first_name}} {{president.last_name}}</small></h4><h4><small>{{president.job_title}}</small></h4></a>
+                    <a href="{{president.url_display}}" class="thumbnail"><img class="photo" src="{% if president.image %}{{president.image.url}}{% endif %}"></a><h4><small>{{president.first_name}} {{president.last_name}}</small></h4>
                 </li>
             </ul>
             {% endif %}
         </fieldset>
-        <fieldset ><legend>Brèves</legend>
+        <fieldset ><legend><h4>Brèves</h4></legend>
             {%if last_new%}
                 <div class="well well-small">
                     <h4>{{last_new.title}}
@@ -30,7 +30,7 @@
             <ul><li> {{message_empty_c}}</li></ul>
             {% endif %}
         </fieldset>
-        <fieldset ><legend>Newsletter:</legend>
+        <fieldset ><legend><h4>Newsletter:</h4></legend>
             <form action="" class="form-search" method="post">{% csrf_token %}
                 <p>Recevoir les annonces</p>
 
@@ -39,7 +39,7 @@
                 <input type='submit' class="btn btn-small btn-primary" value =  "S'inscrire"/>
             </form>
         </fieldset>
-        <fieldset ><legend>Derniers rapports:</legend>
+        <fieldset ><legend><h4>Derniers rapports:</h4></legend>
             <div class="">
                 {%if reports%}
                     <ul>

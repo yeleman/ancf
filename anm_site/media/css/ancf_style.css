@@ -42,11 +42,18 @@ body {background-color: whitesmoke;}
     line-height: 20px;
     padding: 4px;
     transition: all 0.2s ease-in-out 0s;
+    width: 12em;
 }
+
 #id_email {margin-bottom: 7px;}
-h3, .carousel-caption .lead {
-    color: #FFFFFF;
+
+h2, h3, h4, h5, h6, .carousel-caption .lead {
+    color: #222222;
     line-height: 1.25;
     margin: 0;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+#dashboard .thumbnail {
+    border-radius: 4px 4px 4px 4px;
 }
