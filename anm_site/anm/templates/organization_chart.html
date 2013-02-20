@@ -12,7 +12,7 @@
                         {% if org.president %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Président</h6><h6><small>{{org.president.job_title}}</small></h6>
+                                    <h5>Président</h5><h6><small>{{org.president.job_title}}</small></h6>
                                     <a href="{{org.president.url_display}}" class="thumbnail"><img class="photo" src="{% if org.president.image %}{{org.president.image.url}}{% endif %}"><h4><small>{{org.president}}</small></h4></a>
                                 </li>
                             </ul>
@@ -20,7 +20,7 @@
                         {% if org.vice_president %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Vice-Président</h6><h6><small>{{org.vice_president.job_title}}</small></h6>
+                                    <h5>Vice-Président</h5><h6><small>{{org.vice_president.job_title}}</small></h6>
                                     <a href="{{org.vice_president.url_display}}"  class="thumbnail"><img src="{% if org.vice_president.image %}{{org.vice_president.image.url}}{% endif %}"><h4><small>{{org.vice_president}}</small></h4></a>
                                 </li>
                             </ul>
@@ -28,7 +28,7 @@
                         {% if org.raporter %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Rapporteur General</h6><h6><small>{{org.raporter.job_title}}</small></h6>
+                                    <h5>Rapporteur General</h5><h6><small>{{org.raporter.job_title}}</small></h6>
                                     <a href="{{org.raporter.url_display}}"  class="thumbnail"><img src="{% if org.raporter.image %}{{org.raporter.image.url}}{% endif %}"><h4><small>{{org.raporter}}</small></h4></a>
                                 </li>
                             </ul>
@@ -40,21 +40,21 @@
                         {% if org.assistant1 %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Assistant</h6><h6><small>{{org.assistant1.job_title}}</small></h6>
+                                    <h5>Assistant</h5><h6><small>{{org.assistant1.job_title}}</small></h6>
                             <a href="{{org.assistant1.url_display}}"  class="thumbnail"><img src="{% if org.assistant1.image %}{{org.assistant1.image.url}}{% endif %}"><h4><small>{{org.assistant1}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
                         {% if org.assistant2 %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Assistant</h6><h6><small>{{org.assistant2.job_title}}</small></h6>
+                                    <h5>Assistant</h5><h6><small>{{org.assistant2.job_title}}</small></h6>
                             <a href="{{org.assistant2.url_display}}"  class="thumbnail"><img src="{% if org.assistant2.image %}{{org.assistant2.image.url}}{% endif %}"><h4><small>{{org.assistant2}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
                         {% if org.assistant3 %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Assistant</h6><h6><small>{{org.assistant3.job_title}}</small></h6>
+                                    <h5>Assistant</h5><h6><small>{{org.assistant3.job_title}}</small></h6>
                             <a href="{{org.assistant3.url_display}}"  class="thumbnail"><img src="{% if org.assistant3.image %}{{org.assistant3.image.url}}{% endif %}"><h4><small>{{org.assistant3}}</small></h4></a>
                                 </li>
                             </ul>{% endif %}
@@ -65,7 +65,7 @@
                         {% if org.cordinator %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Coordinateur</h6><h6><small>{{org.cordinator.job_title}}</small></h6>
+                                    <h5>Coordinateur</h5><h6><small>{{org.cordinator.job_title}}</small></h6>
                                     <a href="{{org.cordinator.url_display}}"  class="thumbnail"><img src="{% if org.cordinator.image %}{{org.cordinator.image.url}}{% endif %}"><h4><small>{{org.cordinator}}</small></h4></a>
                                 </li>
                             </ul>
@@ -73,7 +73,7 @@
                         {% if org.vice_cordinator %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Coordinateur Adjoint</h6><h6><small>{{org.vice_cordinator.job_title}}</small></h6>
+                                    <h5>Coordinateur Adjoint</h5><h6><small>{{org.vice_cordinator.job_title}}</small></h6>
                                     <a href="{{org.vice_cordinator.url_display}}"  class="thumbnail"><img src="{% if org.vice_cordinator.image %}{{org.vice_cordinator.image.url}}{% endif %}"><h4><small>{{org.vice_cordinator}}</small></h4></a>
                                 </li>
                             </ul>
@@ -81,7 +81,7 @@
                         {% if org.fix %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Expert en fixalité</h6><h6><small>{{org.fix.job_title}}</small></h6>
+                                    <h5>Expert en fixalité</h5><h6><small>{{org.fix.job_title}}</small></h6>
                                      <a href="{{org.fix.url_display}}"  class="thumbnail"><img src="{% if org.fix.image %}{{org.fix.image.url}}{% endif %}"><h4><small>{{org.fix}}</small></h4></a>
                                 </li>
                             </ul>
@@ -89,7 +89,7 @@
                         {% if org.gestion %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Assistante de gestion</h6><h6><small>{{org.gestion.job_title}}</small></h6>
+                                    <h5>Assistante de gestion</h5><h6><small>{{org.gestion.job_title}}</small></h6>
                                     <a href="{{org.gestion.url_display}}"  class="thumbnail"><img src="{% if org.gestion.image %}{{org.gestion.image.url}}{% endif %}"><h4><small>{{org.gestion}}</small></h4></a>
                                 </li>
                             </ul>
@@ -97,7 +97,7 @@
                         {% if org.assistant_fix %}
                             <ul class="thumbnails">
                                 <li class="span6">
-                                    <h6>Assistant en fixalité</h6><h6><small>{{org.assistant_fix.job_title}}</small></h6>
+                                    <h5>Assistant en fixalité</h5><h6><small>{{org.assistant_fix.job_title}}</small></h6>
                                     <a href="{{org.assistant_fix.url_display}}"  class="thumbnail"><img src="{% if org.assistant_fix.image %}{{org.assistant_fix.image.url}}{% endif %}"><h4><small>{{org.assistant_fix}}</small></h4></a>
                                 </li>
                             </ul>

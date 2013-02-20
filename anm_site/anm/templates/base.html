@@ -2,17 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
     <head>
         <title>{% block title %}{% endblock %}</title>
-         <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" href="/static/css/jquery-ui-date.css" type="text/css" />
-        <link rel="stylesheet" href="/static/css/ancf_style.css" type="text/css" />
-        <script src="/static/js/jquery-latest.js"></script>
-        <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/static/js/jquery-ui.min.js"></script>
+         <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-date.css" type="text/css" />
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/ancf_style.css" type="text/css" />
+        <script src="{{ STATIC_URL }}js/jquery-latest.js"></script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
         <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-		<script src="/static/tiny_mce/tiny_mce.js"></script>
+		<script src="{{ STATIC_URL }}tiny_mce/tiny_mce.js"></script>
         <!--[if gte IE 7]>
-            <link type="text/css" rel="stylesheet" media="all" href="/static/css/ancf_ie7.css" />
+            <link type="text/css" rel="stylesheet" media="all" href="{{ STATIC_URL }}css/ancf_ie7.css" />
         <![endif]-->
     </head>
     <body>
@@ -20,11 +20,11 @@
             <div id="myCarousel" class="carousel slide">
                 <!-- Carousel items -->
                 <div class="carousel-inner">
-                    <div class="active item"><img  class="img-polaroid" alt="" src="/static/css/images/anm.jpg" style="height: 16em; width: 66.4em;"></div>
-                    <div class="item"><img   class="img-polaroid" alt="" src="/static/css/images/facade.jpg" style="height: 16em; width: 66.4em;"></div>
-                    <div class="item"><img   class="img-polaroid" alt="" src="/static/css/images/mali-drapeau.jpg" style="height: 16em; width: 66.4em;"></div>
+                    <div class="active item"><img  class="img-polaroid" alt="" src="{{ STATIC_URL }}css/images/anm.jpg" style="height: 16em; width: 66.4em;"></div>
+                    <div class="item"><img   class="img-polaroid" alt="" src="{{ STATIC_URL }}css/images/facade.jpg" style="height: 16em; width: 66.4em;"></div>
+                    <div class="item"><img   class="img-polaroid" alt="" src="{{ STATIC_URL }}css/images/mali-drapeau.jpg" style="height: 16em; width: 66.4em;"></div>
                 </div>
-                <div class="carousel-caption2"><h3>Site de la commission des finances.</h3></div>
+                <div class="carousel-caption"><div id="name"><h1>Assemblée Nationale du Mali</h1>Commission des finances</div id="name"></div>
                 <!-- Carousel nav -->
                 <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
                 <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>

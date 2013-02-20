@@ -47,13 +47,48 @@ body {background-color: whitesmoke;}
 
 #id_email {margin-bottom: 7px;}
 
-h2, h3, h4, h5, h6, .carousel-caption .lead {
+h2, h3, h4, h5, .carousel-caption .lead {
     color: #222222;
     line-height: 1.25;
     margin: 0;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
 }
 
+#name {
+    color: #FFFFFF;
+    font-size: 2em;
+    line-height: 1.7;
+    margin: 74px;
+    text-shadow: 1px 5px 0 rgba(0, 0, 0, 0.4);
+}
+
 #dashboard .thumbnail {
     border-radius: 4px 4px 4px 4px;
+}
+.carousel-control {
+    background: none repeat scroll 0 0 transparent;
+    border: 3px inset #FFFFFF;
+    border-radius: 23px 23px 23px 23px;*/
+    color: #FFFFFF;
+    font-size: 60px;
+    font-weight: 100;
+/*    height: 40px;
+    left: 15px;
+    line-height: 30px;
+    margin-top: -20px;*/
+    opacity: 0.21;
+   /* position: absolute;
+    text-align: center;*/
+    top: 40%;
+    width: 20px;
+}
+
+.carousel-caption {
+    /*background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);*/
+    background: transparent;
+    bottom: 0;
+    left: 0;
+    padding: 15px;
+    position: absolute;
+    right: 9px;
 }
