@@ -512,7 +512,7 @@ def edit_text_unacem(request, *args, **kwargs):
             form.save()
             messages.success(request,
                              u"Le nouveau texte de présentation a été publié.")
-            return redirect('edit_text_unacem')
+            return redirect('display_text_unacem')
     else:
         form = AddTextStaticform(instance=textstatic)
     c.update({'form': form})

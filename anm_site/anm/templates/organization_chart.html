@@ -112,6 +112,7 @@
                 <tr>
                     <th>Photo</th>
                     <th>Nom et Prénom</th>
+                    <th>Intitulé du poste</th>
                 </tr>
             </thead>
             <tbody>
@@ -120,6 +121,7 @@
                         <tr>
                             <td><a href="{{member.url_display}}"><img src="{% if member.image %}{{member.image.url}}{% endif %}"></a></td>
                             <td><a href="{{member.url_display}}">{{member}}</a></td>
+                            <td>{{member.job_title}}</td>
                         </tr>
                     {%endfor%}
                 {% else %}
