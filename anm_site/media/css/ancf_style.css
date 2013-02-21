@@ -101,3 +101,8 @@ h2, h3, h4, h5, .carousel-caption .lead {
     /*background-image: url(/static/css/images/sigle.gif);*/
     /*position: fixed;*/
     float: right;}
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+    color: #626262;
+    font-weight: normal;
+    line-height: 1;
+}

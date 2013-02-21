@@ -25,17 +25,15 @@
                 {%endfor%}
             </ul>
             <div class="tab-content">
-                <h4>
                     <div id="telechargement">
                         <a href="{{selected_report.url_report}}" class = "btn">Téléchager<img src="/static/css/images/pdf.png" width="100"></a>
                     </div>
-                    <div> <h3>{{selected_report.title_report}}</h3></div>
-                    <div> Publié le : <small>{{selected_report.date}}</small></div>
-                    <div> Rapporteur : <small>{{selected_report.author}}</small></div>
-                    <fieldset ><legend>Description :</legend>
+                    <div><h3 style="line-height: 2;">{{selected_report.title_report}}</h3></div><h1></h1><h1></h1>
+                    <div><h5>Publié le : <small>{{selected_report.date}}</h5></small></div>
+                    <div><h5>Rapporteur : <small>{{selected_report.author}}</h5></small></div>
+                    <fieldset ><legend><h5>Description :</h5></legend>
                         <div><small>{{selected_report.description}}</small></div>
                     </fieldset>
-                </h4>
             </div>
         </div>
     {%else%}

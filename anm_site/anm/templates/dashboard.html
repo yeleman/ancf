@@ -21,8 +21,8 @@
         <fieldset ><legend><h4>Brèves</h4></legend>
             {%if last_new%}
                 <div class="well well-small">
-                    <h4>{{last_new.title}}
-                        <small>Publié le {{last_new.date}}</small></h4>
+                    <h6>{{last_new.title}}</br>
+                        <small>Publié le {{last_new.date}}</small></h6>
                     <p class="text-info">{{last_new.comment}}</p>
                     <p><a href="{% url history_news %}"><button class="btn btn-small">Voir toutes les brèves <i class="icon-flag"></i></button></a></p>
                 </div>
