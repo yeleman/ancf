@@ -13,7 +13,7 @@
         <fieldset ><legend><h4>Coordinateur</h4></legend>
             {%if cordinator%}
             <ul class="thumbnails">
-                <li class="span6"><h6><small>{{cordinator.job_title}}</small></h6>
+                <li class="span6">
                     <a href="{{cordinator.url_display}}" class="thumbnail"><img class="photo" src="{% if cordinator.image %}{{cordinator.image.url}}{% endif %}"><h4><small> {{cordinator}}</small></h4></a>
                 </li>
             </ul>
