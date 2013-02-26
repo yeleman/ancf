@@ -51,7 +51,7 @@ def login(request):
                                     Veuillez réessayer."
 
         c.update({'form': form, 'state': state})
-    return render_to_response('login.html', c)
+    return render(request, 'login.html', c)
 
 
 def logout(request):

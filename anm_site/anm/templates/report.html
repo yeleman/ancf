@@ -2,6 +2,7 @@
 {% block title %}Liste des rapports de la comission des finances{% endblock %}
 {% block page-id %}report{% endblock %}
 {% block content %}
+
     <div id="rech"><h4>Filtrer par: </h4>
         <div  class="btn-group">
             <button class="btn btn-small">{%if selected_type%}{{selected_type.name}}{%else%}Tous types de rapports {%endif%}</button>
@@ -26,7 +27,7 @@
             </ul>
             <div class="tab-content">
                     <div id="telechargement">
-                        <a href="{{selected_report.url_report}}" class = "btn">Téléchager<img src="/static/css/images/pdf.png" width="100"></a>
+                        <a href="{{selected_report.url_report}}" class = "btn">Téléchager<img src="{{ STATIC_URL }}css/images/pdf.png" width="100"></a>
                     </div>
                     <div><h3 style="line-height: 2;">{{selected_report.title_report}}</h3></div><h1></h1><h1></h1>
                     <div><h5>Publié le : <small>{{selected_report.date}}</h5></small></div>
@@ -41,9 +42,4 @@
             <div id="report">Aucun rapport publié pour le moment.</div>
         </fieldset>
     {% endif %}
-        <script type="text/javascript">
-            jQuery('#id_date').datepicker({
-                 dateFormat: 'dd/mm/yy',
-                });
-        </script>
 {% endblock %}

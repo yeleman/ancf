@@ -10,6 +10,7 @@
 
     <h3>Modifier la présentation de l'UNACEM</h3>
 
+    <script src="{{ STATIC_URL }}tiny_mce/tiny_mce.js"></script>
     <form action="" method="post" class="form-search" enctype="multipart/form-data">{% csrf_token %}
         {% if form.text.errors %}
         <p>{{form.text.errors}}</p>
