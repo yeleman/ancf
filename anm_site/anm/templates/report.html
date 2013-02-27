@@ -26,17 +26,16 @@
                 {%endfor%}
             </ul>
             <div class="tab-content">
-                    <div id="telechargement">
-                        <a href="{{selected_report.url_report}}" class = "btn">Téléchager<img src="{{ STATIC_URL }}css/images/pdf.png" width="100"></a>
-                    </div>
-                    <div><h3 style="line-height: 2;">{{selected_report.title_report}}</h3></div><h1></h1><h1></h1>
-                    <div><h5>Publié le : <small>{{selected_report.date}}</h5></small></div>
-                    <div><h5>Rapporteur : <small>{{selected_report.author}}</h5></small></div>
-                    <fieldset ><legend><h5>Description :</h5></legend>
-                        <div><small>{{selected_report.description}}</small></div>
-                    </fieldset>
+                <div id="telechargement">
+                    <a href="{{selected_report.url_report}}" class = "btn">Téléchager<img src="{{ STATIC_URL }}css/images/pdf.png" width="100"></a>
+                </div>
+                <div class="pdf_reader"><a href="{{ STATIC_URL }}support/SumatraPDF-2.2.1-install.exe"><button class="btn btn-small" title="Le lecteur gratuit de PDF petit par la taille, mais grand par les fonctionnalités !"><i class="icon-download"></i> Télécharger pdf </button></a></div>
+                <div><h3 style="line-height: 2;">{{selected_report.title_report}}</h3></div><h1></h1><h1></h1>
+                <div><h5>Publié le : <small>{{selected_report.date}}</h5></small></div>
+                <div><h5>Rapporteur : <small>{{selected_report.author}}</h5></small></div>
+                    <fieldset ><legend><h5>Description :</h5></legend> <div><small>{{selected_report.description}}</small></div></fieldset>
+                </div>
             </div>
-        </div>
     {%else%}
         <fieldset >
             <div id="report">Aucun rapport publié pour le moment.</div>

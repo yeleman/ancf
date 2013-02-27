@@ -106,3 +106,5 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     font-weight: normal;
     line-height: 1;
 }
+
+.pdf_reader {float: right; margin-left: 45em; margin-top: 1em;}
