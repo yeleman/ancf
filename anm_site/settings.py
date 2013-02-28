@@ -126,8 +126,8 @@ INSTALLED_APPS = (
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'fanga.computing@gmail.com'
-EMAIL_HOST_PASSWORD = 'administrateur'
+EMAIL_HOST_USER = 'ancfmali@gmail.com'
+EMAIL_HOST_PASSWORD = 'ancf mali'
 EMAIL_PORT = 587
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = 1025
