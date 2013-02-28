@@ -237,7 +237,7 @@ def organization_chart(request):
         type_member = TypePost.objects.get(slug='membre')
     except:
         type_member = None
-    members = Member.objects.filter(post=type_member)
+    members = Member.objects.filter(post=type_member, status=True)
     for member in members:
         member.url_display = reverse("display_member", args=[member.id])
     try:
@@ -284,6 +284,7 @@ def organization_chart(request):
                                     args=[organization_chart.assistant_fix.id])
         c.update({"org": organization_chart, 'members': members})
     except:
+        raise
         pass
 
     c.update({"message_empty_org": "Pas de organigramme"})
