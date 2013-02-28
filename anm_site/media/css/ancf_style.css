@@ -22,6 +22,7 @@ fieldset li a {list-style-type: disc; font-size: 11px;}
 #footer a{color: darkred;font-size: 13px; margin-left: 1em;}
 
 #edit_text_static form textarea {height: 47em;width: -moz-available;}
+#edit_text_unacem form textarea {height: 47em;width: -moz-available;}
 .carousel {margin-bottom: 0;}
 body {background-color: whitesmoke;}
 .container {
