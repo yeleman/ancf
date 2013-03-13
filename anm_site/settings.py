@@ -124,11 +124,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ancfmali@gmail.com'
-EMAIL_HOST_PASSWORD = 'ancf mali'
-EMAIL_PORT = 587
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = 1025
 
