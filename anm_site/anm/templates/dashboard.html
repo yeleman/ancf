@@ -56,7 +56,7 @@
     <div class="span9">
     <!--Body content-->
         <fieldset class="module aligned ">
-            {% if textstatic %} <html>{{textstatic.text|safe}}</html>
+            {% if textstatic %} <div>{{textstatic.text|safe}}</div>
             {% else %}
                 Présentation de la comission à venir...
             {% endif %}

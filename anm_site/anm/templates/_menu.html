@@ -6,11 +6,9 @@
                     <li {% if category = 'edit_text_unacem' %} class="active"{% endif %}><a class="brand" href="{% url edit_text_unacem %}"><strong>Présentation UNACEM</strong></a></li>
                     <!-- <li {% if category = 'add_member' %} class="active"{% endif %}><a class="brand" href="{% url add_member %}" >Ajouter un membre</a></li> -->
                     <li {% if category = 'modif_organization_chart' %}class="active"{% endif %} ><a class="brand" href="{% url modif_organization_chart %}" ><strong>Organigramme</strong></a></li>
-
                     <li {% if category = 'add_report' %} class="active"{% endif %}><a class="brand" href="{% url add_report %}"> <strong>Rapports</strong></a></li>
                     <li {% if category = 'news' %} class="active"{% endif %}><a class="brand" href="{% url news %}"><strong>Brèves</strong></a></li>
                     <li {% if category = 'newsletter' %} class="active"{% endif %}><a class="brand" href="{% url newsletter %}"><strong>Newsletter</strong></a></li>
-
             {% else %}
                     <li {% if category = 'dashboard' %} class="active"{% endif %}><a class="brand"  href="{% url dashboard %}" > <strong>Accueil</strong></a></li>
                     <li {% if category = 'report' %} class="active"{% endif %}><a class="brand" href="{% url report %}"><strong>Les rapports</strong></a></li>

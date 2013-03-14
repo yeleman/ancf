@@ -26,15 +26,15 @@
                 <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
             </div>
             <div >{% include "_menu.html" %}</div>
-                {% if messages %}
-                    <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <ul class="messages">
-                            {% for message in messages %} <li>
-                            <span>{{ message }}</span></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
+            {% if messages %}
+                <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <ul class="messages">
+                        {% for message in messages %} <li>
+                        <span>{{ message }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
 
             <div id="{% block page-id %}{% endblock %}">
                 {% block content %}
@@ -54,13 +54,12 @@
 
         </script>
     </body>
-
     <div class="logo_right"><img alt="" src="{{ STATIC_URL }}css/images/sigle.gif"></div>
     <div id="footer">
             {% ifequal menu 'admin' %}
                 <a href = '{% url dashboard %}'><span class="label label-info">Retourner au site</span></a> <a href="{% url logout %}"><span class="label label-info">Se déconnecter</span></a>
             {% else %}
                 <a href = '{% url login %}'><span class="label label-info">Espace d'administration</span></a>
-            {% endifequal %}</a>
+            {% endifequal %}
     </div>
 </html>
