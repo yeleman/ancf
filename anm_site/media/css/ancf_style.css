@@ -24,7 +24,16 @@ fieldset li a {list-style-type: disc; font-size: 11px;}
 #edit_text_static form textarea {height: 47em;width: -moz-available;}
 #edit_text_unacem form textarea {height: 47em;width: -moz-available;}
 .carousel {margin-bottom: 0;}
-body {background-color: whitesmoke;}
+
+body {
+    background-color: whitesmoke;
+    color: #333333;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17.45px;
+    line-height: 20px;
+    margin: 0;
+}
+
 .container {
     background-color: #fff;
     box-shadow: 0 10px 6px rgba(0, 0, 0, 0.77);
@@ -33,7 +42,21 @@ body {background-color: whitesmoke;}
     position: relative;
     margin-bottom: 4em;
 }
-#Organization_chart .row-fluid img{height: 15em;}
+
+#Organization_chart .row-fluid img {
+    max-height: 16em;
+    max-width: 12em;
+    min-height: 16em;
+    min-width: 12em;
+}
+
+#dashboard img {
+    max-height: 16em;
+    max-width: 12em;
+    min-height: 16em;
+    min-width: 12em;
+}
+
 #Organization_chart a {text-decoration: none;}
 .thumbnail {
     border: 1px solid #DDDDDD;
@@ -109,3 +132,18 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 }
 
 .pdf_reader {float: right; margin-left: 45em; margin-top: 1em;}
+
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+    background-color: #EBEBEB;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125) inset;
+    color: #555555;
+    margin: 0.5px;
+    text-decoration: none;
+}
+.navbar .nav > li > a {
+    color: #777777;
+    float: none;
+    padding: 10px 26px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
