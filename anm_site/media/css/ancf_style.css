@@ -85,6 +85,10 @@ body {
     filter: drop-shadow(5px 5px 10px #ccc);
 }
 
+.row-fluid [class*="span"] {
+    margin-left: 0%;
+}
+
 #id_email {margin-bottom: 7px;}
 
 h2, h3, h4, h5, .carousel-caption .lead {

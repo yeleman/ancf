@@ -6,3 +6,17 @@
 #edit_text_unacem form table {width: 26em;height: 2em;}
 #add_rapport textarea {width: 56em;}
 #news textarea {width: 60em;}
+
+.container {
+    background-color: #fff;
+    border: 2px solid #000;
+    -o-box-shadow: 0 10px 6px rgba(0, 0, 0, 0.77);
+    -ms-box-shadow: 0 10px 6px rgba(0, 0, 0, 0.77);
+    -webkit-box-shadow: 0 10px 6px rgba(0, 0, 0, 0.77);
+    -webkit-box-shadow: 0 10px 6px rgba(0, 0, 0, 0.77);
+}
+
+
+.span9 {
+    width: 11100px;
+}

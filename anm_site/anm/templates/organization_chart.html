@@ -55,7 +55,6 @@
                                 </div>
                             {% endif %}
                             </div>
-                        </div>
                     </fieldset>
                 </div>
             </div>
@@ -93,34 +92,36 @@
                                     <a href="{{org.assistant_fix.url_display}}"  class="thumbnail"><img src="{% if org.assistant_fix.image %}{{org.assistant_fix.image.url}}{% else %} {{STATIC_URL }}css/images/avatar.png {% endif %}"><h4><small>{{org.assistant_fix}}</small></h4></a>
                                 </div>
                             {% endif %}
-                        </div>
                     </fieldset>
+                    </div>
                 </div>
             </div>
-        <h3>Membres</h3>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Photo</th>
-                    <th>Nom et Prénom</th>
-                    <th>Intitulé du poste</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if members %}
-                    {% for member in members %}
-                        <tr>
-                            <td><a href="{{member.url_display}}">{% if member.image %}<img src="{{member.image.url}}">{% endif %}</a></td>
-                            <td><a href="{{member.url_display}}">{{member}}</a></td>
-                            <td>{{member.job_title}}</td>
-                        </tr>
-                    {%endfor%}
-                {% else %}
-                    <tr><td style="text-align: center;" colspan=4>Pas de membres pour le moment.</td></tr>
-                {%endif%}
-            </tbody>
-        </table>
-
+            <div class="span9">
+                    <fieldset><legend>Membres</legend>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Nom et Prénom</th>
+                                    <th>Intitulé du poste</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if members %}
+                                    {% for member in members %}
+                                        <tr>
+                                            <td><a href="{{member.url_display}}">{% if member.image %}<img src="{{member.image.url}}">{% endif %}</a></td>
+                                            <td><a href="{{member.url_display}}">{{member}}</a></td>
+                                            <td>{{member.job_title}}</td>
+                                        </tr>
+                                    {%endfor%}
+                                {% else %}
+                                    <tr><td style="text-align: center;" colspan=4>Pas de membres pour le moment.</td></tr>
+                                {%endif%}
+                            </tbody>
+                        </table>
+                    </fieldset>
+            </div>
     {% else%}
         <p>Pas d'organigramme pour le moment.</p></td>
     {%endif%}
