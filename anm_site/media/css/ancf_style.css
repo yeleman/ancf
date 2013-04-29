@@ -85,7 +85,7 @@ body {
     filter: drop-shadow(5px 5px 10px #ccc);
 }
 
-.row-fluid [class*="span"] {
+#Organization_chart .row-fluid [class*="span"] {
     margin-left: 0%;
 }
 
@@ -108,6 +108,12 @@ h2, h3, h4, h5, .carousel-caption .lead {
 
 #dashboard .thumbnail {
     border-radius: 4px 4px 4px 4px;
+    height: 16em;
+    width: 12em;
+}
+
+#dashboard ul, ol {
+    margin: 0 0 10px 14px;
 }
 
 .carousel-caption {
